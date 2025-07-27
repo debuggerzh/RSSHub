@@ -161,6 +161,9 @@ importers:
       puppeteer:
         specifier: 22.3.0
         version: 22.3.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+      puppeteer-core:
+        specifier: ^22.3.0
+        version: 22.3.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       puppeteer-extra:
         specifier: 3.3.6
         version: 3.3.6(puppeteer-core@22.3.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(puppeteer@22.3.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))
@@ -7818,7 +7821,7 @@ snapshots:
 
   extract-zip@2.0.1:
     dependencies:
-      debug: 4.3.4
+      debug: 4.4.1(supports-color@5.5.0)
       get-stream: 5.2.0
       yauzl: 2.10.0
     optionalDependencies:
@@ -10454,7 +10457,7 @@ snapshots:
   proxy-agent@6.4.0:
     dependencies:
       agent-base: 7.1.4
-      debug: 4.3.4
+      debug: 4.4.1(supports-color@5.5.0)
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.4
       lru-cache: 7.18.3
