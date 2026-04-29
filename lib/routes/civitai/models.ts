@@ -1,4 +1,4 @@
-import { Route } from '@/types';
+import type { Route } from '@/types';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 
@@ -14,6 +14,7 @@ export const route: Route = {
         supportBT: false,
         supportPodcast: false,
         supportScihub: false,
+        nsfw: true,
     },
     radar: [
         {
@@ -27,7 +28,7 @@ export const route: Route = {
 };
 
 async function handler() {
-    const { data } = await got(`https://civitai.com/api/v1/models`, {
+    const { data } = await got('https://civitai.com/api/v1/models', {
         searchParams: {
             limit: 20,
             sort: 'Newest',
@@ -44,8 +45,8 @@ async function handler() {
     }));
 
     return {
-        title: `Civitai latest models`,
-        link: `https://civitai.com/`,
+        title: 'Civitai latest models',
+        link: 'https://civitai.com/',
         item: items,
     };
 }

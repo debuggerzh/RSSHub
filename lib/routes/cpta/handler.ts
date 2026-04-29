@@ -1,8 +1,9 @@
-import { DataItem, Route } from '@/types';
-import cache from '@/utils/cache';
-import got from '@/utils/got';
 import { load } from 'cheerio';
 import pMap from 'p-map';
+
+import type { DataItem, Route } from '@/types';
+import cache from '@/utils/cache';
+import got from '@/utils/got';
 
 type NewsCategory = {
     title: string;
@@ -50,7 +51,7 @@ const handler: Route['handler'] = async (ctx) => {
                 link: absoluteLink,
             };
         })
-        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        .toSorted((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
         .slice(0, 10);
 
     const fetchDataItem = (item: { title: string; date: string; link: string }) =>
@@ -120,12 +121,12 @@ export const route: Route = {
         {
             title: '中国人事考试网通知公告',
             source: ['www.cpta.com.cn/notice.html', 'www.cpta.com.cn'],
-            target: `/notice`,
+            target: '/notice',
         },
         {
             title: '中国人事考试网成绩发布',
             source: ['www.cpta.com.cn/performance.html', 'www.cpta.com.cn'],
-            target: `/performance`,
+            target: '/performance',
         },
     ],
     example: '/cpta/notice',

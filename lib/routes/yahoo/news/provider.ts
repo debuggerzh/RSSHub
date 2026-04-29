@@ -1,7 +1,7 @@
-import { Route } from '@/types';
-import cache from '@/utils/cache';
-import { getArchive, getProviderList, parseList, parseItem } from './utils';
 import InvalidParameterError from '@/errors/types/invalid-parameter';
+import type { Route } from '@/types';
+
+import { getArchive, getProviderList, parseItem, parseList } from './utils';
 
 export const route: Route = {
     path: '/news/provider/:region/:providerId',
@@ -49,13 +49,13 @@ async function handler(ctx) {
     }
 
     const limit = ctx.req.query('limit') ? Number.parseInt(ctx.req.query('limit'), 10) : 20;
-    const providerList = await getProviderList(region, cache.tryGet);
+    const providerList = await getProviderList(region);
     const provider = providerList.find((p) => p.key === providerId);
 
-    const response = await getArchive(region, limit, null, providerId);
+    const response = await getArchive(region, limit, [], providerId);
     const list = parseList(region, response);
 
-    const items = await Promise.all(list.map((item) => parseItem(item, cache.tryGet)));
+    const items = await Promise.all(list.map((item) => parseItem(item)));
 
     return {
         title: `Yahoo 新聞 - ${provider?.title ?? ''}`,

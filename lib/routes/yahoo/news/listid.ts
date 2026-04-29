@@ -1,7 +1,7 @@
-import { Route } from '@/types';
-import cache from '@/utils/cache';
-import { getList, parseList, parseItem } from './utils';
 import InvalidParameterError from '@/errors/types/invalid-parameter';
+import type { Route } from '@/types';
+
+import { getList, parseItem, parseList } from './utils';
 
 export const route: Route = {
     path: '/news/list/:region/:listId',
@@ -54,11 +54,11 @@ async function handler(ctx) {
     // console.log('Is response an array?', Array.isArray(response.stream_items));
     const list = parseList(region, response.stream_items);
 
-    const items = await Promise.all(list.map((item) => parseItem(item, cache.tryGet)));
+    const items = await Promise.all(list.map((item) => parseItem(item)));
 
     const author = items[0].author;
-    const atIndex = author.indexOf('@'); // fing '@'
-    const source = atIndex === -1 ? author : author.slice(atIndex + 1).trim();
+    const atIndex = author?.indexOf('@'); // fing '@'
+    const source = atIndex === -1 ? author : author?.slice(atIndex + 1).trim();
     // console.log(source);
 
     return {

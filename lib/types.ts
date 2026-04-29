@@ -26,6 +26,7 @@ export type Category =
     | 'study'
     | 'journal'
     | 'finance'
+    | 'sport'
     | 'other';
 
 // rss
@@ -37,11 +38,11 @@ export type DataItem = {
     category?: string[];
     author?:
         | string
-        | {
+        | Array<{
               name: string;
               url?: string;
               avatar?: string;
-          }[];
+          }>;
     doi?: string;
     guid?: string;
     id?: string;
@@ -60,20 +61,20 @@ export type DataItem = {
     itunes_duration?: number | string;
     itunes_item_image?: string;
     media?: Record<string, Record<string, string>>;
-    attachments?: {
+    attachments?: Array<{
         url: string;
         mime_type: string;
         title?: string;
         size_in_bytes?: number;
         duration_in_seconds?: number;
-    }[];
+    }>;
 
     _extra?: Record<string, any> & {
-        links?: {
+        links?: Array<{
             url: string;
             type: string;
             content_html?: string;
-        }[];
+        }>;
     };
 };
 
@@ -100,69 +101,87 @@ export type Data = {
 
 export type Language =
     | 'af'
-    | 'sq'
-    | 'eu'
+    | 'ar-DZ'
+    | 'ar-IQ'
+    | 'ar-KW'
+    | 'ar-MA'
+    | 'ar-SA'
+    | 'ar-TN'
     | 'be'
     | 'bg'
     | 'ca'
-    | 'zh-CN'
-    | 'zh-TW'
-    | 'zh-HK'
-    | 'hr'
     | 'cs'
-    | 'ar-DZ'
-    | 'ar-SA'
-    | 'ar-MA'
-    | 'ar-IQ'
-    | 'ar-KW'
-    | 'ar-TN'
     | 'da'
-    | 'nl'
-    | 'nl-be'
-    | 'nl-nl'
+    | 'de'
+    | 'de-at'
+    | 'de-ch'
+    | 'de-de'
+    | 'de-li'
+    | 'de-lu'
+    | 'el'
     | 'en'
     | 'en-au'
     | 'en-bz'
     | 'en-ca'
+    | 'en-gb'
     | 'en-ie'
     | 'en-jm'
     | 'en-nz'
     | 'en-ph'
-    | 'en-za'
     | 'en-tt'
-    | 'en-gb'
     | 'en-us'
+    | 'en-za'
     | 'en-zw'
+    | 'es'
+    | 'es-ar'
+    | 'es-bo'
+    | 'es-cl'
+    | 'es-co'
+    | 'es-cr'
+    | 'es-do'
+    | 'es-ec'
+    | 'es-es'
+    | 'es-gt'
+    | 'es-hn'
+    | 'es-mx'
+    | 'es-ni'
+    | 'es-pa'
+    | 'es-pe'
+    | 'es-pr'
+    | 'es-py'
+    | 'es-sv'
+    | 'es-uy'
+    | 'es-ve'
     | 'et'
-    | 'fo'
+    | 'eu'
     | 'fi'
+    | 'fo'
     | 'fr'
     | 'fr-be'
     | 'fr-ca'
+    | 'fr-ch'
     | 'fr-fr'
     | 'fr-lu'
     | 'fr-mc'
-    | 'fr-ch'
-    | 'gl'
-    | 'gd'
-    | 'de'
-    | 'de-at'
-    | 'de-de'
-    | 'de-li'
-    | 'de-lu'
-    | 'de-ch'
-    | 'el'
-    | 'haw'
-    | 'hu'
-    | 'is'
-    | 'in'
     | 'ga'
+    | 'gd'
+    | 'gl'
+    | 'haw'
+    | 'hi'
+    | 'hr'
+    | 'hu'
+    | 'in'
+    | 'is'
     | 'it'
-    | 'it-it'
     | 'it-ch'
+    | 'it-it'
     | 'ja'
     | 'ko'
     | 'mk'
+    | 'ne'
+    | 'nl'
+    | 'nl-be'
+    | 'nl-nl'
     | 'no'
     | 'pl'
     | 'pt'
@@ -174,35 +193,18 @@ export type Language =
     | 'ru'
     | 'ru-mo'
     | 'ru-ru'
-    | 'sr'
     | 'sk'
     | 'sl'
-    | 'es'
-    | 'es-ar'
-    | 'es-bo'
-    | 'es-cl'
-    | 'es-co'
-    | 'es-cr'
-    | 'es-do'
-    | 'es-ec'
-    | 'es-sv'
-    | 'es-gt'
-    | 'es-hn'
-    | 'es-mx'
-    | 'es-ni'
-    | 'es-pa'
-    | 'es-py'
-    | 'es-pe'
-    | 'es-pr'
-    | 'es-es'
-    | 'es-uy'
-    | 'es-ve'
+    | 'sq'
+    | 'sr'
     | 'sv'
     | 'sv-fi'
     | 'sv-se'
     | 'tr'
     | 'uk'
-    | 'ne'
+    | 'zh-CN'
+    | 'zh-HK'
+    | 'zh-TW'
     | 'other';
 
 // namespace
@@ -280,7 +282,7 @@ interface RouteItem {
     /**
      * The handler function of the route
      */
-    handler: (ctx: Context) => Promise<Data | null> | Data | null;
+    handler: (ctx: Context) => Promise<Data | null | Response> | Data | null | Response;
 
     /**
      * An example URL of the route
@@ -296,10 +298,10 @@ interface RouteItem {
         | {
               description: string;
               default?: string;
-              options?: {
+              options?: Array<{
                   value: string;
                   label: string;
-              }[];
+              }>;
           }
     >;
 
@@ -319,14 +321,14 @@ interface RouteItem {
     features?: {
         /** The extra configuration items required by the route */
         requireConfig?:
-            | {
+            | Array<{
                   /**  The environment variable name */
                   name: string;
                   /**  Whether the environment variable is optional */
                   optional?: boolean;
                   /**  The description of the environment variable */
                   description: string;
-              }[]
+              }>
             | false;
 
         /** set to `true` if the feed uses puppeteer */
@@ -448,10 +450,10 @@ export interface APIRoute {
         {
             description: string;
             default?: string;
-            options?: {
+            options?: Array<{
                 value: string;
                 label: string;
-            }[];
+            }>;
         }
     >;
 

@@ -1,14 +1,15 @@
-import { type NotFoundHandler, type ErrorHandler } from 'hono';
-import { routePath } from 'hono/route';
-import { getDebugInfo, setDebugInfo } from '@/utils/debug-info';
-import { config } from '@/config';
+import Honeybadger from '@honeybadger-io/js';
 import * as Sentry from '@sentry/node';
+import type { ErrorHandler, NotFoundHandler } from 'hono';
+import { routePath } from 'hono/route';
+
+import { config } from '@/config';
+import { getDebugInfo, setDebugInfo } from '@/utils/debug-info';
 import logger from '@/utils/logger';
+import { requestMetric } from '@/utils/otel';
 import Error from '@/views/error';
 
 import NotFoundError from './types/not-found';
-
-import { requestMetric } from '@/utils/otel';
 
 export const errorHandler: ErrorHandler = (error, ctx) => {
     const requestPath = ctx.req.path;
@@ -36,6 +37,12 @@ export const errorHandler: ErrorHandler = (error, ctx) => {
     hasMatchedRoute && debug.errorRoutes[matchedRoute]++;
     setDebugInfo(debug);
 
+    if (config.honeybadger.apiKey) {
+        Honeybadger.notify(error, {
+            context: { name: requestPath.split('/')[1] },
+        });
+    }
+
     if (config.sentry.dsn) {
         Sentry.withScope((scope) => {
             scope.setTag('name', requestPath.split('/')[1]);
@@ -43,7 +50,7 @@ export const errorHandler: ErrorHandler = (error, ctx) => {
         });
     }
 
-    let errorMessage = process.env.NODE_ENV === 'production' ? error.message : error.stack || error.message;
+    let errorMessage = (process.env.NODE_ENV || process.env.VERCEL_ENV) === 'production' ? error.message : error.stack || error.message;
     switch (error.constructor.name) {
         case 'HTTPError':
         case 'RequestError':
