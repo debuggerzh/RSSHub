@@ -66875,6 +66875,46 @@
     "url": "ithome.com",
     "lang": "zh-TW"
   },
+  "itsec": {
+    "routes": {
+      "/news": {
+        "path": "/news",
+        "categories": [
+          "government"
+        ],
+        "example": "/itsec/news",
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "name": "新闻发布",
+        "maintainers": [
+          "ch3n4y"
+        ],
+        "radar": [
+          {
+            "source": [
+              "www.itsec.gov.cn/zxxw/index.html",
+              "www.itsec.gov.cn/zxxw/"
+            ],
+            "target": "/news"
+          }
+        ],
+        "location": "news.ts",
+        "module": "() => import('@/routes/itsec/news.ts')"
+      }
+    },
+    "apiRoutes": {},
+    "name": "中国信息安全测评中心",
+    "url": "www.itsec.gov.cn",
+    "categories": [
+      "government"
+    ]
+  },
   "iwara": {
     "routes": {
       "/users/:username/:type?": {
