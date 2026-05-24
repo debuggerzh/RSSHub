@@ -26128,6 +26128,31 @@ export default {
         ],
         "location": "xwzt.ts",
         "module": () => import('@/routes/chnmuseum/xwzt.ts')
+      },
+      "/zl/:type?/:subType?": {
+        "path": "/zl/:type?/:subType?",
+        "categories": [
+          "travel"
+        ],
+        "example": "/chnmuseum/zl/lszl/zdztzl",
+        "parameters": {
+          "type": "Exhibition type, supported values: zhanlanyugao（正在展出）、ztzl（主题展览）、jbcl（基本陈列）、ztcl（专题展览）、lszl（临时展览）、gbxz（国博巡展）. Default: All exhibitions.",
+          "subType": "subtype only works under type lszl（临时展览）, supported values: zdztzl（主题展览）、dfjpwwxl（精品文物展）、lswhxl（历史文化展）、kgfjxl（考古发现展）、kjcxz（科技创新展）、dywhxl（地域文化展）、jdmszpxl（经典美术展）、gjjlxl（国际交流展）"
+        },
+        "name": "Exhibitions",
+        "maintainers": [
+          "magazian"
+        ],
+        "radar": [
+          {
+            "source": [
+              "www.chnmuseum.cn/zl/"
+            ],
+            "target": "/zl"
+          }
+        ],
+        "location": "zl.tsx",
+        "module": () => import('@/routes/chnmuseum/zl.tsx')
       }
     },
     "apiRoutes": {},
