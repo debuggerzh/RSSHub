@@ -73561,6 +73561,44 @@ export default {
     "url": "www.kisskiss.tv",
     "lang": "ja"
   },
+  "kleinanzeigen": {
+    "routes": {
+      "/search/:routeParams": {
+        "path": "/search/:routeParams",
+        "categories": [
+          "shopping"
+        ],
+        "example": "/kleinanzeigen/search/category=PCs&location=Berlin&radius=20",
+        "parameters": {
+          "routeParams": "Extra parameters, see the table below"
+        },
+        "description": "::: tip\nParameter\n\n| Name            | Description                                                               | Default       |\n| --------------- | ------------------------------------------------------------------------- | ------------- |\n| query           | Search Query                                                              | undefined     |\n| category        | Category (as named on Kleinanzeigen)                                      | undefined     |\n| categoryId      | Category ID (advanced)                                                    | undefined     |\n| location        | Location (as named on Kleinanzeigen)                                      | undefined     |\n| locationId      | Location ID (advanced)                                                    | undefined     |\n| radius          | Radius in KM around the Location                                          | 0             |\n| sortingField    | Order of the Products (SORTING\\_DATE, PRICE\\_AMOUNT, PRICE\\_AMOUNT\\_DESC) | SORTING\\_DATE |\n| minPrice        | minimal Price                                                             | undefined     |\n| maxPrice        | maximal Price                                                             | undefined     |\n| shippingCarrier | Shipping Carrier (e.g. DHL, HERMES)                                       | undefined     |\n\n:::",
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [],
+        "name": "Search",
+        "maintainers": [
+          "LunyaaDev"
+        ],
+        "location": "search.ts",
+        "module": () => import('@/routes/kleinanzeigen/search.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "Kleinanzeigen",
+    "url": "www.kleinanzeigen.de",
+    "lang": "de",
+    "categories": [
+      "shopping"
+    ],
+    "description": "Kleinanzeigen is a german marketplace for selling and buying locally, similar to Facebook Marketplace."
+  },
   "komiic": {
     "routes": {
       "/comic/:id": {
