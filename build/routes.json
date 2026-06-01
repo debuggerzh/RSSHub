@@ -111018,6 +111018,37 @@
         "location": "tongqu/activity.tsx",
         "module": "() => import('@/routes/sjtu/tongqu/activity.tsx')"
       },
+      "/cs/xshd": {
+        "path": "/cs/xshd",
+        "categories": [
+          "university"
+        ],
+        "example": "/sjtu/cs/xshd",
+        "parameters": {},
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.cs.sjtu.edu.cn/xshd.html"
+            ],
+            "target": "/cs/xshd"
+          }
+        ],
+        "name": "计算机学院 - 学术活动",
+        "maintainers": [
+          "BeaCox"
+        ],
+        "url": "www.cs.sjtu.edu.cn/xshd.html",
+        "location": "cs/xshd.tsx",
+        "module": "() => import('@/routes/sjtu/cs/xshd.tsx')"
+      },
       "/gs/:type/:num?": {
         "path": "/gs/:type/:num?",
         "categories": [
