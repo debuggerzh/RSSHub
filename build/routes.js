@@ -109111,6 +109111,40 @@ export default {
       "name": "上海博物馆"
     }
   },
+  "shanximuseum": {
+    "routes": {
+      "/exhibition/temporary/:type?": {
+        "path": "/exhibition/temporary/:type?",
+        "categories": [
+          "travel"
+        ],
+        "example": "/shanximuseum/exhibition/temporary/now&future",
+        "parameters": {
+          "type": "Temporary Exhibition type, supported values: now （正在展出）、future（即将展出）、now&future（正在展出&即将展出）、past（往期展览）。Supports multiple status combinations separated by &, + or , (e.g., now&future). Default: All exhibitions (now, future and past)."
+        },
+        "name": "Temporary Exhibitions",
+        "maintainers": [
+          "magazian"
+        ],
+        "radar": [
+          {
+            "source": [
+              "www.shanximuseum.com.cn/sx/exhibition/temporary.html"
+            ],
+            "target": "/exhibition/temporary"
+          }
+        ],
+        "location": "temporary.tsx",
+        "module": () => import('@/routes/shanximuseum/temporary.tsx')
+      }
+    },
+    "apiRoutes": {},
+    "name": "Shanxi Museum",
+    "url": "www.shanximuseum.com.cn",
+    "zh": {
+      "name": "山西博物馆"
+    }
+  },
   "shcstheatre": {
     "routes": {
       "/programs": {
