@@ -27233,7 +27233,7 @@
           "nczitzk"
         ],
         "url": "cls.cn/telegraph",
-        "description": "| 看盘  | 公司         | 解读    | 加红 | 推送  | 提醒   | 基金 | 港股 |\n| ----- | ------------ | ------- | ---- | ----- | ------ | ---- | ---- |\n| watch | announcement | explain | red  | jpush | remind | fund | hk   |",
+        "description": "| 看盘  | 公司         | 加红 | 提醒   | 基金 | 港美股 |\n| ----- | ------------ | ---- | ------ | ---- | ------ |\n| watch | announcement | red  | remind | fund | hk\\_us |",
         "location": "telegraph.tsx",
         "module": "() => import('@/routes/cls/telegraph.tsx')"
       },
