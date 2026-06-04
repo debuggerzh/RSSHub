@@ -10412,12 +10412,12 @@ export default {
         "categories": [
           "traditional-media"
         ],
-        "example": "/apnews/mobile/ap-top-news",
+        "example": "/apnews/mobile",
         "view": 0,
         "parameters": {
           "path": {
             "description": "Corresponding path from AP News website",
-            "default": "ap-top-news"
+            "default": "/"
           }
         },
         "features": {
