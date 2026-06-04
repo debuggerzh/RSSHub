@@ -26067,6 +26067,40 @@ export default {
     "url": "daily-blog.chlinlearn.top",
     "lang": "zh-CN"
   },
+  "chnmus": {
+    "routes": {
+      "/information/exhibition/:type?": {
+        "path": "/information/exhibition/:type?",
+        "categories": [
+          "travel"
+        ],
+        "example": "/chnmus/information/exhibition/special",
+        "parameters": {
+          "type": "Exhibition type, supported values: special（特展详情）. Default: All."
+        },
+        "name": "Special Exhibitions",
+        "maintainers": [
+          "magazian"
+        ],
+        "radar": [
+          {
+            "source": [
+              "www.chnmus.net/ch/information/exhibition/index.html"
+            ],
+            "target": "/information/exhibition"
+          }
+        ],
+        "location": "exhibition.tsx",
+        "module": () => import('@/routes/chnmus/exhibition.tsx')
+      }
+    },
+    "apiRoutes": {},
+    "name": "Henan Museum",
+    "url": "www.chnmus.net",
+    "zh": {
+      "name": "河南博物院"
+    }
+  },
   "chnmuseum": {
     "routes": {
       "/zx/xingnew": {
