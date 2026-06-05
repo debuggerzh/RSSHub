@@ -111086,6 +111086,86 @@ export default {
         "location": "tongqu/activity.tsx",
         "module": () => import('@/routes/sjtu/tongqu/activity.tsx')
       },
+      "/cs/tzgg/:category": {
+        "path": "/cs/tzgg/:category",
+        "categories": [
+          "university"
+        ],
+        "example": "/sjtu/cs/tzgg/bkspy",
+        "parameters": {
+          "category": {
+            "description": "通知类别",
+            "options": {
+              "bkspy": "本科生培养",
+              "yjspy": "研究生培养",
+              "gjjl": "国际交流",
+              "djdy": "党建德育",
+              "txgz": "团学工作",
+              "zyfz": "职业发展",
+              "qt": "其他"
+            }
+          }
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.cs.sjtu.edu.cn/notice-xssw-bkspy.html"
+            ],
+            "target": "/cs/tzgg/bkspy"
+          },
+          {
+            "source": [
+              "www.cs.sjtu.edu.cn/notice-xssw-yjspy.html"
+            ],
+            "target": "/cs/tzgg/yjspy"
+          },
+          {
+            "source": [
+              "www.cs.sjtu.edu.cn/notice-xssw-gjjl.html"
+            ],
+            "target": "/cs/tzgg/gjjl"
+          },
+          {
+            "source": [
+              "www.cs.sjtu.edu.cn/notice-xssw-djdy.html"
+            ],
+            "target": "/cs/tzgg/djdy"
+          },
+          {
+            "source": [
+              "www.cs.sjtu.edu.cn/notice-xssw-txgz.html"
+            ],
+            "target": "/cs/tzgg/txgz"
+          },
+          {
+            "source": [
+              "www.cs.sjtu.edu.cn/notice-xssw-zyfz.html"
+            ],
+            "target": "/cs/tzgg/zyfz"
+          },
+          {
+            "source": [
+              "www.cs.sjtu.edu.cn/notice-xssw-qt.html"
+            ],
+            "target": "/cs/tzgg/qt"
+          }
+        ],
+        "name": "计算机学院 - 通知公告",
+        "maintainers": [
+          "BeaCox"
+        ],
+        "url": "www.cs.sjtu.edu.cn/notice-xssw-bkspy.html",
+        "location": "cs/tzgg.tsx",
+        "module": () => import('@/routes/sjtu/cs/tzgg.tsx')
+      },
       "/cs/xshd": {
         "path": "/cs/xshd",
         "categories": [
