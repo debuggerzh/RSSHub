@@ -111093,18 +111093,7 @@ export default {
         ],
         "example": "/sjtu/cs/tzgg/bkspy",
         "parameters": {
-          "category": {
-            "description": "通知类别",
-            "options": {
-              "bkspy": "本科生培养",
-              "yjspy": "研究生培养",
-              "gjjl": "国际交流",
-              "djdy": "党建德育",
-              "txgz": "团学工作",
-              "zyfz": "职业发展",
-              "qt": "其他"
-            }
-          }
+          "category": "通知类别"
         },
         "features": {
           "requireConfig": false,
@@ -111163,6 +111152,7 @@ export default {
           "BeaCox"
         ],
         "url": "www.cs.sjtu.edu.cn/notice-xssw-bkspy.html",
+        "description": "| 本科生培养 | 研究生培养 | 国际交流 | 党建德育 | 团学工作 | 职业发展 | 其他 |\n| ---------- | ---------- | -------- | -------- | -------- | -------- | ---- |\n| bkspy      | yjspy      | gjjl     | djdy     | txgz     | zyfz     | qt   |",
         "location": "cs/tzgg.tsx",
         "module": () => import('@/routes/sjtu/cs/tzgg.tsx')
       },
@@ -113258,6 +113248,42 @@ export default {
     "name": "南方网",
     "url": "nfapp.southcn.com",
     "lang": "zh-CN"
+  },
+  "soweather": {
+    "routes": {
+      "/warn": {
+        "path": "/warn",
+        "name": "Shanghai Weather Alert",
+        "url": "wx.soweather.com/wxapp/warn.jsp",
+        "maintainers": [
+          "TinkoLiu"
+        ],
+        "example": "/soweather/warn",
+        "categories": [
+          "forecast"
+        ],
+        "zh": {
+          "name": "上海天气预警",
+          "example": "/soweather/warn",
+          "path": "/warn",
+          "maintainers": [
+            "TinkoLiu"
+          ]
+        },
+        "location": "warn.ts",
+        "module": () => import('@/routes/soweather/warn.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "SoWeather",
+    "url": "wx.soweather.com",
+    "categories": [
+      "forecast"
+    ],
+    "lang": "zh-CN",
+    "zh": {
+      "name": "上海天气预警"
+    }
   },
   "spankbang": {
     "routes": {
