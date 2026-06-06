@@ -75573,6 +75573,88 @@
     "url": "join-lemmy.org",
     "lang": "en"
   },
+  "lemonde": {
+    "routes": {
+      "/en/:category?": {
+        "path": "/en/:category?",
+        "categories": [
+          "traditional-media"
+        ],
+        "example": "/lemonde/en",
+        "view": 0,
+        "parameters": {
+          "category": {
+            "description": "Category slug, see table below. Defaults to homepage.",
+            "default": ""
+          }
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "lemonde.fr/en/:category"
+            ],
+            "target": "/en/:category"
+          }
+        ],
+        "name": "News (English)",
+        "maintainers": [
+          "mlkgrnt"
+        ],
+        "description": "| Category                | Description               |\n| ----------------------- | ------------------------- |\n| (empty)                 | Homepage / Top stories    |\n| international           | World – International     |\n| americas                | World – Americas          |\n| united-kingdom          | World – United Kingdom    |\n| united-states           | World – United States     |\n| africa                  | World – Africa            |\n| asia-pacific            | World – Asia Pacific      |\n| middle-east             | World – Middle East       |\n| europe                  | Europe                    |\n| politics                | France – French Politics  |\n| police-and-justice      | France – French Justice   |\n| education               | France – French Education |\n| french-delights         | France – French Delights  |\n| environment             | Environment               |\n| economy                 | Economy                   |\n| world-economy           | Economy – World Economy   |\n| french-economy          | Economy – French Economy  |\n| m-le-mag                | M Magazine                |\n| lifestyle               | M Magazine – Lifestyle    |\n| fashion                 | M Magazine – Fashion      |\n| food                    | M Magazine – Food         |\n| travel                  | M Magazine – Travel       |\n| culture                 | Culture                   |\n| arts                    | Culture – Art             |\n| cinema                  | Culture – Cinema          |\n| music                   | Culture – Music           |\n| books                   | Culture – Books           |\n| global-issues           | Global Issues             |\n| pixels                  | Pixels                    |\n| artificial-intelligence | Pixels – AI               |\n| social-media            | Pixels – Social Media     |\n| sports                  | Sports                    |\n| football                | Sports – Football         |\n| rugby                   | Sports – Rugby            |\n| tennis                  | Sports – Tennis           |\n| cycling                 | Sports – Cycling          |\n| basketball              | Sports – Basketball       |\n| science                 | Science                   |\n| health                  | Health                    |\n| intimacy                | Intimacy                  |\n| les-decodeurs           | Les Décodeurs             |\n| our-times               | Our Times                 |\n| obituaries              | Obituaries                |\n| religion                | Religion                  |\n| opinion                 | Opinion                   |\n| editorials              | Opinion – Editorials      |\n| columns                 | Opinion – Columns         |\n| op-eds                  | Opinion – Op-Eds          |",
+        "location": "en.ts",
+        "module": "() => import('@/routes/lemonde/en.ts')"
+      },
+      "/:category?": {
+        "path": "/:category?",
+        "categories": [
+          "traditional-media"
+        ],
+        "example": "/lemonde",
+        "view": 0,
+        "parameters": {
+          "category": {
+            "description": "Category slug, see table below. Defaults to homepage.",
+            "default": ""
+          }
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "lemonde.fr/:category"
+            ],
+            "target": "/:category"
+          }
+        ],
+        "name": "News",
+        "maintainers": [
+          "mlkgrnt"
+        ],
+        "description": "| Category      | Description            |\n| ------------- | ---------------------- |\n| (empty)       | Homepage / Top stories |\n| international | International          |\n| politique     | Politics               |\n| economie      | Economy                |\n| societe       | Society                |\n| culture       | Culture                |\n| sport         | Sports                 |\n| planete       | Environment            |\n| pixels        | Tech / Digital         |\n| sciences      | Sciences               |\n| idees         | Opinions               |\n| sante         | Health                 |\n| em            | M le mag               |\n| en-continu    | Live / Breaking        |\n| decodeurs     | Fact-checking          |",
+        "location": "index.ts",
+        "module": "() => import('@/routes/lemonde/index.ts')"
+      }
+    },
+    "apiRoutes": {},
+    "name": "Le Monde",
+    "url": "lemonde.fr",
+    "lang": "fr"
+  },
   "lenovo": {
     "routes": {
       "/drive/:selName": {
