@@ -56714,6 +56714,56 @@
     "url": "grubstreet.com",
     "lang": "en"
   },
+  "grupoanimal": {
+    "routes": {
+      "/estados": {
+        "name": "Estados",
+        "maintainers": [
+          "Slayer015"
+        ],
+        "path": "/estados",
+        "categories": [
+          "new-media"
+        ],
+        "example": "/grupoanimal/estados",
+        "radar": [
+          {
+            "source": [
+              "www.grupoanimal.mx/estados"
+            ],
+            "target": "/grupoanimal/estados"
+          }
+        ],
+        "location": "estados.ts",
+        "module": "() => import('@/routes/grupoanimal/estados.ts')"
+      },
+      "/politica": {
+        "name": "Política",
+        "maintainers": [
+          "Slayer015"
+        ],
+        "path": "/politica",
+        "categories": [
+          "new-media"
+        ],
+        "example": "/grupoanimal/politica",
+        "radar": [
+          {
+            "source": [
+              "www.grupoanimal.mx/politica"
+            ],
+            "target": "/grupoanimal/politica"
+          }
+        ],
+        "location": "politica.ts",
+        "module": "() => import('@/routes/grupoanimal/politica.ts')"
+      }
+    },
+    "apiRoutes": {},
+    "name": "Grupo Animal",
+    "url": "grupoanimal.mx",
+    "lang": "es-mx"
+  },
   "gs": {
     "routes": {
       "/developer/blog": {
@@ -98360,7 +98410,7 @@
         },
         "features": {
           "requireConfig": false,
-          "requirePuppeteer": false,
+          "requirePuppeteer": true,
           "antiCrawler": false,
           "supportBT": false,
           "supportPodcast": false,
@@ -98369,18 +98419,18 @@
         "radar": [
           {
             "source": [
-              "www.pixnoy.com/profile/:id"
+              "www.picnob.com/profile/:id"
             ],
             "target": "/user/:id"
           },
           {
             "source": [
-              "www.pixnoy.com/profile/:id/tagged"
+              "www.picnob.com/profile/:id/tagged"
             ],
             "target": "/user/:id/tagged"
           }
         ],
-        "name": "User Profile - Pixnoy",
+        "name": "User Profile - Picnob",
         "maintainers": [
           "TonyRL",
           "micheal-death",
@@ -98416,23 +98466,19 @@
               {
                 "label": "Posts",
                 "value": "posts"
-              },
-              {
-                "label": "Stories",
-                "value": "stories"
               }
             ]
           }
         },
         "features": {
           "requireConfig": false,
-          "requirePuppeteer": false,
+          "requirePuppeteer": true,
           "antiCrawler": false,
           "supportBT": false,
           "supportPodcast": false,
           "supportScihub": false
         },
-        "name": "User Profile - Picnob",
+        "name": "User Profile - Picnob.info",
         "maintainers": [
           "TonyRL"
         ],
