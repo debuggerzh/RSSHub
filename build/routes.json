@@ -86023,6 +86023,75 @@
     "url": "nautiljon.com",
     "lang": "fr"
   },
+  "naver": {
+    "routes": {
+      "/search/:category/:keyword": {
+        "path": "/search/:category/:keyword",
+        "categories": [
+          "other"
+        ],
+        "example": "/naver/search/all/송소희",
+        "parameters": {
+          "category": {
+            "description": "검색 카테고리. 기본값: all (통합검색)",
+            "default": "all",
+            "options": [
+              {
+                "value": "all",
+                "label": "통합검색"
+              },
+              {
+                "value": "blog",
+                "label": "블로그"
+              },
+              {
+                "value": "cafe",
+                "label": "카페"
+              },
+              {
+                "value": "news",
+                "label": "뉴스"
+              },
+              {
+                "value": "video",
+                "label": "동영상"
+              }
+            ]
+          },
+          "keyword": "검색 키워드"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "m.search.naver.com/search.naver"
+            ],
+            "target": "/search/:category/:keyword"
+          }
+        ],
+        "name": "검색",
+        "maintainers": [
+          "slowmande"
+        ],
+        "location": "search.ts",
+        "module": "() => import('@/routes/naver/search.ts')"
+      }
+    },
+    "apiRoutes": {},
+    "name": "네이버",
+    "url": "naver.com",
+    "lang": "ko",
+    "zh": {
+      "name": "Naver"
+    }
+  },
   "nbd": {
     "routes": {
       "/daily": {
