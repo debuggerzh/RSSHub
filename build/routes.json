@@ -40995,6 +40995,49 @@
     "description": "",
     "lang": "zh-CN"
   },
+  "efe": {
+    "routes": {
+      "/:category?": {
+        "path": "/:category?",
+        "name": "Category",
+        "maintainers": [
+          "mlkgrnt"
+        ],
+        "example": "/efe/mundo",
+        "parameters": {
+          "category": {
+            "description": "Category slug, see table below. Defaults to mundo.",
+            "default": "mundo"
+          }
+        },
+        "categories": [
+          "new-media"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "efe.com/:category"
+            ],
+            "target": "/:category"
+          }
+        ],
+        "location": "index.ts",
+        "module": "() => import('@/routes/efe/index.ts')"
+      }
+    },
+    "apiRoutes": {},
+    "name": "EFE Noticias",
+    "url": "efe.com",
+    "lang": "es"
+  },
   "egsea": {
     "routes": {
       "/flash": {
