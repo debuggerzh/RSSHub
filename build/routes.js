@@ -22057,31 +22057,6 @@ export default {
     "url": "cbc.ca",
     "lang": "en"
   },
-  "cbirc": {
-    "routes": {
-      "/:category?": {
-        "path": "/:category?",
-        "radar": [
-          {
-            "source": [
-              "cbirc.gov.cn/:category",
-              "cbirc.gov.cn/"
-            ]
-          }
-        ],
-        "name": "Unknown",
-        "maintainers": [
-          "JkCheung"
-        ],
-        "location": "index.ts",
-        "module": () => import('@/routes/cbirc/index.ts')
-      }
-    },
-    "apiRoutes": {},
-    "name": "中国银行保险监督管理委员会",
-    "url": "cbirc.gov.cn",
-    "lang": "zh-CN"
-  },
   "cbndata": {
     "routes": {
       "/information/:id?": {
@@ -51149,134 +51124,11 @@ export default {
     "url": "www.google.com",
     "lang": "en"
   },
-  "gov": {
+  "gov/ah": {
     "routes": {
-      "/beijing/bphc/*": {
-        "path": "/beijing/bphc/*",
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "beijing/bphc/index.ts",
-        "module": () => import('@/routes/gov/beijing/bphc/index.ts')
-      },
-      "/immiau/news": {
-        "path": "/immiau/news",
-        "categories": [
-          "government"
-        ],
-        "example": "/gov/immiau/news",
-        "parameters": {},
-        "features": {
-          "requireConfig": false,
-          "requirePuppeteer": false,
-          "antiCrawler": false,
-          "supportBT": false,
-          "supportPodcast": false,
-          "supportScihub": false
-        },
-        "name": "Immigration and Citizenship - News",
-        "maintainers": [
-          "liu233w"
-        ],
-        "location": "immiau/news.ts",
-        "module": () => import('@/routes/gov/immiau/news.ts')
-      },
-      "/caac/cjwt/:category?": {
-        "path": "/caac/cjwt/:category?",
-        "categories": [
-          "government"
-        ],
-        "example": "/gov/caac/cjwt",
-        "parameters": {
-          "category": "分类，见下表，默认为全部"
-        },
-        "features": {
-          "requireConfig": false,
-          "requirePuppeteer": false,
-          "antiCrawler": false,
-          "supportBT": false,
-          "supportPodcast": false,
-          "supportScihub": false
-        },
-        "radar": [
-          {
-            "source": [
-              "caac.gov.cn/HDJL/"
-            ],
-            "target": "/caac/cjwt"
-          }
-        ],
-        "name": "公众留言",
-        "maintainers": [
-          "nczitzk"
-        ],
-        "url": "caac.gov.cn/HDJL/",
-        "description": "| 机票 | 托运 | 无人机 | 体检 | 行政审批 | 投诉 |\n| ---- | ---- | ------ | ---- | -------- | ---- |",
-        "location": "caac/cjwt.tsx",
-        "module": () => import('@/routes/gov/caac/cjwt.tsx')
-      },
-      "/guangdong/tqyb/sncsyjxh": {
-        "path": "/guangdong/tqyb/sncsyjxh",
-        "categories": [
-          "forecast"
-        ],
-        "example": "/gov/guangdong/tqyb/sncsyjxh",
-        "parameters": {},
-        "features": {
-          "requireConfig": false,
-          "requirePuppeteer": false,
-          "antiCrawler": false,
-          "supportBT": false,
-          "supportPodcast": false,
-          "supportScihub": false
-        },
-        "radar": [
-          {
-            "source": [
-              "www.tqyb.com.cn/gz/weatherAlarm/otherCity/"
-            ]
-          }
-        ],
-        "name": "广东省内城市预警信号",
-        "maintainers": [
-          "Fatpandac"
-        ],
-        "url": "www.tqyb.com.cn/gz/weatherAlarm/otherCity/",
-        "location": "guangdong/tqyb/sncsyjxh.tsx",
-        "module": () => import('@/routes/gov/guangdong/tqyb/sncsyjxh.tsx')
-      },
-      "/guangdong/tqyb/tfxtq": {
-        "path": "/guangdong/tqyb/tfxtq",
-        "categories": [
-          "forecast"
-        ],
-        "example": "/gov/guangdong/tqyb/tfxtq",
-        "parameters": {},
-        "features": {
-          "requireConfig": false,
-          "requirePuppeteer": false,
-          "antiCrawler": false,
-          "supportBT": false,
-          "supportPodcast": false,
-          "supportScihub": false
-        },
-        "radar": [
-          {
-            "source": [
-              "www.tqyb.com.cn/gz/weatherAlarm/suddenWeather/"
-            ]
-          }
-        ],
-        "name": "突发性天气提示",
-        "maintainers": [
-          "Fatpandac"
-        ],
-        "url": "www.tqyb.com.cn/gz/weatherAlarm/suddenWeather/",
-        "location": "guangdong/tqyb/tfxtq.tsx",
-        "module": () => import('@/routes/gov/guangdong/tqyb/tfxtq.tsx')
-      },
-      "/ah/kjt/:category{.+}?": {
-        "path": "/ah/kjt/:category{.+}?",
-        "name": "安徽省科学技术厅",
+      "/kjt/:category{.+}?": {
+        "path": "/kjt/:category{.+}?",
+        "name": "科学技术厅",
         "url": "kjt.ah.gov.cn",
         "maintainers": [
           "nczitzk"
@@ -51309,119 +51161,145 @@ export default {
             "source": [
               "kjt.ah.gov.cn/kjzx/tzgg/index.html"
             ],
-            "target": "/ah/kjt/kjzx/tzgg"
+            "target": "/kjt/kjzx/tzgg"
           },
           {
             "title": "科技资讯 - 工作动态",
             "source": [
               "kjt.ah.gov.cn/kjzx/gzdt/index.html"
             ],
-            "target": "/ah/kjt/kjzx/gzdt"
+            "target": "/kjt/kjzx/gzdt"
           },
           {
             "title": "科技资讯 - 基层科技",
             "source": [
               "kjt.ah.gov.cn/kjzx/jckj/index.html"
             ],
-            "target": "/ah/kjt/kjzx/jckj"
+            "target": "/kjt/kjzx/jckj"
           },
           {
             "title": "科技资讯 - 媒体聚焦",
             "source": [
               "kjt.ah.gov.cn/kjzx/mtjj/index.html"
             ],
-            "target": "/ah/kjt/kjzx/mtjj"
+            "target": "/kjt/kjzx/mtjj"
           },
           {
             "title": "科技资讯 - 重要转载",
             "source": [
               "kjt.ah.gov.cn/kjzx/zyzz/index.html"
             ],
-            "target": "/ah/kjt/kjzx/zyzz"
+            "target": "/kjt/kjzx/zyzz"
           },
           {
             "title": "科技资讯 - 图片视频",
             "source": [
               "kjt.ah.gov.cn/kjzx/tpsp/index.html"
             ],
-            "target": "/ah/kjt/kjzx/tpsp"
+            "target": "/kjt/kjzx/tpsp"
           },
           {
             "title": "科技统计 - 技术市场交易",
             "source": [
               "kjt.ah.gov.cn/kjzy/kjtj/jsscjy/index.html"
             ],
-            "target": "/ah/kjt/kjzy/kjtj/jsscjy"
+            "target": "/kjt/kjzy/kjtj/jsscjy"
           },
           {
             "title": "科技统计 - 科技成果公报",
             "source": [
               "kjt.ah.gov.cn/kjzy/kjtj/kjcggb/index.html"
             ],
-            "target": "/ah/kjt/kjzy/kjtj/kjcggb"
+            "target": "/kjt/kjzy/kjtj/kjcggb"
           },
           {
             "title": "科技统计 - 孵化载体发展",
             "source": [
               "kjt.ah.gov.cn/kjzy/kjtj/cyfhfz/index.html"
             ],
-            "target": "/ah/kjt/kjzy/kjtj/cyfhfz"
+            "target": "/kjt/kjzy/kjtj/cyfhfz"
           },
           {
             "title": "科技数据 - 创新企业",
             "source": [
               "kjt.ah.gov.cn/kjzy/kjsj/cxqy/index.html"
             ],
-            "target": "/ah/kjt/kjzy/kjsj/cxqy"
+            "target": "/kjt/kjzy/kjsj/cxqy"
           },
           {
             "title": "科技数据 - 创新项目",
             "source": [
               "kjt.ah.gov.cn/kjzy/kjsj/cxxm/index.html"
             ],
-            "target": "/ah/kjt/kjzy/kjsj/cxxm"
+            "target": "/kjt/kjzy/kjsj/cxxm"
           },
           {
             "title": "科技数据 - 创新成果",
             "source": [
               "kjt.ah.gov.cn/kjzy/kjsj/cxcg/index.html"
             ],
-            "target": "/ah/kjt/kjzy/kjsj/cxcg"
+            "target": "/kjt/kjzy/kjsj/cxcg"
           },
           {
             "title": "科技数据 - 转化基金入库项目",
             "source": [
               "kjt.ah.gov.cn/kjzy/kjsj/zhjjrkxm/index.html"
             ],
-            "target": "/ah/kjt/kjzy/kjsj/zhjjrkxm"
+            "target": "/kjt/kjzy/kjsj/zhjjrkxm"
           },
           {
             "title": "科技数据 - 创新平台",
             "source": [
               "kjt.ah.gov.cn/kjzy/kjsj/cxpt/index.html"
             ],
-            "target": "/ah/kjt/kjzy/kjsj/cxpt"
+            "target": "/kjt/kjzy/kjsj/cxpt"
           },
           {
             "title": "科技数据 - 创新园区",
             "source": [
               "kjt.ah.gov.cn/kjzy/kjsj/cxyq/index.html"
             ],
-            "target": "/ah/kjt/kjzy/kjsj/cxyq"
+            "target": "/kjt/kjzy/kjsj/cxyq"
           },
           {
             "title": "科技数据 - 创新许可",
             "source": [
               "kjt.ah.gov.cn/kjzy/kjsj/cxxk/index.html"
             ],
-            "target": "/ah/kjt/kjzy/kjsj/cxxk"
+            "target": "/kjt/kjzy/kjsj/cxxk"
           }
         ],
-        "location": "ah/kjt.ts",
+        "location": "kjt.ts",
         "module": () => import('@/routes/gov/ah/kjt.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "安徽省人民政府",
+    "url": "ah.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "description": "",
+    "lang": "zh-CN"
+  },
+  "gov/beijing": {
+    "routes": {
+      "/bphc/:caty": {
+        "path": "/bphc/:caty",
+        "name": "保障房中心 - 共有产权住房租赁服务平台",
+        "example": "/gov/beijing/bphc/announcement",
+        "parameters": {
+          "caty": "类别"
+        },
+        "maintainers": [
+          "bigfei"
+        ],
+        "description": "|   通知公告   | 项目介绍 |\n| :----------: | :------: |\n| announcement |  project |",
+        "location": "bphc/index.ts",
+        "module": () => import('@/routes/gov/beijing/bphc/index.ts')
       },
-      "/beijing/bjedu/gh/:urlPath?": {
-        "path": "/beijing/bjedu/gh/:urlPath?",
+      "/bjedu/gh/:urlPath?": {
+        "path": "/bjedu/gh/:urlPath?",
         "categories": [
           "government"
         ],
@@ -51443,19 +51321,19 @@ export default {
               "gh.bjedu.gov.cn/ghsite/:urlPath/index.html",
               "gh.bjedu.gov.cn/ghsite/:urlPath"
             ],
-            "target": "/beijing/bjedu/gh/:urlPath"
+            "target": "/bjedu/gh/:urlPath"
           }
         ],
-        "name": "通用",
+        "name": "教育委员会 - 通用",
         "maintainers": [
           "TonyRL"
         ],
         "description": "::: tip\n路径处填写对应页面 URL 中 `https://gh.bjedu.cn/ghsite/` 和 `/index.html` 之间的字段。下面是一个例子。\n\n若订阅 [通知公告](https://gh.bjedu.cn/ghsite/zxtzgg/index.html) 则将对应页面 URL `https://gh.bjedu.cn/ghsite/zxtzgg/index.html` 中 `https://gh.bjedu.cn/ghsite/` 和 `/index.html` 之间的字段 `zxtzgg` 作为路径填入。此时路由为 [`/gov/beijing/bjedu/gh/zxtzgg`](https://rsshub.app/gov/beijing/bjedu/gh/zxtzgg)\n:::",
-        "location": "beijing/bjedu/gh.ts",
+        "location": "bjedu/gh.ts",
         "module": () => import('@/routes/gov/beijing/bjedu/gh.ts')
       },
-      "/beijing/jw/tzgg": {
-        "path": "/beijing/jw/tzgg",
+      "/jw/tzgg": {
+        "path": "/jw/tzgg",
         "categories": [
           "government"
         ],
@@ -51481,45 +51359,54 @@ export default {
           "nczitzk"
         ],
         "url": "jw.beijing.gov.cn/tzgg",
-        "location": "beijing/jw/tzgg.ts",
+        "location": "jw/tzgg.ts",
         "module": () => import('@/routes/gov/beijing/jw/tzgg.ts')
       },
-      "/beijing/kw/:channel": {
-        "path": "/beijing/kw/:channel",
-        "name": "Unknown",
+      "/kw/:channel": {
+        "path": "/kw/:channel",
+        "name": "北京市科学技术委员会、中关村科技园区管理委员会",
+        "example": "/gov/beijing/kw/col736",
+        "parameters": {
+          "channel": "频道"
+        },
+        "radar": [
+          {
+            "source": [
+              "kw.beijing.gov.cn/col/:channel/index.html"
+            ]
+          }
+        ],
         "maintainers": [
           "Fatpandac"
         ],
-        "location": "beijing/kw/index.ts",
+        "description": "频道参数可在官网获取，如：\n\n`http://kw.beijing.gov.cn/col/col736/index.html` 对应 `/gov/beijing/kw/col736`",
+        "location": "kw/index.ts",
         "module": () => import('@/routes/gov/beijing/kw/index.ts')
-      },
-      "/cac/*": {
-        "path": "/cac/*",
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "cac/index.ts",
-        "module": () => import('@/routes/gov/cac/index.ts')
-      },
-      "/cbirc/:id?": {
-        "path": "/cbirc/:id?",
-        "name": "分类",
-        "url": "www.cbirc.gov.cn",
-        "maintainers": [
-          "nczitzk"
-        ],
-        "example": "/gov/cbirc/:id?",
-        "parameters": {
-          "category": "分类，默认为监管动态，即 915，可在对应分类页 URL 中找到"
-        },
-        "description": "::: tip\n若订阅 [监管动态](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemId=915\\&itemUrl=ItemListRightList.html)，网址为 `https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemId=915&itemUrl=ItemListRightList.html`。截取 `itemId` 的值 `915` 作为参数填入，此时路由为 [`/gov/cbirc/915`](https://rsshub.app/gov/cbirc/915)。\n:::\n\n#### [首页](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=899\\&itemId=971\\&itemUrl=ItemListRightMore.html)\n\n| [弹出公告](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=971\\&itemId=972\\&itemUrl=sss) | [法律声明](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=971\\&itemId=4128\\&itemUrl=ItemListRightArticle.html) |\n| ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |\n| [972](https://rsshub.app/gov/cbirc/972)                                                               | [4128](https://rsshub.app/gov/cbirc/4128)                                                                                    |\n\n#### [机构概况](https://www.cbirc.gov.cn/cn/view/pages/jigougaikuang/jigougaikuang.html)\n\n| [主要职责](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=900\\&itemId=901\\&itemUrl=ItemListRightArticle.html) | [总局领导](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=900\\&itemId=902\\&itemUrl=jigougaikuang/huilingdao.html) | [内设机构](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=900\\&itemId=911\\&itemUrl=jigougaikuang/neishejigou.html) | [直属行政机构](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=900\\&itemId=4243\\&itemUrl=jigougaikuang/zhishuxingzhengjigou.html) | [派出机构](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=900\\&itemId=912\\&itemUrl=jigougaikuang/paichujigou.html) |\n| --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |\n| [901](https://rsshub.app/gov/cbirc/901)                                                                                     | [902](https://rsshub.app/gov/cbirc/902)                                                                                         | [911](https://rsshub.app/gov/cbirc/911)                                                                                          | [4243](https://rsshub.app/gov/cbirc/4243)                                                                                                      | [912](https://rsshub.app/gov/cbirc/912)                                                                                          |\n\n| [联系方式](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=900\\&itemId=913\\&itemUrl=jigougaikuang/lianxifangshi.html) |\n| ---------------------------------------------------------------------------------------------------------------------------------- |\n| [913](https://rsshub.app/gov/cbirc/913)                                                                                            |\n\n#### [新闻资讯](https://www.cbirc.gov.cn/cn/view/pages/xinwenzixun/xinwenzixun.html)\n\n| [监管动态](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=914\\&itemId=915\\&itemUrl=ItemListRightList.html) | [政策解读](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=914\\&itemId=916\\&itemUrl=ItemListRightMore.html) | [领导活动及讲话](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=914\\&itemId=919\\&itemUrl=ItemListRightList.html) | [新闻发布会及访谈](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=914\\&itemId=920\\&itemUrl=xinwenzixun/xinwenfabu.html) | [新闻发言人](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=914\\&itemId=921\\&itemUrl=xinwenzixun/xinwenfayan.html) |\n| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |\n| [915](https://rsshub.app/gov/cbirc/915)                                                                                  | [916](https://rsshub.app/gov/cbirc/916)                                                                                  | [919](https://rsshub.app/gov/cbirc/919)                                                                                        | [920](https://rsshub.app/gov/cbirc/920)                                                                                               | [921](https://rsshub.app/gov/cbirc/921)                                                                                          |\n\n#### [政务信息](https://www.cbirc.gov.cn/cn/view/pages/zhengwuxinxi/zhengwuxinxi.html)\n\n| [政府信息公开](https://www.cbirc.gov.cn/cn/view/pages/zhengwuxinxi/zhengfuxinxi.html) | [公告通知](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=923\\&itemId=925\\&itemUrl=ItemListRightList.html) | [政策法规](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=923\\&itemId=926\\&itemUrl=ItemListRightMore.html) | [行政许可](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=923\\&itemId=930\\&itemUrl=zhengwuxinxi/xingzhengxuke.html) | [行政处罚](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=923\\&itemId=931\\&itemUrl=zhengwuxinxi/xingzhengchufa.html) |\n| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |\n| [924](https://rsshub.app/gov/cbirc/924)                                               | [925](https://rsshub.app/gov/cbirc/925)                                                                                  | [926](https://rsshub.app/gov/cbirc/926)                                                                                  | [930](https://rsshub.app/gov/cbirc/930)                                                                                           | [931](https://rsshub.app/gov/cbirc/931)                                                                                            |\n\n| [行政监管措施](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=923\\&itemId=932\\&itemUrl=ItemListRightList.html) | [人事信息](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=923\\&itemId=933\\&itemUrl=ItemListRightList.html) |\n| ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |\n| [932](https://rsshub.app/gov/cbirc/932)                                                                                      | [933](https://rsshub.app/gov/cbirc/933)                                                                                  |\n\n#### [在线服务](https://www.cbirc.gov.cn/cn/view/pages/zaixianfuwu/zaixianfuwu.html)\n\n| [行政许可办事服务指南](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=937\\&itemId=938\\&itemUrl=zaixianfuwu/banshifuwu.html) | [查询服务](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=937\\&itemId=939\\&itemUrl=zaixianfuwu/chaxunfuwu.html) |\n| ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |\n| [938](https://rsshub.app/gov/cbirc/938)                                                                                                   | [939](https://rsshub.app/gov/cbirc/939)                                                                                       |\n\n#### [互动交流](https://www.cbirc.gov.cn/cn/view/pages/hudongjiaoliu/hudongjiaoliu.html)\n\n| [政务咨询](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=945\\&itemId=946\\&itemUrl=tosubmenu:hudongjiaoliu/woyaozixun.html) | [征集调查](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=945\\&itemId=950\\&itemUrl=ItemListRightMore.html) | [国务院办公厅开通 \"国家政务服务投诉与建议\" 小程序](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=945\\&itemId=952\\&itemUrl=http://www.gov.cn/xinwen/2018-09/20/content_5323786.htm) |\n| ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| [946](https://rsshub.app/gov/cbirc/946)                                                                                                   | [950](https://rsshub.app/gov/cbirc/950)                                                                                  | [952](https://rsshub.app/gov/cbirc/952)                                                                                                                                                           |\n\n#### [统计数据](https://www.cbirc.gov.cn/cn/view/pages/tongjishuju/tongjishuju.html)\n\n| [统计信息](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=953\\&itemId=954\\&itemUrl=ItemListRightList.html) | [数据图表](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=953\\&itemId=955\\&itemUrl=tosubmenu:tongjishuju/zongzichan.html) |\n| ------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |\n| [954](https://rsshub.app/gov/cbirc/954)                                                                                  | [955](https://rsshub.app/gov/cbirc/955)                                                                                                 |\n\n#### [专题专栏](https://www.cbirc.gov.cn/cn/view/pages/zhuantizhuanlan/zhuantizhuanlan.html)\n\n| [推进普惠金融高质量发展](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=960\\&itemId=4234\\&itemUrl=ItemListRightMore.html) | [防范和处置非法集资](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=960\\&itemId=963\\&itemUrl=ItemListRightMore.html) | [消费者保护](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=960\\&itemId=4097\\&itemUrl=ItemListRightMore.html) | [法治宣传](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=960\\&itemId=4106\\&itemUrl=ItemListRightMore.html) | [政府网站年度报表](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=960\\&itemId=970\\&itemUrl=ItemListRightList.html) |\n| --------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |\n| [4234](https://rsshub.app/gov/cbirc/4234)                                                                                               | [963](https://rsshub.app/gov/cbirc/963)                                                                                            | [4097](https://rsshub.app/gov/cbirc/4097)                                                                                   | [4106](https://rsshub.app/gov/cbirc/4106)                                                                                 | [970](https://rsshub.app/gov/cbirc/970)                                                                                          |\n\n| [服务民营企业](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=960\\&itemId=4171\\&itemUrl=ItemListRightList.html) | [服务制造业发展](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=960\\&itemId=4217\\&itemUrl=ItemListRightList.html) | [学习贯彻习近平新时代中国特色社会主义思想主题教育](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=960\\&itemId=4229\\&itemUrl=ItemListRightMore.html) |\n| ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| [4171](https://rsshub.app/gov/cbirc/4171)                                                                                     | [4217](https://rsshub.app/gov/cbirc/4217)                                                                                       | [4229](https://rsshub.app/gov/cbirc/4229)                                                                                                                         |",
+      }
+    },
+    "apiRoutes": {},
+    "name": "北京市人民政府",
+    "url": "www.beijing.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/caac": {
+    "routes": {
+      "/cjwt/:category?": {
+        "path": "/cjwt/:category?",
         "categories": [
           "government"
         ],
+        "example": "/gov/caac/cjwt",
+        "parameters": {
+          "category": "分类，见下表，默认为全部"
+        },
         "features": {
           "requireConfig": false,
           "requirePuppeteer": false,
           "antiCrawler": false,
-          "supportRadar": true,
           "supportBT": false,
           "supportPodcast": false,
           "supportScihub": false
@@ -51527,274 +51414,394 @@ export default {
         "radar": [
           {
             "source": [
-              "www.cbirc.gov.cn/:id?"
-            ]
-          },
-          {
-            "title": "首页 - 弹出公告",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
+              "caac.gov.cn/HDJL/"
             ],
-            "target": "/cbirc/972"
-          },
-          {
-            "title": "首页 - 法律声明",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/4128"
-          },
-          {
-            "title": "机构概况 - 主要职责",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/901"
-          },
-          {
-            "title": "机构概况 - 总局领导",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/902"
-          },
-          {
-            "title": "机构概况 - 内设机构",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/911"
-          },
-          {
-            "title": "机构概况 - 直属行政机构",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/4243"
-          },
-          {
-            "title": "机构概况 - 派出机构",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/912"
-          },
-          {
-            "title": "机构概况 - 联系方式",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/913"
-          },
-          {
-            "title": "新闻资讯 - 监管动态",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/915"
-          },
-          {
-            "title": "新闻资讯 - 政策解读",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/916"
-          },
-          {
-            "title": "新闻资讯 - 领导活动及讲话",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/919"
-          },
-          {
-            "title": "新闻资讯 - 新闻发布会及访谈",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/920"
-          },
-          {
-            "title": "新闻资讯 - 新闻发言人",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/921"
-          },
-          {
-            "title": "政务信息 - 政府信息公开",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/zhengwuxinxi/zhengfuxinxi.html"
-            ],
-            "target": "/cbirc/924"
-          },
-          {
-            "title": "政务信息 - 公告通知",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/925"
-          },
-          {
-            "title": "政务信息 - 政策法规",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/926"
-          },
-          {
-            "title": "政务信息 - 行政许可",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/930"
-          },
-          {
-            "title": "政务信息 - 行政处罚",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/931"
-          },
-          {
-            "title": "政务信息 - 行政监管措施",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/932"
-          },
-          {
-            "title": "政务信息 - 人事信息",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/933"
-          },
-          {
-            "title": "在线服务 - 行政许可办事服务指南",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/938"
-          },
-          {
-            "title": "在线服务 - 查询服务",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/939"
-          },
-          {
-            "title": "互动交流 - 政务咨询",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/946"
-          },
-          {
-            "title": "互动交流 - 征集调查",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/950"
-          },
-          {
-            "title": "互动交流 - 国务院办公厅开通\"国家政务服务投诉与建议\"小程序",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/952"
-          },
-          {
-            "title": "统计数据 - 统计信息",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/954"
-          },
-          {
-            "title": "统计数据 - 数据图表",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/955"
-          },
-          {
-            "title": "专题专栏 - 推进普惠金融高质量发展",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/4234"
-          },
-          {
-            "title": "专题专栏 - 防范和处置非法集资",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/963"
-          },
-          {
-            "title": "专题专栏 - 消费者保护",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/4097"
-          },
-          {
-            "title": "专题专栏 - 法治宣传",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/4106"
-          },
-          {
-            "title": "专题专栏 - 政府网站年度报表",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/970"
-          },
-          {
-            "title": "专题专栏 - 服务民营企业",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/4171"
-          },
-          {
-            "title": "专题专栏 - 服务制造业发展",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/4217"
-          },
-          {
-            "title": "专题专栏 - 学习贯彻习近平新时代中国特色社会主义思想主题教育",
-            "source": [
-              "www.cbirc.gov.cn/cn/view/pages/ItemList.html"
-            ],
-            "target": "/cbirc/4229"
+            "target": "/cjwt"
           }
         ],
-        "location": "cbirc/index.ts",
-        "module": () => import('@/routes/gov/cbirc/index.ts')
-      },
-      "/chinamine-safety/xw/:category{.+}?": {
-        "path": "/chinamine-safety/xw/:category{.+}?",
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "chinamine-safety/xw.ts",
+        "name": "公众留言",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "url": "caac.gov.cn/HDJL/",
+        "description": "| 机票 | 托运 | 无人机 | 体检 | 行政审批 | 投诉 |\n| ---- | ---- | ------ | ---- | -------- | ---- |",
+        "location": "cjwt.tsx",
+        "module": () => import('@/routes/gov/caac/cjwt.tsx')
+      }
+    },
+    "apiRoutes": {},
+    "name": "中国民用航空局",
+    "url": "www.caac.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/cac": {
+    "routes": {
+      "/:path{.+}": {
+        "path": "/:path{.+}",
+        "name": "通用",
+        "example": "/gov/cac/wxzw/xxh",
+        "parameters": {
+          "path": "路径，比如xxh表示信息化"
+        },
+        "maintainers": [
+          "drgnchan"
+        ],
+        "description": "::: tip\n\n路径填写对应页面 URL 中间部分。例如：\n\n首页 > 网信政务 > 网信发布： <https://www.cac.gov.cn/wxzw/wxfb/A093702index_1.htm>\n此时，path 参数为：/wxzw/wxfb\n\n:::",
+        "location": "index.ts",
+        "module": () => import('@/routes/gov/cac/index.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "国家互联网信息办公室",
+    "url": "www.cac.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/ccdi": {
+    "routes": {
+      "/:path{.+}?": {
+        "path": "/:path{.+}?",
+        "name": "要闻",
+        "example": "/gov/ccdi/yaowenn",
+        "parameters": {
+          "path": "路径，默认为 要闻"
+        },
+        "radar": [
+          {
+            "source": [
+              "www.ccdi.gov.cn/*path"
+            ],
+            "target": "/:path"
+          }
+        ],
+        "features": {
+          "antiCrawler": true
+        },
+        "maintainers": [
+          "bigfei"
+        ],
+        "description": "::: tip\n\n路径处填写对应页面 URL 中 `http://www.ccdi.gov.cn/` 后的字段。下面是一个例子。\n\n若订阅 [审查调查 > 中管干部 > 执纪审查](https://www.ccdi.gov.cn/scdcn/zggb/zjsc/) 则将对应页面 URL <https://www.ccdi.gov.cn/scdcn/zggb/zjsc/> 中 `http://www.ccdi.gov.cn/` 后的字段 `scdcn/zggb/zjsc` 作为路径填入。此时路由为 [`/gov/ccdi/scdcn/zggb/zjsc`](https://rsshub.app/gov/ccdi/scdcn/zggb/zjsc)\n\n:::",
+        "location": "index.ts",
+        "module": () => import('@/routes/gov/ccdi/index.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "中央纪委国家监委",
+    "url": "www.ccdi.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/chinamine-safety": {
+    "routes": {
+      "/xw/:category{.+}?": {
+        "path": "/xw/:category{.+}?",
+        "name": "新闻",
+        "example": "/gov/chinamine-safety/xw",
+        "parameters": {
+          "category": "分类，见下表，默认为应急管理部要闻"
+        },
+        "radar": [
+          {
+            "title": "应急管理部要闻",
+            "source": [
+              "www.chinamine-safety.gov.cn/xw/yjglbyw/"
+            ],
+            "target": "/xw/yjglbyw"
+          },
+          {
+            "title": "国家矿山安监局要闻",
+            "source": [
+              "www.chinamine-safety.gov.cn/xw/mkaqjcxw/"
+            ],
+            "target": "/xw/mkaqjcxw"
+          },
+          {
+            "title": "地方信息",
+            "source": [
+              "www.chinamine-safety.gov.cn/xw/dfdt/"
+            ],
+            "target": "/xw/dfdt"
+          },
+          {
+            "title": "党建专栏",
+            "source": [
+              "www.chinamine-safety.gov.cn/xw/djzl/"
+            ],
+            "target": "/xw/djzl"
+          },
+          {
+            "title": "经验交流",
+            "source": [
+              "www.chinamine-safety.gov.cn/xw/jyjl/"
+            ],
+            "target": "/xw/jyjl"
+          },
+          {
+            "title": "新闻发布会",
+            "source": [
+              "www.chinamine-safety.gov.cn/xw/xwfbh/"
+            ],
+            "target": "/xw/xwfbh"
+          }
+        ],
+        "maintainers": [
+          "nczitzk"
+        ],
+        "description": "| 分类               | id       |\n| ------------------ | -------- |\n| 应急管理部要闻     | yjglbyw  |\n| 国家矿山安监局要闻 | mkaqjcxw |\n| 地方信息           | dfdt     |\n| 党建专栏           | djzl     |\n| 经验交流           | jyjl     |\n| 新闻发布会         | xwfbh    |",
+        "location": "xw.ts",
         "module": () => import('@/routes/gov/chinamine-safety/xw.ts')
       },
-      "/chinamine-safety/zfxxgk/:category{.+}?": {
-        "path": "/chinamine-safety/zfxxgk/:category{.+}?",
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "chinamine-safety/zfxxgk.ts",
+      "/zfxxgk/:category{.+}?": {
+        "path": "/zfxxgk/:category{.+}?",
+        "name": "政府信息公开",
+        "example": "/gov/chinamine-safety/zfxxgk",
+        "parameters": {
+          "category": "分类，见下表，默认为法定主动公开内容 > 通知公告"
+        },
+        "radar": [
+          {
+            "title": "政府信息公开指南",
+            "source": [
+              "www.chinamine-safety.gov.cn/zfxxgk/zfxxgkzn"
+            ],
+            "target": "/zfxxgk/zfxxgkzn"
+          },
+          {
+            "title": "政府信息公开制度",
+            "source": [
+              "www.chinamine-safety.gov.cn/zfxxgk/zfxxgkzd"
+            ],
+            "target": "/zfxxgk/zfxxgkzd"
+          },
+          {
+            "title": "通知公告",
+            "source": [
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/tzgg",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr"
+            ],
+            "target": "/zfxxgk/fdzdgknr/tzgg"
+          },
+          {
+            "title": "征求意见",
+            "source": [
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/zqyj_01",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr"
+            ],
+            "target": "/zfxxgk/fdzdgknr/zqyj_01"
+          },
+          {
+            "title": "政策法规",
+            "source": [
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/zcfg",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr"
+            ],
+            "target": "/zfxxgk/fdzdgknr/zcfg"
+          },
+          {
+            "title": "规划计划",
+            "source": [
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/ghjh",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr"
+            ],
+            "target": "/zfxxgk/fdzdgknr/ghjh"
+          },
+          {
+            "title": "政策解读",
+            "source": [
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/zcjd",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr"
+            ],
+            "target": "/zfxxgk/fdzdgknr/zcjd"
+          },
+          {
+            "title": "安全许可",
+            "source": [
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/anqxk",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr"
+            ],
+            "target": "/zfxxgk/fdzdgknr/anqxk"
+          },
+          {
+            "title": "事故查处",
+            "source": [
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/sgcc",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr"
+            ],
+            "target": "/zfxxgk/fdzdgknr/sgcc"
+          },
+          {
+            "title": "人事信息",
+            "source": [
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/rsxx",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr"
+            ],
+            "target": "/zfxxgk/fdzdgknr/rsxx"
+          },
+          {
+            "title": "财务信息",
+            "source": [
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/cwxx",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr"
+            ],
+            "target": "/zfxxgk/fdzdgknr/cwxx"
+          },
+          {
+            "title": "建议提案办理",
+            "source": [
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/jytabl_4823",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr"
+            ],
+            "target": "/zfxxgk/fdzdgknr/jytabl_4823"
+          },
+          {
+            "title": "政策法规 - 法律",
+            "source": [
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/zcfg/fl_01",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/zcfg",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr"
+            ],
+            "target": "/zfxxgk/fdzdgknr/zcfg/fl_01"
+          },
+          {
+            "title": "政策法规 - 行政法规",
+            "source": [
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/zcfg/xzfg",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/zcfg",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr"
+            ],
+            "target": "/zfxxgk/fdzdgknr/zcfg/xzfg"
+          },
+          {
+            "title": "政策法规 - 部门规章",
+            "source": [
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/zcfg/bmgz_01",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/zcfg",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr"
+            ],
+            "target": "/zfxxgk/fdzdgknr/zcfg/bmgz_01"
+          },
+          {
+            "title": "政策法规 - 部门规章煤矿安监",
+            "source": [
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/zcfg/bmgz_01/mkanj",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/zcfg/bmgz_01",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/zcfg",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr"
+            ],
+            "target": "/zfxxgk/fdzdgknr/zcfg/bmgz_01/mkanj"
+          },
+          {
+            "title": "政策法规 - 部门规章非煤矿山",
+            "source": [
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/zcfg/bmgz_01/fmks",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/zcfg/bmgz_01",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/zcfg",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr"
+            ],
+            "target": "/zfxxgk/fdzdgknr/zcfg/bmgz_01/fmks"
+          },
+          {
+            "title": "政策法规 - 行业标准",
+            "source": [
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/zcfg/hybz_01",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/zcfg",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr"
+            ],
+            "target": "/zfxxgk/fdzdgknr/zcfg/hybz_01"
+          },
+          {
+            "title": "政策法规 - 行业标准煤矿安监",
+            "source": [
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/zcfg/hybz_01/mkanj",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/zcfg/hybz_01",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/zcfg",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr"
+            ],
+            "target": "/zfxxgk/fdzdgknr/zcfg/hybz_01/mkanj"
+          },
+          {
+            "title": "政策法规 - 行业标准非煤矿山",
+            "source": [
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/zcfg/hybz_01/fmks",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/zcfg/hybz_01",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/zcfg",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr"
+            ],
+            "target": "/zfxxgk/fdzdgknr/zcfg/hybz_01/fmks"
+          },
+          {
+            "title": "事故查处 - 事故通报",
+            "source": [
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/sgcc/sgtb",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/sgcc",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr"
+            ],
+            "target": "/zfxxgk/fdzdgknr/sgcc/sgtb"
+          },
+          {
+            "title": "事故查处 - 事故督办",
+            "source": [
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/sgcc/sgdb",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/sgcc",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr"
+            ],
+            "target": "/zfxxgk/fdzdgknr/sgcc/sgdb"
+          },
+          {
+            "title": "事故查处 - 事故调查报告",
+            "source": [
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/sgcc/sgbg",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/sgcc",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr"
+            ],
+            "target": "/zfxxgk/fdzdgknr/sgcc/sgbg"
+          },
+          {
+            "title": "事故查处 - 事故案例",
+            "source": [
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/sgcc/sgalks",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/sgcc",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr"
+            ],
+            "target": "/zfxxgk/fdzdgknr/sgcc/sgalks"
+          },
+          {
+            "title": "事故查处 - 事故警示教育片",
+            "source": [
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/sgcc/sgjsjy",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr/sgcc",
+              "www.chinamine-safety.gov.cn/zfxxgk/fdzdgknr"
+            ],
+            "target": "/zfxxgk/fdzdgknr/sgcc/sgjsjy"
+          }
+        ],
+        "maintainers": [
+          "nczitzk"
+        ],
+        "description": "| 政府信息公开指南 | 政府信息公开制度 |\n| ---------------- | ---------------- |\n| zfxxgkzn         | zfxxgkzd         |\n\n<details>\n<summary>更多分类</summary>\n\n#### 法定主动公开内容\n\n| 分类         | id                    |\n| ------------ | --------------------- |\n| 通知公告     | fdzdgknr/tzgg         |\n| 征求意见     | fdzdgknr/zqyj\\_01     |\n| 政策法规     | fdzdgknr/zcfg         |\n| 规划计划     | fdzdgknr/ghjh         |\n| 政策解读     | fdzdgknr/zcjd         |\n| 安全许可     | fdzdgknr/anqxk        |\n| 事故查处     | fdzdgknr/sgcc         |\n| 人事信息     | fdzdgknr/rsxx         |\n| 财务信息     | fdzdgknr/cwxx         |\n| 建议提案办理 | fdzdgknr/jytabl\\_4823 |\n\n#### 法定主动公开内容 > 政策法规\n\n| 分类             | id                           |\n| ---------------- | ---------------------------- |\n| 法律             | fdzdgknr/zcfg/fl\\_01         |\n| 行政法规         | fdzdgknr/zcfg/xzfg           |\n| 部门规章         | fdzdgknr/zcfg/bmgz\\_01       |\n| 部门规章煤矿安监 | fdzdgknr/zcfg/bmgz\\_01/mkanj |\n| 部门规章非煤矿山 | fdzdgknr/zcfg/bmgz\\_01/fmks  |\n| 行业标准         | fdzdgknr/zcfg/hybz\\_01       |\n| 行业标准煤矿安监 | fdzdgknr/zcfg/hybz\\_01/mkanj |\n| 行业标准非煤矿山 | fdzdgknr/zcfg/hybz\\_01/fmks  |\n\n#### 法定主动公开内容 > 事故查处\n\n| 分类           | id                   |\n| -------------- | -------------------- |\n| 事故通报       | fdzdgknr/sgcc/sgtb   |\n| 事故督办       | fdzdgknr/sgcc/sgdb   |\n| 事故调查报告   | fdzdgknr/sgcc/sgbg   |\n| 事故案例       | fdzdgknr/sgcc/sgalks |\n| 事故警示教育片 | fdzdgknr/sgcc/sgjsjy |\n\n</details>",
+        "location": "zfxxgk.ts",
         "module": () => import('@/routes/gov/chinamine-safety/zfxxgk.ts')
-      },
-      "/chinatax/latest": {
-        "path": "/chinatax/latest",
+      }
+    },
+    "apiRoutes": {},
+    "name": "国家矿山安全监察局",
+    "url": "www.chinamine-safety.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/chinatax": {
+    "routes": {
+      "/latest": {
+        "path": "/latest",
         "categories": [
           "government"
         ],
@@ -51821,15 +51828,26 @@ export default {
           "fuzy112"
         ],
         "url": "www.chinatax.gov.cn/*",
-        "location": "chinatax/latest.ts",
+        "location": "latest.ts",
         "module": () => import('@/routes/gov/chinatax/latest.ts')
-      },
-      "/chongqing/gzw/:category{.+}?": {
-        "path": "/chongqing/gzw/:category{.+}?",
+      }
+    },
+    "apiRoutes": {},
+    "name": "国家税务总局",
+    "url": "www.chinatax.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/chongqing": {
+    "routes": {
+      "/gzw/:category{.+}?": {
+        "path": "/gzw/:category{.+}?",
         "parameters": {
           "category": "分类，见下表，默认为通知公告"
         },
-        "name": "重庆市人民政府 国有资产监督管理委员会",
+        "name": "国有资产监督管理委员会",
         "url": "gzw.cq.gov.cn",
         "maintainers": [
           "nczitzk"
@@ -51837,15 +51855,15 @@ export default {
         "radar": [
           {
             "source": "gzw.cq.gov.cn/*category",
-            "target": "/chongqing/gzw/*category"
+            "target": "/gzw/*category"
           }
         ],
         "description": "| 通知公告  | 国企资讯 | 国企简介 | 国企招聘 |\n| --------- | -------- | -------- | -------- |\n| tzgg\\_191 | gqdj     | gqjj     | gqzp     |",
-        "location": "chongqing/gzw.ts",
+        "location": "gzw.ts",
         "module": () => import('@/routes/gov/chongqing/gzw.ts')
       },
-      "/chongqing/rsks": {
-        "path": "/chongqing/rsks",
+      "/rsks": {
+        "path": "/rsks",
         "categories": [
           "government"
         ],
@@ -51857,16 +51875,16 @@ export default {
             ]
           }
         ],
-        "name": "重庆市人民政府 人力社保局 - 人事考试通知",
+        "name": "人力社保局 - 人事考试通知",
         "maintainers": [
           "Mai19930513"
         ],
         "url": "rlsbj.cq.gov.cn/",
-        "location": "chongqing/rsks.ts",
+        "location": "rsks.ts",
         "module": () => import('@/routes/gov/chongqing/rsks.ts')
       },
-      "/chongqing/sydwgkzp/:year?": {
-        "path": "/chongqing/sydwgkzp/:year?",
+      "/sydwgkzp/:year?": {
+        "path": "/sydwgkzp/:year?",
         "url": "rlsbj.cq.gov.cn/",
         "categories": [
           "government"
@@ -51882,15 +51900,26 @@ export default {
             ]
           }
         ],
-        "name": "重庆市人民政府 人力社保局 - 事业单位公开招聘",
+        "name": "人力社保局 - 事业单位公开招聘",
         "maintainers": [
           "MajexH"
         ],
-        "location": "chongqing/sydwgkzp.ts",
+        "location": "sydwgkzp.ts",
         "module": () => import('@/routes/gov/chongqing/sydwgkzp.ts')
-      },
-      "/cmse/fxrw": {
-        "path": "/cmse/fxrw",
+      }
+    },
+    "apiRoutes": {},
+    "name": "重庆市人民政府",
+    "url": "www.cq.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/cmse": {
+    "routes": {
+      "/fxrw": {
+        "path": "/fxrw",
         "categories": [
           "government"
         ],
@@ -51916,18 +51945,196 @@ export default {
           "nczitzk"
         ],
         "url": "www.cmse.gov.cn/fxrw",
-        "location": "cmse/fxrw.ts",
+        "location": "fxrw.ts",
         "module": () => import('@/routes/gov/cmse/fxrw.ts')
       },
-      "/cmse/*": {
-        "path": "/cmse/*",
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "cmse/index.ts",
-        "module": () => import('@/routes/gov/cmse/index.ts')
+      "/fxrw/:id/:category": {
+        "path": "/fxrw/:id/:category",
+        "name": "任务动态",
+        "example": "/gov/cmse/fxrw/wtfx/rwdt",
+        "parameters": {
+          "id": "任务 id，可在对应任务页 URL 中找到",
+          "category": "分类 id，见下表，可在对应任务页 URL 中找到"
+        },
+        "description": "::: tip\n\n下表分类可能并不完整。请查看各飞行任务详情页获得完整分类。\n\n:::\n\n| 任务动态 | 综合新闻 | 视频 | 图片新闻 | 媒体聚焦 |\n| -------- | -------- | ---- | -------- | -------- |\n| rwdt     | zhxw     | sp   | tpxw     | mtjj     |",
+        "radar": [
+          {
+            "source": [
+              "www.cmse.gov.cn/fxrw/:id/:category"
+            ]
+          }
+        ],
+        "maintainers": [
+          "nczitzk"
+        ],
+        "location": "fxrw-category.ts",
+        "module": () => import('@/routes/gov/cmse/fxrw-category.ts')
       },
-      "/cn/news/:uid": {
-        "path": "/cn/news/:uid",
+      "/gfgg": {
+        "path": "/gfgg",
+        "name": "官方公告",
+        "example": "/gov/cmse/gfgg",
+        "radar": [
+          {
+            "source": [
+              "www.cmse.gov.cn/gfgg"
+            ]
+          }
+        ],
+        "maintainers": [
+          "nczitzk"
+        ],
+        "location": "gfgg.ts",
+        "module": () => import('@/routes/gov/cmse/gfgg.ts')
+      },
+      "/gjhz": {
+        "path": "/gjhz",
+        "name": "国际合作",
+        "example": "/gov/cmse/gjhz",
+        "radar": [
+          {
+            "source": [
+              "www.cmse.gov.cn/gjhz"
+            ]
+          }
+        ],
+        "maintainers": [
+          "nczitzk"
+        ],
+        "location": "gjhz.ts",
+        "module": () => import('@/routes/gov/cmse/gjhz.ts')
+      },
+      "/hqsy/:id": {
+        "path": "/hqsy/:id",
+        "name": "环球视野",
+        "example": "/gov/cmse/hqsy/zxdta",
+        "parameters": {
+          "id": "分类 id，见下表，可在对应分类页 URL 中找到"
+        },
+        "description": "| 最新动态 | 美国 | 俄罗斯 | 欧洲 | 日本 | 印度 | 领域动态 |\n| -------- | ---- | ------ | ---- | ---- | ---- | -------- |\n| zxdta    | mg   | els    | oz   | rb   | yd   | lydt     |",
+        "radar": [
+          {
+            "source": [
+              "www.cmse.gov.cn/hqsy/:id"
+            ]
+          }
+        ],
+        "maintainers": [
+          "nczitzk"
+        ],
+        "location": "hqsy.ts",
+        "module": () => import('@/routes/gov/cmse/hqsy.ts')
+      },
+      "/kjkx/:id": {
+        "path": "/kjkx/:id",
+        "name": "空间科学",
+        "example": "/gov/cmse/kjkx/kjkxyjyyy",
+        "parameters": {
+          "id": "分类 id，见下表，可在对应分类页 URL 中找到"
+        },
+        "description": "| 空间科学研究与应用 | 航天技术试验 | 航天医学实验 |\n| ------------------ | ------------ | ------------ |\n| kjkxyjyyy          | htjssy       | htyxsy       |",
+        "radar": [
+          {
+            "source": [
+              "www.cmse.gov.cn/kjkx/:id"
+            ]
+          }
+        ],
+        "maintainers": [
+          "nczitzk"
+        ],
+        "location": "kjkx.ts",
+        "module": () => import('@/routes/gov/cmse/kjkx.ts')
+      },
+      "/kpjy/:id": {
+        "path": "/kpjy/:id",
+        "name": "科普教育",
+        "example": "/gov/cmse/kpjy/kphd",
+        "parameters": {
+          "id": "分类 id，见下表，可在对应分类页 URL 中找到"
+        },
+        "description": "| 科普活动 | 太空课堂 | 航天知识 |\n| -------- | -------- | -------- |\n| kphd     | tkkt     | ttzs     |",
+        "radar": [
+          {
+            "source": [
+              "www.cmse.gov.cn/kpjy/:id"
+            ]
+          }
+        ],
+        "maintainers": [
+          "nczitzk"
+        ],
+        "location": "kpjy.ts",
+        "module": () => import('@/routes/gov/cmse/kpjy.ts')
+      },
+      "/xwzx/yzjz": {
+        "path": "/xwzx/yzjz",
+        "name": "研制进展",
+        "example": "/gov/cmse/xwzx/yzjz",
+        "radar": [
+          {
+            "source": [
+              "www.cmse.gov.cn/xwzx/yzjz"
+            ]
+          }
+        ],
+        "maintainers": [
+          "nczitzk"
+        ],
+        "location": "xwzx-yzjz.ts",
+        "module": () => import('@/routes/gov/cmse/xwzx-yzjz.ts')
+      },
+      "/xwzx/zhxw": {
+        "path": "/xwzx/zhxw",
+        "name": "综合新闻",
+        "example": "/gov/cmse/xwzx/zhxw",
+        "radar": [
+          {
+            "source": [
+              "www.cmse.gov.cn/xwzx/zhxw"
+            ]
+          }
+        ],
+        "maintainers": [
+          "nczitzk"
+        ],
+        "location": "xwzx-zhxw.ts",
+        "module": () => import('@/routes/gov/cmse/xwzx-zhxw.ts')
+      },
+      "/ztbd/:id": {
+        "path": "/ztbd/:id",
+        "name": "专题报道",
+        "example": "/gov/cmse/ztbd/xwfbh",
+        "parameters": {
+          "id": "分类 id，见下表，可在对应分类页 URL 中找到"
+        },
+        "description": "| 新闻发布会 | 学术大会 | 标准 | 新闻专题 |\n| ---------- | -------- | ---- | -------- |\n| xwfdh      | xsdh     | bz   | xwzt     |",
+        "radar": [
+          {
+            "source": [
+              "www.cmse.gov.cn/ztbd/:id"
+            ]
+          }
+        ],
+        "maintainers": [
+          "nczitzk"
+        ],
+        "location": "ztbd.ts",
+        "module": () => import('@/routes/gov/cmse/ztbd.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "中国载人航天工程",
+    "url": "www.cmse.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/cn": {
+    "routes": {
+      "/news/:uid": {
+        "path": "/news/:uid",
         "categories": [
           "government"
         ],
@@ -51949,18 +52156,55 @@ export default {
           "howfool"
         ],
         "description": "| 政务部门 | 滚动新闻 | 新闻要闻 | 国务院新闻 | 国务院工作会议 | 政策文件 |\n| :------: | :------: | :------: | :--------: | :------------: | :------: |\n|    bm    |    gd    |    yw    |     gwy    |     gwyzzjg    |  zhengce |",
-        "location": "cn/news/index.ts",
+        "location": "news/index.ts",
         "module": () => import('@/routes/gov/cn/news/index.ts')
-      },
-      "/cnnic/*": {
-        "path": "/cnnic/*",
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "cnnic/index.ts",
+      }
+    },
+    "apiRoutes": {},
+    "name": "中国政府网",
+    "url": "www.gov.cn/",
+    "categories": [
+      "government"
+    ],
+    "description": ""
+  },
+  "gov/cnnic": {
+    "routes": {
+      "/:path{.+}?": {
+        "path": "/:path{.+}?",
+        "name": "新闻中心",
+        "example": "/gov/cnnic/11/39",
+        "parameters": {
+          "path": "路径，默认为通知公告"
+        },
+        "radar": [
+          {
+            "source": [
+              "www.cnnic.net.cn/*path"
+            ],
+            "target": "/:path"
+          }
+        ],
+        "maintainers": [
+          "nczitzk"
+        ],
+        "description": "::: tip\n\n路径处填写对应页面 URL 中 `https://www.cnnic.net.cn/` 后的字段。下面是一个例子。\n\n若订阅 [通知公告](https://www.cnnic.net.cn/11/39/index.html) 则将对应页面 URL <https://www.cnnic.net.cn/11/39/index.html> 中 `https://www.cnnic.net.cn/` 后的字段 `11/39` 作为路径填入。此时路由为 [`/gov/cnnic/11/39`](https://rsshub.app/gov/cnnic/11/39)\n\n:::",
+        "location": "index.ts",
         "module": () => import('@/routes/gov/cnnic/index.ts')
-      },
-      "/csrc/auditstatus/:apply_id": {
-        "path": "/csrc/auditstatus/:apply_id",
+      }
+    },
+    "apiRoutes": {},
+    "name": "中国互联网络信息中心",
+    "url": "www.cnnic.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/csrc": {
+    "routes": {
+      "/auditstatus/:apply_id": {
+        "path": "/auditstatus/:apply_id",
         "categories": [
           "government"
         ],
@@ -51980,11 +52224,11 @@ export default {
         "maintainers": [
           "hillerliao"
         ],
-        "location": "csrc/auditstatus.ts",
+        "location": "auditstatus.ts",
         "module": () => import('@/routes/gov/csrc/auditstatus.ts')
       },
-      "/csrc/zfxxgk_zdgk/:id?": {
-        "path": "/csrc/zfxxgk_zdgk/:id?",
+      "/zfxxgk_zdgk/:id?": {
+        "path": "/zfxxgk_zdgk/:id?",
         "name": "政府信息公开",
         "url": "www.csrc.gov.cn",
         "maintainers": [
@@ -52018,455 +52262,482 @@ export default {
             "source": [
               "www.csrc.gov.cn/csrc/c101793/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101793"
+            "target": "/zfxxgk_zdgk/c101793"
           },
           {
             "title": "主动公开目录 - 按体裁文种查看",
             "source": [
               "www.csrc.gov.cn/csrc/c101951/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101951"
+            "target": "/zfxxgk_zdgk/c101951"
           },
           {
             "title": "主动公开目录 - 按派出机构查看",
             "source": [
               "www.csrc.gov.cn/csrc/c101985/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101985"
+            "target": "/zfxxgk_zdgk/c101985"
           },
           {
             "title": "按主题查看 - 综合政务",
             "source": [
               "www.csrc.gov.cn/csrc/c101794/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101794"
+            "target": "/zfxxgk_zdgk/c101794"
           },
           {
             "title": "按主题查看 - 发行监管",
             "source": [
               "www.csrc.gov.cn/csrc/c101801/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101801"
+            "target": "/zfxxgk_zdgk/c101801"
           },
           {
             "title": "按主题查看 - 公众公司监管（含北交所）",
             "source": [
               "www.csrc.gov.cn/csrc/c101828/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101828"
+            "target": "/zfxxgk_zdgk/c101828"
           },
           {
             "title": "按主题查看 - 证券交易监管",
             "source": [
               "www.csrc.gov.cn/csrc/c101832/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101832"
+            "target": "/zfxxgk_zdgk/c101832"
           },
           {
             "title": "按主题查看 - 证券经营机构监管",
             "source": [
               "www.csrc.gov.cn/csrc/c101837/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101837"
+            "target": "/zfxxgk_zdgk/c101837"
           },
           {
             "title": "按主题查看 - 上市公司监管",
             "source": [
               "www.csrc.gov.cn/csrc/c101863/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101863"
+            "target": "/zfxxgk_zdgk/c101863"
           },
           {
             "title": "按主题查看 - 基金监管",
             "source": [
               "www.csrc.gov.cn/csrc/c101876/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101876"
+            "target": "/zfxxgk_zdgk/c101876"
           },
           {
             "title": "按主题查看 - 私募基金监管",
             "source": [
               "www.csrc.gov.cn/csrc/c101938/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101938"
+            "target": "/zfxxgk_zdgk/c101938"
           },
           {
             "title": "按主题查看 - 区域性股权市场规范发展",
             "source": [
               "www.csrc.gov.cn/csrc/c106301/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c106301"
+            "target": "/zfxxgk_zdgk/c106301"
           },
           {
             "title": "按主题查看 - 期货监管",
             "source": [
               "www.csrc.gov.cn/csrc/c101901/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101901"
+            "target": "/zfxxgk_zdgk/c101901"
           },
           {
             "title": "按主题查看 - 债券监管",
             "source": [
               "www.csrc.gov.cn/csrc/c106306/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c106306"
+            "target": "/zfxxgk_zdgk/c106306"
           },
           {
             "title": "按主题查看 - 行政执法",
             "source": [
               "www.csrc.gov.cn/csrc/c101925/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101925"
+            "target": "/zfxxgk_zdgk/c101925"
           },
           {
             "title": "按主题查看 - 行政复议",
             "source": [
               "www.csrc.gov.cn/csrc/c105938/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c105938"
+            "target": "/zfxxgk_zdgk/c105938"
           },
           {
             "title": "按主题查看 - 国际合作",
             "source": [
               "www.csrc.gov.cn/csrc/c101931/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101931"
+            "target": "/zfxxgk_zdgk/c101931"
           },
           {
             "title": "按主题查看 - 证券服务机构监管",
             "source": [
               "www.csrc.gov.cn/csrc/c105939/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c105939"
+            "target": "/zfxxgk_zdgk/c105939"
           },
           {
             "title": "按主题查看 - 其他",
             "source": [
               "www.csrc.gov.cn/csrc/c101950/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101950"
+            "target": "/zfxxgk_zdgk/c101950"
           },
           {
             "title": "按派出机构查看 - 北京",
             "source": [
               "www.csrc.gov.cn/csrc/c101986/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101986"
+            "target": "/zfxxgk_zdgk/c101986"
           },
           {
             "title": "按派出机构查看 - 天津",
             "source": [
               "www.csrc.gov.cn/csrc/c101987/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101987"
+            "target": "/zfxxgk_zdgk/c101987"
           },
           {
             "title": "按派出机构查看 - 河北",
             "source": [
               "www.csrc.gov.cn/csrc/c101988/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101988"
+            "target": "/zfxxgk_zdgk/c101988"
           },
           {
             "title": "按派出机构查看 - 山西",
             "source": [
               "www.csrc.gov.cn/csrc/c101989/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101989"
+            "target": "/zfxxgk_zdgk/c101989"
           },
           {
             "title": "按派出机构查看 - 内蒙古",
             "source": [
               "www.csrc.gov.cn/csrc/c101990/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101990"
+            "target": "/zfxxgk_zdgk/c101990"
           },
           {
             "title": "按派出机构查看 - 辽宁",
             "source": [
               "www.csrc.gov.cn/csrc/c101991/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101991"
+            "target": "/zfxxgk_zdgk/c101991"
           },
           {
             "title": "按派出机构查看 - 吉林",
             "source": [
               "www.csrc.gov.cn/csrc/c101992/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101992"
+            "target": "/zfxxgk_zdgk/c101992"
           },
           {
             "title": "按派出机构查看 - 黑龙江",
             "source": [
               "www.csrc.gov.cn/csrc/c101993/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101993"
+            "target": "/zfxxgk_zdgk/c101993"
           },
           {
             "title": "按派出机构查看 - 上海",
             "source": [
               "www.csrc.gov.cn/csrc/c101994/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101994"
+            "target": "/zfxxgk_zdgk/c101994"
           },
           {
             "title": "按派出机构查看 - 江苏",
             "source": [
               "www.csrc.gov.cn/csrc/c101995/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101995"
+            "target": "/zfxxgk_zdgk/c101995"
           },
           {
             "title": "按派出机构查看 - 浙江",
             "source": [
               "www.csrc.gov.cn/csrc/c101996/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101996"
+            "target": "/zfxxgk_zdgk/c101996"
           },
           {
             "title": "按派出机构查看 - 安徽",
             "source": [
               "www.csrc.gov.cn/csrc/c101997/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101997"
+            "target": "/zfxxgk_zdgk/c101997"
           },
           {
             "title": "按派出机构查看 - 福建",
             "source": [
               "www.csrc.gov.cn/csrc/c101998/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101998"
+            "target": "/zfxxgk_zdgk/c101998"
           },
           {
             "title": "按派出机构查看 - 江西",
             "source": [
               "www.csrc.gov.cn/csrc/c101999/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101999"
+            "target": "/zfxxgk_zdgk/c101999"
           },
           {
             "title": "按派出机构查看 - 山东",
             "source": [
               "www.csrc.gov.cn/csrc/c102000/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c102000"
+            "target": "/zfxxgk_zdgk/c102000"
           },
           {
             "title": "按派出机构查看 - 河南",
             "source": [
               "www.csrc.gov.cn/csrc/c102001/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c102001"
+            "target": "/zfxxgk_zdgk/c102001"
           },
           {
             "title": "按派出机构查看 - 湖北",
             "source": [
               "www.csrc.gov.cn/csrc/c102002/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c102002"
+            "target": "/zfxxgk_zdgk/c102002"
           },
           {
             "title": "按派出机构查看 - 湖南",
             "source": [
               "www.csrc.gov.cn/csrc/c102003/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c102003"
+            "target": "/zfxxgk_zdgk/c102003"
           },
           {
             "title": "按派出机构查看 - 广东",
             "source": [
               "www.csrc.gov.cn/csrc/c102004/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c102004"
+            "target": "/zfxxgk_zdgk/c102004"
           },
           {
             "title": "按派出机构查看 - 广西",
             "source": [
               "www.csrc.gov.cn/csrc/c102005/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c102005"
+            "target": "/zfxxgk_zdgk/c102005"
           },
           {
             "title": "按派出机构查看 - 海南",
             "source": [
               "www.csrc.gov.cn/csrc/c102006/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c102006"
+            "target": "/zfxxgk_zdgk/c102006"
           },
           {
             "title": "按派出机构查看 - 重庆",
             "source": [
               "www.csrc.gov.cn/csrc/c102007/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c102007"
+            "target": "/zfxxgk_zdgk/c102007"
           },
           {
             "title": "按派出机构查看 - 四川",
             "source": [
               "www.csrc.gov.cn/csrc/c102008/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c102008"
+            "target": "/zfxxgk_zdgk/c102008"
           },
           {
             "title": "按派出机构查看 - 贵州",
             "source": [
               "www.csrc.gov.cn/csrc/c102009/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c102009"
+            "target": "/zfxxgk_zdgk/c102009"
           },
           {
             "title": "按派出机构查看 - 云南",
             "source": [
               "www.csrc.gov.cn/csrc/c102010/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c102010"
+            "target": "/zfxxgk_zdgk/c102010"
           },
           {
             "title": "按派出机构查看 - 西藏",
             "source": [
               "www.csrc.gov.cn/csrc/c102011/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c102011"
+            "target": "/zfxxgk_zdgk/c102011"
           },
           {
             "title": "按派出机构查看 - 陕西",
             "source": [
               "www.csrc.gov.cn/csrc/c102012/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c102012"
+            "target": "/zfxxgk_zdgk/c102012"
           },
           {
             "title": "按派出机构查看 - 甘肃",
             "source": [
               "www.csrc.gov.cn/csrc/c102013/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c102013"
+            "target": "/zfxxgk_zdgk/c102013"
           },
           {
             "title": "按派出机构查看 - 青海",
             "source": [
               "www.csrc.gov.cn/csrc/c102014/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c102014"
+            "target": "/zfxxgk_zdgk/c102014"
           },
           {
             "title": "按派出机构查看 - 宁夏",
             "source": [
               "www.csrc.gov.cn/csrc/c102015/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c102015"
+            "target": "/zfxxgk_zdgk/c102015"
           },
           {
             "title": "按派出机构查看 - 新疆",
             "source": [
               "www.csrc.gov.cn/csrc/c102016/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c102016"
+            "target": "/zfxxgk_zdgk/c102016"
           },
           {
             "title": "按派出机构查看 - 深圳",
             "source": [
               "www.csrc.gov.cn/csrc/c102017/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c102017"
+            "target": "/zfxxgk_zdgk/c102017"
           },
           {
             "title": "按派出机构查看 - 大连",
             "source": [
               "www.csrc.gov.cn/csrc/c102018/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c102018"
+            "target": "/zfxxgk_zdgk/c102018"
           },
           {
             "title": "按派出机构查看 - 宁波",
             "source": [
               "www.csrc.gov.cn/csrc/c102019/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c102019"
+            "target": "/zfxxgk_zdgk/c102019"
           },
           {
             "title": "按派出机构查看 - 厦门",
             "source": [
               "www.csrc.gov.cn/csrc/c102020/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c102020"
+            "target": "/zfxxgk_zdgk/c102020"
           },
           {
             "title": "按派出机构查看 - 青岛",
             "source": [
               "www.csrc.gov.cn/csrc/c102021/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c102021"
+            "target": "/zfxxgk_zdgk/c102021"
           },
           {
             "title": "按派出机构查看 - 上海专员办",
             "source": [
               "www.csrc.gov.cn/csrc/c105841/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c105841"
+            "target": "/zfxxgk_zdgk/c105841"
           },
           {
             "title": "按派出机构查看 - 深圳专员办",
             "source": [
               "www.csrc.gov.cn/csrc/c105842/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c105842"
+            "target": "/zfxxgk_zdgk/c105842"
           },
           {
             "title": "综合政务 - 组织机构",
             "source": [
               "www.csrc.gov.cn/csrc/c101795/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101795"
+            "target": "/zfxxgk_zdgk/c101795"
           },
           {
             "title": "综合政务 - 征求意见",
             "source": [
               "www.csrc.gov.cn/csrc/c101796/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101796"
+            "target": "/zfxxgk_zdgk/c101796"
           },
           {
             "title": "综合政务 - 废止规章",
             "source": [
               "www.csrc.gov.cn/csrc/c101797/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101797"
+            "target": "/zfxxgk_zdgk/c101797"
           },
           {
             "title": "综合政务 - 财务预算管理",
             "source": [
               "www.csrc.gov.cn/csrc/c105887/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c105887"
+            "target": "/zfxxgk_zdgk/c105887"
           },
           {
             "title": "综合政务 - 其他",
             "source": [
               "www.csrc.gov.cn/csrc/c101799/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101799"
+            "target": "/zfxxgk_zdgk/c101799"
           },
           {
             "title": "综合政务 - 全国人大建议和政协提案复文公开",
             "source": [
               "www.csrc.gov.cn/csrc/c101800/zfxxgk_zdgk.shtml"
             ],
-            "target": "/csrc/zfxxgk_zdgk/c101800"
+            "target": "/zfxxgk_zdgk/c101800"
           }
         ],
-        "location": "csrc/csrc.ts",
+        "location": "csrc.ts",
         "module": () => import('@/routes/gov/csrc/csrc.ts')
       },
-      "/csrc/news/:suffix{.+}?": {
-        "path": "/csrc/news/:suffix{.+}?",
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "csrc/news.tsx",
+      "/news/:suffix{.+}?": {
+        "path": "/news/:suffix{.+}?",
+        "name": "通用",
+        "example": "/gov/csrc/news/c101975/zfxxgk_zdgk.shtml",
+        "parameters": {
+          "suffix": "路径，预设为 `c100028/common_xq_list.shtml`"
+        },
+        "radar": [
+          {
+            "source": [
+              "www.csrc.gov.cn/csrc/*suffix"
+            ],
+            "target": "/news/:suffix"
+          }
+        ],
+        "maintainers": [
+          "chinobing",
+          "LogicJake"
+        ],
+        "description": "::: tip\n路径处填写对应页面 URL 中 `http://www.csrc.gov.cn/csrc/` 后的字段。下面是一个例子。\n\n若订阅 [证监会要闻](http://www.csrc.gov.cn/csrc/c100028/common_xq_list.shtml) 则将对应页面 URL <http://www.csrc.gov.cn/csrc/c100028/common_xq_list.shtml> 中 `http://www.csrc.gov.cn/csrc/` 后的字段 `c100028/common_xq_list.shtml` 作为路径填入。此时路由为 [`/gov/csrc/news/c100028/common_xq_list.shtml`](https://rsshub.app/gov/csrc/news/c100028/common_xq_list.shtml)\n:::",
+        "location": "news.tsx",
         "module": () => import('@/routes/gov/csrc/news.tsx')
-      },
-      "/customs/list/:gchannel?": {
-        "path": "/customs/list/:gchannel?",
+      }
+    },
+    "apiRoutes": {},
+    "name": "中国证券监督管理委员会",
+    "url": "www.csrc.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/customs": {
+    "routes": {
+      "/list/:gchannel?": {
+        "path": "/list/:gchannel?",
         "categories": [
           "government"
         ],
@@ -52487,7 +52758,7 @@ export default {
             "source": [
               "www.customs.gov.cn/"
             ],
-            "target": "/customs/list"
+            "target": "/list"
           }
         ],
         "name": "拍卖信息 / 海关法规 / 最新文件",
@@ -52498,11 +52769,46 @@ export default {
         ],
         "url": "www.customs.gov.cn/",
         "description": "::: warning\n由于区域限制，建议在国内 IP 的机器上自建\n:::",
-        "location": "customs/list.ts",
+        "location": "list.ts",
         "module": () => import('@/routes/gov/customs/list.ts')
-      },
-      "/forestry/gjlckjdjt/:category?": {
-        "path": "/forestry/gjlckjdjt/:category?",
+      }
+    },
+    "apiRoutes": {},
+    "name": "中华人民共和国海关总署",
+    "url": "www.customs.gov.cn",
+    "categories": [
+      "government"
+    ]
+  },
+  "gov/dianbai": {
+    "routes": {
+      "/:path{.+}": {
+        "path": "/:path{.+}",
+        "name": "通用",
+        "example": "/gov/dianbai/www/zwgk/zcjd",
+        "parameters": {
+          "path": "路径，只填写 `www` 默认为 政务公开 > 政策解读"
+        },
+        "maintainers": [
+          "ShuiHuo"
+        ],
+        "description": "::: tip\n\n路径处填写对应页面 URL 中最前面的部分和域名后的字段。下面是一个例子。\n\n若订阅 [政务公开 > 政策解读](http://www.dianbai.gov.cn/zwgk/zcjd/) 则将对应页面 URL <http://www.dianbai.gov.cn/zwgk/zcjd/> 中 `http://www.dianbai.gov.cn/` 的字段 `www` 和 `zwgk/zcjd/` 作为路径填入。此时路由为 [`/gov/dianbai/www/zwgk/zcjd/`](https://rsshub.app/gov/dianbai/www/zwgk/zcjd/)\n\n:::",
+        "location": "dianbai.ts",
+        "module": () => import('@/routes/gov/dianbai/dianbai.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "茂名市电白区人民政府",
+    "url": "www.dianbai.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/forestry": {
+    "routes": {
+      "/gjlckjdjt/:category?": {
+        "path": "/gjlckjdjt/:category?",
         "categories": [
           "government"
         ],
@@ -52523,11 +52829,47 @@ export default {
           "nczitzk"
         ],
         "description": "| 分类     | id   |\n| -------- | ---- |\n| 经济林   | jjl  |\n| 林木良种 | lmlz |\n| 林下经济 | lxjj |\n| 生态修复 | stxf |\n| 用材林   | ycl  |\n| 其他     | qt   |",
-        "location": "forestry/gjlckjdjt.ts",
+        "location": "gjlckjdjt.ts",
         "module": () => import('@/routes/gov/forestry/gjlckjdjt.ts')
-      },
-      "/guizhou/jyt/tzgg": {
-        "path": "/guizhou/jyt/tzgg",
+      }
+    },
+    "apiRoutes": {},
+    "name": "国家林业和草原局",
+    "url": "www.forestry.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/gaozhou": {
+    "routes": {
+      "/:path{.+}": {
+        "path": "/:path{.+}",
+        "name": "通用",
+        "example": "/gov/gaozhou/www/zcjd",
+        "parameters": {
+          "path": "路径，只填写 `www` 默认为 政策解读"
+        },
+        "maintainers": [
+          "ShuiHuo"
+        ],
+        "description": "::: tip\n\n路径处填写对应页面 URL 中最前面的部分和域名后的字段。下面是一个例子。\n\n若订阅 [政策解读](http://www.gaozhou.gov.cn/zcjd/) 则将对应页面 URL <http://www.gaozhou.gov.cn/zcjd/> 中 `http://www.gaozhou.gov.cn/` 的字段 `www` 和 `zcjd/` 作为路径填入。此时路由为 [`/gov/gaozhou/www/zcjd/`](https://rsshub.app/gov/gaozhou/www/zcjd/)\n\n:::",
+        "location": "gaozhou.ts",
+        "module": () => import('@/routes/gov/gaozhou/gaozhou.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "高州市人民政府",
+    "url": "www.gaozhou.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/guizhou": {
+    "routes": {
+      "/jyt/tzgg": {
+        "path": "/jyt/tzgg",
         "categories": [
           "government"
         ],
@@ -52547,27 +52889,86 @@ export default {
               "jyt.guizhou.gov.cn/zwgk/tzgg/",
               "jyt.guizhou.gov.cn/zwgk/tzgg/index.html"
             ],
-            "target": "/guizhou/jyt/tzgg"
+            "target": "/jyt/tzgg"
           }
         ],
-        "name": "贵州省教育厅 - 通知公告",
+        "name": "教育厅 - 通知公告",
         "maintainers": [
           "sheetung"
         ],
         "url": "jyt.guizhou.gov.cn/zwgk/tzgg/",
         "description": "贵州省教育厅官方网站通知公告 RSS 源",
-        "location": "guizhou/jyt.ts",
+        "location": "jyt.ts",
         "module": () => import('@/routes/gov/guizhou/jyt.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "贵州省人民政府",
+    "url": "www.guizhou.gov.cn",
+    "description": "贵州省人民政府官方网站相关 RSS 源",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/gz": {
+    "routes": {
+      "/xw/:category": {
+        "path": "/xw/:category",
+        "name": "新闻",
+        "example": "/gov/gz/xw/gzyw",
+        "parameters": {
+          "category": "新闻分类"
+        },
+        "radar": [
+          {
+            "source": [
+              "www.gz.gov.cn/xw/:category"
+            ]
+          }
+        ],
+        "maintainers": [
+          "drgnchan"
+        ],
+        "description": "| 广州要闻 | 今日头条 | 通知公告 |\n| -------- | -------- | -------- |\n| gzyw     | jrtt     | tzgg     |",
+        "location": "xw.ts",
+        "module": () => import('@/routes/gov/gz/xw.ts')
       },
-      "/gz/:channel/:category": {
-        "path": "/gz/:channel/:category",
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "gz/index.ts",
-        "module": () => import('@/routes/gov/gz/index.ts')
-      },
-      "/hainan/iitb/tzgg": {
-        "path": "/hainan/iitb/tzgg",
+      "/zwgk/:category": {
+        "path": "/zwgk/:category",
+        "name": "政务公开",
+        "example": "/gov/gz/zwgk/zcjd",
+        "parameters": {
+          "category": "政务话你知"
+        },
+        "radar": [
+          {
+            "source": [
+              "www.gz.gov.cn/zwgk/zcjd/zcjd"
+            ],
+            "target": "/zwgk/zcjd"
+          }
+        ],
+        "maintainers": [
+          "drgnchan"
+        ],
+        "description": "| 文字解读 |\n| -------- |\n| zcjd     |",
+        "location": "zwgk.ts",
+        "module": () => import('@/routes/gov/gz/zwgk.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "广州市人民政府",
+    "url": "www.gz.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/hainan": {
+    "routes": {
+      "/iitb/tzgg": {
+        "path": "/iitb/tzgg",
         "categories": [
           "government"
         ],
@@ -52577,11 +52978,22 @@ export default {
         "maintainers": [
           "p3psi-boo"
         ],
-        "location": "hainan/iitb/tzgg.ts",
+        "location": "iitb/tzgg.ts",
         "module": () => import('@/routes/gov/hainan/iitb/tzgg.ts')
-      },
-      "/hangzhou/zwfw": {
-        "path": "/hangzhou/zwfw",
+      }
+    },
+    "apiRoutes": {},
+    "name": "海南省人民政府",
+    "url": "hainan.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/hangzhou": {
+    "routes": {
+      "/zwfw": {
+        "path": "/zwfw",
         "categories": [
           "government"
         ],
@@ -52606,11 +53018,21 @@ export default {
           "flynncao"
         ],
         "url": "hangzhou.gov.cn/col/col1256349/index.html",
-        "location": "hangzhou/zwfw.tsx",
+        "location": "zwfw.tsx",
         "module": () => import('@/routes/gov/hangzhou/zwfw.tsx')
-      },
-      "/hebei/czt/xwdt/:category?": {
-        "path": "/hebei/czt/xwdt/:category?",
+      }
+    },
+    "apiRoutes": {},
+    "name": "Hangzhou People's Government",
+    "url": "hangzhou.gov.cn",
+    "zh": {
+      "name": "杭州市人民政府"
+    }
+  },
+  "gov/hebei": {
+    "routes": {
+      "/czt/xwdt/:category?": {
+        "path": "/czt/xwdt/:category?",
         "categories": [
           "government"
         ],
@@ -52631,11 +53053,47 @@ export default {
           "nczitzk"
         ],
         "description": "| 财政动态 | 综合新闻 | 通知公告 |\n| -------- | -------- | -------- |\n| gzdt     | zhxw     | tzgg     |",
-        "location": "hebei/czt.ts",
+        "location": "czt.ts",
         "module": () => import('@/routes/gov/hebei/czt.ts')
-      },
-      "/huizhou/zwgk/:category?": {
-        "path": "/huizhou/zwgk/:category?",
+      }
+    },
+    "apiRoutes": {},
+    "name": "河北省人民政府",
+    "url": "www.hebei.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/huazhou": {
+    "routes": {
+      "/:path{.+}": {
+        "path": "/:path{.+}",
+        "name": "通用",
+        "example": "/gov/huazhou/www/syzl/zcjd",
+        "parameters": {
+          "path": "路径，只填写 `www` 默认为 政策解读"
+        },
+        "maintainers": [
+          "ShuiHuo"
+        ],
+        "description": "::: tip\n\n路径处填写对应页面 URL 中最前面的部分和域名后的字段。下面是一个例子。\n\n若订阅 [政策解读](http://www.huazhou.gov.cn/syzl/zcjd/) 则将对应页面 URL <http://www.huazhou.gov.cn/syzl/zcjd/> 中 `http://www.huazhou.gov.cn/` 的字段 `www` `syzl/zcjd/` 作为路径填入。此时路由为 [`/gov/huazhou/www/syzl/zcjd/`](https://rsshub.app/gov/huazhou/www/syzl/zcjd/)\n\n:::",
+        "location": "huazhou.ts",
+        "module": () => import('@/routes/gov/huazhou/huazhou.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "化州市人民政府",
+    "url": "www.huazhou.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/huizhou": {
+    "routes": {
+      "/zwgk/:category?": {
+        "path": "/zwgk/:category?",
         "categories": [
           "government"
         ],
@@ -52651,16 +53109,49 @@ export default {
           "supportPodcast": false,
           "supportScihub": false
         },
-        "name": "惠州市人民政府",
+        "radar": [
+          {
+            "title": "政务公开 - 政务要闻",
+            "source": [
+              "www.huizhou.gov.cn/zwgk/hzsz/zwyw"
+            ],
+            "target": "/zwgk/zwyw"
+          },
+          {
+            "title": "政务公开 - 机关动态",
+            "source": [
+              "www.huizhou.gov.cn/zwgk/hzsz/jgdt"
+            ],
+            "target": "/zwgk/jgdt"
+          },
+          {
+            "title": "政务公开 - 县区要闻",
+            "source": [
+              "www.huizhou.gov.cn/zwgk/hzsz/xqyw"
+            ],
+            "target": "/zwgk/xqyw"
+          }
+        ],
+        "name": "政务公开",
         "maintainers": [
           "Fatpandac"
         ],
-        "description": "#### 政务公开 {#guang-dong-sheng-ren-min-zheng-fu-hui-zhou-shi-ren-min-zheng-fu-zheng-wu-gong-kai}",
-        "location": "huizhou/zwgk/index.ts",
+        "location": "zwgk/index.ts",
         "module": () => import('@/routes/gov/huizhou/zwgk/index.ts')
-      },
-      "/hunan/changsha/major-email": {
-        "path": "/hunan/changsha/major-email",
+      }
+    },
+    "apiRoutes": {},
+    "name": "惠州市人民政府",
+    "url": "www.huizhou.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/hunan": {
+    "routes": {
+      "/changsha/major-email": {
+        "path": "/changsha/major-email",
         "categories": [
           "government"
         ],
@@ -52681,17 +53172,61 @@ export default {
             ]
           }
         ],
-        "name": "长沙市人民政府",
+        "name": "长沙市人民政府 市长信箱",
         "maintainers": [
           "shansing"
         ],
         "url": "wlwz.changsha.gov.cn/webapp/cs2020/email/*",
-        "description": "#### 市长信箱 {#hu-nan-sheng-ren-min-zheng-fu-chang-sha-shi-ren-min-zheng-fu-shi-zhang-xin-xiang}\n\n可能仅限中国大陆服务器访问，以实际情况为准。",
-        "location": "hunan/changsha/major-email.ts",
+        "description": "可能仅限中国大陆服务器访问，以实际情况为准。",
+        "location": "changsha/major-email.ts",
         "module": () => import('@/routes/gov/hunan/changsha/major-email.ts')
-      },
-      "/jgjcndrc/:columnId?/:subColumnId?": {
-        "path": "/jgjcndrc/:columnId?/:subColumnId?",
+      }
+    },
+    "apiRoutes": {},
+    "name": "湖南省人民政府",
+    "url": "www.hunan.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/immiau": {
+    "routes": {
+      "/news": {
+        "path": "/news",
+        "categories": [
+          "government"
+        ],
+        "example": "/gov/immiau/news",
+        "parameters": {},
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "name": "Immigration and Citizenship - News",
+        "maintainers": [
+          "liu233w"
+        ],
+        "location": "news.ts",
+        "module": () => import('@/routes/gov/immiau/news.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "Australian Department of Home Affairs",
+    "url": "immi.homeaffairs.gov.au",
+    "categories": [
+      "government"
+    ],
+    "lang": "en"
+  },
+  "gov/jgjcndrc": {
+    "routes": {
+      "/:columnId?/:subColumnId?": {
+        "path": "/:columnId?/:subColumnId?",
         "name": "中华人民共和国国家发展和改革委员会价格监测中心",
         "url": "www.jgjcndrc.org.cn",
         "maintainers": [
@@ -52722,11 +53257,22 @@ export default {
             ]
           }
         ],
-        "location": "jgjcndrc/index.ts",
+        "location": "index.ts",
         "module": () => import('@/routes/gov/jgjcndrc/index.ts')
-      },
-      "/jiangsu/wlt/:page?": {
-        "path": "/jiangsu/wlt/:page?",
+      }
+    },
+    "apiRoutes": {},
+    "name": "国家发展和改革委员会价格监测中心",
+    "url": "www.jgjcndrc.org.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/jiangsu": {
+    "routes": {
+      "/wlt/:page?": {
+        "path": "/wlt/:page?",
         "categories": [
           "government"
         ],
@@ -52747,19 +53293,30 @@ export default {
             "source": [
               "wlt.jiangsu.gov.cn/"
             ],
-            "target": "/jiangsu/wlt"
+            "target": "/wlt"
           }
         ],
-        "name": "江苏文旅局审批公告",
+        "name": "文旅局审批公告",
         "maintainers": [
           "GideonSenku"
         ],
         "url": "wlt.jiangsu.gov.cn/",
-        "location": "jiangsu/wlt/index.tsx",
+        "location": "wlt/index.tsx",
         "module": () => import('@/routes/gov/jiangsu/wlt/index.tsx')
-      },
-      "/jinan/healthcommission/medical_exam_notice": {
-        "path": "/jinan/healthcommission/medical_exam_notice",
+      }
+    },
+    "apiRoutes": {},
+    "name": "江苏省人民政府",
+    "url": "www.jiangsu.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/jinan": {
+    "routes": {
+      "/healthcommission/medical_exam_notice": {
+        "path": "/healthcommission/medical_exam_notice",
         "categories": [
           "government"
         ],
@@ -52785,12 +53342,23 @@ export default {
           "tzjyxb"
         ],
         "url": "jnmhc.jinan.gov.cn/*",
-        "location": "jinan/healthcommission/medical-exam-notice.ts",
+        "location": "healthcommission/medical-exam-notice.ts",
         "module": () => import('@/routes/gov/jinan/healthcommission/medical-exam-notice.ts')
-      },
-      "/lswz/:category{.+}?": {
-        "path": "/lswz/:category{.+}?",
-        "name": "国家粮食和物资储备局",
+      }
+    },
+    "apiRoutes": {},
+    "name": "济南市人民政府",
+    "url": "www.jinan.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/lswz": {
+    "routes": {
+      "/:category{.+}?": {
+        "path": "/:category{.+}?",
+        "name": "通用",
         "url": "lswz.gov.cn",
         "maintainers": [
           "nczitzk"
@@ -52823,189 +53391,225 @@ export default {
             "source": [
               "www.lswz.gov.cn/html/xinwen/index.shtml"
             ],
-            "target": "/lswz/html/xinwen/index"
+            "target": "/html/xinwen/index"
           },
           {
             "title": "党建工作",
             "source": [
               "www.lswz.gov.cn/html/djgz/index.shtml"
             ],
-            "target": "/lswz/html/djgz/index"
+            "target": "/html/djgz/index"
           },
           {
             "title": "业务频道 - 粮食调控",
             "source": [
               "www.lswz.gov.cn/html/ywpd/lstk/index.shtml"
             ],
-            "target": "/lswz/html/ywpd/lstk/index"
+            "target": "/html/ywpd/lstk/index"
           },
           {
             "title": "业务频道 - 物资储备",
             "source": [
               "www.lswz.gov.cn/html/ywpd/wzcb/index.shtml"
             ],
-            "target": "/lswz/html/ywpd/wzcb/index"
+            "target": "/html/ywpd/wzcb/index"
           },
           {
             "title": "业务频道 - 能源储备",
             "source": [
               "www.lswz.gov.cn/html/ywpd/nycb/index.shtml"
             ],
-            "target": "/lswz/html/ywpd/nycb/index"
+            "target": "/html/ywpd/nycb/index"
           },
           {
             "title": "业务频道 - 安全应急",
             "source": [
               "www.lswz.gov.cn/html/ywpd/aqyj/index.shtml"
             ],
-            "target": "/lswz/html/ywpd/aqyj/index"
+            "target": "/html/ywpd/aqyj/index"
           },
           {
             "title": "业务频道 - 法规体改",
             "source": [
               "www.lswz.gov.cn/html/ywpd/fgtg/index.shtml"
             ],
-            "target": "/lswz/html/ywpd/fgtg/index"
+            "target": "/html/ywpd/fgtg/index"
           },
           {
             "title": "业务频道 - 规划建设",
             "source": [
               "www.lswz.gov.cn/html/ywpd/gjks/index.shtml"
             ],
-            "target": "/lswz/html/ywpd/gjks/index"
+            "target": "/html/ywpd/gjks/index"
           },
           {
             "title": "业务频道 - 财务审计",
             "source": [
               "www.lswz.gov.cn/html/ywpd/cwsj/index.shtml"
             ],
-            "target": "/lswz/html/ywpd/cwsj/index"
+            "target": "/html/ywpd/cwsj/index"
           },
           {
             "title": "业务频道 - 仓储科技",
             "source": [
               "www.lswz.gov.cn/html/ywpd/cckj/index.shtml"
             ],
-            "target": "/lswz/html/ywpd/cckj/index"
+            "target": "/html/ywpd/cckj/index"
           },
           {
             "title": "业务频道 - 执法督查",
             "source": [
               "www.lswz.gov.cn/html/ywpd/zfdc/index.shtml"
             ],
-            "target": "/lswz/html/ywpd/zfdc/index"
+            "target": "/html/ywpd/zfdc/index"
           },
           {
             "title": "业务频道 - 国际交流",
             "source": [
               "www.lswz.gov.cn/html/ywpd/gjjl/index.shtml"
             ],
-            "target": "/lswz/html/ywpd/gjjl/index"
+            "target": "/html/ywpd/gjjl/index"
           },
           {
             "title": "业务频道 - 人事人才",
             "source": [
               "www.lswz.gov.cn/html/ywpd/rsrc/index.shtml"
             ],
-            "target": "/lswz/html/ywpd/rsrc/index"
+            "target": "/html/ywpd/rsrc/index"
           },
           {
             "title": "业务频道 - 标准质量",
             "source": [
               "www.lswz.gov.cn/html/ywpd/bzzl/index.shtml"
             ],
-            "target": "/lswz/html/ywpd/bzzl/index"
+            "target": "/html/ywpd/bzzl/index"
           },
           {
             "title": "业务频道 - 粮食和储备研究",
             "source": [
               "www.lswz.gov.cn/html/ywpd/lshcbyj/index.shtml"
             ],
-            "target": "/lswz/html/ywpd/lshcbyj/index"
+            "target": "/html/ywpd/lshcbyj/index"
           },
           {
             "title": "政策发布 - 文件",
             "source": [
               "www.lswz.gov.cn/html/zcfb/wenjian.shtml"
             ],
-            "target": "/lswz/html/zcfb/wenjian"
+            "target": "/html/zcfb/wenjian"
           },
           {
             "title": "政策发布 - 法律法规",
             "source": [
               "www.lswz.gov.cn/html/zcfb/fggz-fg.shtml"
             ],
-            "target": "/lswz/html/zcfb/fggz-fg"
+            "target": "/html/zcfb/fggz-fg"
           },
           {
             "title": "政策发布 - 规章",
             "source": [
               "www.lswz.gov.cn/html/zcfb/fggz-gz.shtml"
             ],
-            "target": "/lswz/html/zcfb/fggz-gz"
+            "target": "/html/zcfb/fggz-gz"
           },
           {
             "title": "通知公告 - 行政通知",
             "source": [
               "www.lswz.gov.cn/html/tzgg/xztz.shtml"
             ],
-            "target": "/lswz/html/tzgg/xztz"
+            "target": "/html/tzgg/xztz"
           },
           {
             "title": "通知公告 - 公告通告",
             "source": [
               "www.lswz.gov.cn/html/tzgg/ggtg.shtml"
             ],
-            "target": "/lswz/html/tzgg/ggtg"
+            "target": "/html/tzgg/ggtg"
           },
           {
             "title": "粮食收购 - 收购数据",
             "source": [
               "www.lswz.gov.cn/html/zmhd/lysj/lssg-szym.shtml"
             ],
-            "target": "/lswz/html/zmhd/lysj/lssg-szym"
+            "target": "/html/zmhd/lysj/lssg-szym"
           },
           {
             "title": "粮食收购 - 政策·解读",
             "source": [
               "www.lswz.gov.cn/html/zmhd/lysj/lssg-gzdt.shtml"
             ],
-            "target": "/lswz/html/zmhd/lysj/lssg-gzdt"
+            "target": "/html/zmhd/lysj/lssg-gzdt"
           },
           {
             "title": "粮食价格 - 市场监测",
             "source": [
               "www.lswz.gov.cn/html/zmhd/lysj/lsjg-scjc.shtml"
             ],
-            "target": "/lswz/html/zmhd/lysj/lsjg-scjc"
+            "target": "/html/zmhd/lysj/lsjg-scjc"
           },
           {
             "title": "粮食价格 - 市场价格",
             "source": [
               "www.lswz.gov.cn/html/zmhd/lysj/lsjg-scjg.shtml"
             ],
-            "target": "/lswz/html/zmhd/lysj/lsjg-scjg"
+            "target": "/html/zmhd/lysj/lsjg-scjg"
           },
           {
             "title": "粮食交易",
             "source": [
               "www.lswz.gov.cn/html/zmhd/lysj/lsjy.shtml"
             ],
-            "target": "/lswz/html/zmhd/lysj/lsjy"
+            "target": "/html/zmhd/lysj/lsjy"
           },
           {
             "title": "粮食质量",
             "source": [
               "www.lswz.gov.cn/html/zmhd/lysj/lszl.shtml"
             ],
-            "target": "/lswz/html/zmhd/lysj/lszl"
+            "target": "/html/zmhd/lysj/lszl"
           }
         ],
-        "location": "lswz/index.ts",
+        "location": "index.ts",
         "module": () => import('@/routes/gov/lswz/index.ts')
-      },
-      "/maonan/:category": {
-        "path": "/maonan/:category",
+      }
+    },
+    "apiRoutes": {},
+    "name": "国家粮食和物资储备局",
+    "url": "www.lswz.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/maoming": {
+    "routes": {
+      "/:path{.+}": {
+        "path": "/:path{.+}",
+        "name": "门户网站",
+        "example": "/gov/maoming/www/zwgk/zcjd/jd",
+        "parameters": {
+          "path": "路径"
+        },
+        "maintainers": [
+          "ShuiHuo"
+        ],
+        "description": "::: tip\n\n路径处填写对应页面 URL 中茂名有关政府网站的域名最前面的部分和域名后的字段。下面是一个例子。\n\n若订阅 [茂名市人民政府门户网站 > 政务公开 > 政策解读](http://www.maoming.gov.cn/zwgk/zcjd/jd/) 则将对应页面 URL <http://www.maoming.gov.cn/zwgk/zcjd/jd/> 中 `http://www.maoming.gov.cn/` 的字段 `www` 和 `/zwgk/zcjd/jd/` 作为路径填入。此时路由为 [`/gov/maoming/www/zwgk/zcjd/jd/`](https://rsshub.app/gov/maoming/www/zwgk/zcjd/jd/)\n\n若订阅 [茂名市农业农村局网站 > 政务区 > 政务公开 > 通知公告](http://mmny.maoming.gov.cn/zwq/zwgk/tzgg/) 则将对应页面 URL <http://mmny.maoming.gov.cn/zwq/zwgk/tzgg/> 中 `http://mmny.maoming.gov.cn/` 的字段 `mmny` 和 `/zwq/zwgk/tzgg/` 作为路径填入。此时路由为 [`/gov/maoming/mmny/zwq/zwgk/tzgg/`](https://rsshub.app/gov/maoming/mmny/zwq/zwgk/tzgg/)\n\n:::",
+        "location": "maoming.ts",
+        "module": () => import('@/routes/gov/maoming/maoming.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "茂名市人民政府",
+    "url": "www.maoming.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/maonan": {
+    "routes": {
+      "/:category": {
+        "path": "/:category",
         "categories": [
           "government"
         ],
@@ -53021,16 +53625,78 @@ export default {
           "supportPodcast": false,
           "supportScihub": false
         },
-        "name": "茂名市茂南区人民政府",
+        "radar": [
+          {
+            "title": "政务公开",
+            "source": [
+              "www.maonan.gov.cn/zwgk/*path"
+            ],
+            "target": "/zwgk"
+          },
+          {
+            "title": "政务新闻",
+            "source": [
+              "www.maonan.gov.cn/zwxw/*path"
+            ],
+            "target": "/zwxw"
+          },
+          {
+            "title": "茂南动态",
+            "source": [
+              "www.maonan.gov.cn/zwxw/mndt/*path"
+            ],
+            "target": "/mndt"
+          },
+          {
+            "title": "重大会议",
+            "source": [
+              "www.maonan.gov.cn/zwxw/zdhy/*path"
+            ],
+            "target": "/zdhy"
+          },
+          {
+            "title": "公告公示",
+            "source": [
+              "www.maonan.gov.cn/zwgk/tzgg/*path"
+            ],
+            "target": "/tzgg"
+          },
+          {
+            "title": "招录信息",
+            "source": [
+              "www.maonan.gov.cn/zwgk/zlxx/*path"
+            ],
+            "target": "/zlxx"
+          },
+          {
+            "title": "政策解读",
+            "source": [
+              "www.maonan.gov.cn/zwgk/zcjd/*path"
+            ],
+            "target": "/zcjd"
+          }
+        ],
+        "name": "通用",
         "maintainers": [
           "ShuiHuo"
         ],
         "description": "| 政务公开 | 政务新闻 | 茂南动态 | 重大会议 | 公告公示 | 招录信息 | 政策解读 |\n| :------: | :------: | :------: | :------: | :------: | :------: | :------: |\n|   zwgk   |   zwxw   |   mndt   |   zdhy   |   tzgg   |   zlxx   |   zcjd   |",
-        "location": "maonan/maonan.ts",
+        "location": "maonan.ts",
         "module": () => import('@/routes/gov/maonan/maonan.ts')
-      },
-      "/mee/nnsa/:category{.+}?": {
-        "path": "/mee/nnsa/:category{.+}?",
+      }
+    },
+    "apiRoutes": {},
+    "name": "茂名市茂南区人民政府",
+    "url": "www.maonan.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/mee": {
+    "routes": {
+      "/nnsa/:category{.+}?": {
+        "path": "/nnsa/:category{.+}?",
         "name": "国家核安全局",
         "url": "nnsa.mee.gov.cn",
         "maintainers": [
@@ -53138,148 +53804,148 @@ export default {
             "source": [
               "nnsa.mee.gov.cn/:category"
             ],
-            "target": "/mee/nnsa/:category"
+            "target": "/nnsa/:category"
           },
           {
             "title": "要闻动态 - 时政要闻",
             "source": [
               "nnsa.mee.gov.cn/ywdt/szyw/"
             ],
-            "target": "/mee/nnsa/ywdt/szyw"
+            "target": "/nnsa/ywdt/szyw"
           },
           {
             "title": "要闻动态 - 环境要闻",
             "source": [
               "nnsa.mee.gov.cn/ywdt/hjyw/"
             ],
-            "target": "/mee/nnsa/ywdt/hjyw"
+            "target": "/nnsa/ywdt/hjyw"
           },
           {
             "title": "要闻动态 - 监管动态",
             "source": [
               "nnsa.mee.gov.cn/ywdt/gzdt/"
             ],
-            "target": "/mee/nnsa/ywdt/gzdt"
+            "target": "/nnsa/ywdt/gzdt"
           },
           {
             "title": "要闻动态 - 行业资讯",
             "source": [
               "nnsa.mee.gov.cn/ywdt/hyzx/"
             ],
-            "target": "/mee/nnsa/ywdt/hyzx"
+            "target": "/nnsa/ywdt/hyzx"
           },
           {
             "title": "要闻动态 - 国际资讯",
             "source": [
               "nnsa.mee.gov.cn/ywdt/gjzx/"
             ],
-            "target": "/mee/nnsa/ywdt/gjzx"
+            "target": "/nnsa/ywdt/gjzx"
           },
           {
             "title": "要闻动态 - 公示公告",
             "source": [
               "nnsa.mee.gov.cn/ywdt/gsqg/"
             ],
-            "target": "/mee/nnsa/ywdt/gsqg"
+            "target": "/nnsa/ywdt/gsqg"
           },
           {
             "title": "要闻动态 - 曝光台",
             "source": [
               "nnsa.mee.gov.cn/ywdt/bgt/"
             ],
-            "target": "/mee/nnsa/ywdt/bgt"
+            "target": "/nnsa/ywdt/bgt"
           },
           {
             "title": "政策文件 - 中央有关文件",
             "source": [
               "nnsa.mee.gov.cn/zcwj/zyygwj/"
             ],
-            "target": "/mee/nnsa/zcwj/zyygwj"
+            "target": "/nnsa/zcwj/zyygwj"
           },
           {
             "title": "政策文件 - 国务院有关文件",
             "source": [
               "nnsa.mee.gov.cn/zcwj/gwyygwj/"
             ],
-            "target": "/mee/nnsa/zcwj/gwyygwj"
+            "target": "/nnsa/zcwj/gwyygwj"
           },
           {
             "title": "政策文件 - 部文件",
             "source": [
               "nnsa.mee.gov.cn/zcwj/bwj/"
             ],
-            "target": "/mee/nnsa/zcwj/bwj"
+            "target": "/nnsa/zcwj/bwj"
           },
           {
             "title": "政策文件 - 核安全局文件",
             "source": [
               "nnsa.mee.gov.cn/zcwj/haqjwj/"
             ],
-            "target": "/mee/nnsa/zcwj/haqjwj"
+            "target": "/nnsa/zcwj/haqjwj"
           },
           {
             "title": "政策文件 - 其他",
             "source": [
               "nnsa.mee.gov.cn/zcwj/qt/"
             ],
-            "target": "/mee/nnsa/zcwj/qt"
+            "target": "/nnsa/zcwj/qt"
           },
           {
             "title": "政策文件 - 解读",
             "source": [
               "nnsa.mee.gov.cn/zcwj/jd/"
             ],
-            "target": "/mee/nnsa/zcwj/jd"
+            "target": "/nnsa/zcwj/jd"
           },
           {
             "title": "业务工作 - 核动力厂和研究堆",
             "source": [
               "nnsa.mee.gov.cn/ywdh/fyd/"
             ],
-            "target": "/mee/nnsa/ywdh/fyd"
+            "target": "/nnsa/ywdh/fyd"
           },
           {
             "title": "业务工作 - 核燃料、放废",
             "source": [
               "nnsa.mee.gov.cn/ywdh/hrlff/"
             ],
-            "target": "/mee/nnsa/ywdh/hrlff"
+            "target": "/nnsa/ywdh/hrlff"
           },
           {
             "title": "业务工作 - 核技术、电磁、矿冶",
             "source": [
               "nnsa.mee.gov.cn/ywdh/hjsdcky/"
             ],
-            "target": "/mee/nnsa/ywdh/hjsdcky"
+            "target": "/nnsa/ywdh/hjsdcky"
           },
           {
             "title": "业务工作 - 监测与应急",
             "source": [
               "nnsa.mee.gov.cn/ywdh/jcyj_1/"
             ],
-            "target": "/mee/nnsa/ywdh/jcyj_1"
+            "target": "/nnsa/ywdh/jcyj_1"
           },
           {
             "title": "业务工作 - 核安全设备与人员",
             "source": [
               "nnsa.mee.gov.cn/ywdh/haqsbry/"
             ],
-            "target": "/mee/nnsa/ywdh/haqsbry"
+            "target": "/nnsa/ywdh/haqsbry"
           },
           {
             "title": "业务工作 - 国际合作",
             "source": [
               "nnsa.mee.gov.cn/ywdh/gjhz/"
             ],
-            "target": "/mee/nnsa/ywdh/gjhz"
+            "target": "/nnsa/ywdh/gjhz"
           }
         ],
         "view": 0,
-        "location": "mee/nnsa.ts",
+        "location": "nnsa.ts",
         "module": () => import('@/routes/gov/mee/nnsa.ts')
       },
-      "/mee/ywdt/:category?": {
-        "path": "/mee/ywdt/:category?",
+      "/ywdt/:category?": {
+        "path": "/ywdt/:category?",
         "categories": [
           "government"
         ],
@@ -53300,7 +53966,7 @@ export default {
             "source": [
               "www.mee.gov.cn/ywdt/:category"
             ],
-            "target": "/mee/ywdt/:category"
+            "target": "/ywdt/:category"
           }
         ],
         "name": "要闻动态",
@@ -53308,11 +53974,22 @@ export default {
           "liuxsdev"
         ],
         "description": "| 时政要闻 | 环境要闻 | 地方快讯 | 新闻发布 | 视频新闻 | 公示公告 |\n| :------: | :------: | :------: | :------: | :------: | :------: |\n|   szyw   | hjywnews |  dfnews  |   xwfb   |   spxw   |   gsgg   |",
-        "location": "mee/ywdt.ts",
+        "location": "ywdt.ts",
         "module": () => import('@/routes/gov/mee/ywdt.ts')
-      },
-      "/mem/gk/sgcc/:category?": {
-        "path": "/mem/gk/sgcc/:category?",
+      }
+    },
+    "apiRoutes": {},
+    "name": "中华人民共和国生态环境部",
+    "url": "www.mee.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/mem": {
+    "routes": {
+      "/gk/sgcc/:category?": {
+        "path": "/gk/sgcc/:category?",
         "categories": [
           "government"
         ],
@@ -53333,7 +54010,7 @@ export default {
             "source": [
               "www.mem.gov.cn/gk/sgcc/:category"
             ],
-            "target": "/mem/gk/sgcc/:category"
+            "target": "/gk/sgcc/:category"
           }
         ],
         "name": "事故及灾害查处",
@@ -53341,11 +54018,11 @@ export default {
           "nczitzk"
         ],
         "description": "| 挂牌督办 | 调查报告   |\n| -------- | ---------- |\n| sggpdbqk | tbzdsgdcbg |",
-        "location": "mem/sgcc.ts",
+        "location": "sgcc.ts",
         "module": () => import('@/routes/gov/mem/sgcc.ts')
       },
-      "/mem/gk/zfxxgkpt/fdzdgknr": {
-        "path": "/mem/gk/zfxxgkpt/fdzdgknr",
+      "/gk/zfxxgkpt/fdzdgknr": {
+        "path": "/gk/zfxxgkpt/fdzdgknr",
         "categories": [
           "government"
         ],
@@ -53364,7 +54041,7 @@ export default {
             "source": [
               "www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr"
             ],
-            "target": "/mem/gk/zfxxgkpt/fdzdgknr"
+            "target": "/gk/zfxxgkpt/fdzdgknr"
           }
         ],
         "name": "法定主动公开内容",
@@ -53372,39 +54049,66 @@ export default {
           "skeaven"
         ],
         "description": "应急管理部法定主动公开内容，包含通知、公告、督办、政策解读等，可供应急相关工作人员及时获取政策信息",
-        "location": "mem/zfxxgkpt.ts",
+        "location": "zfxxgkpt.ts",
         "module": () => import('@/routes/gov/mem/zfxxgkpt.ts')
-      },
-      "/fmprc/:category?": {
-        "path": [
-          "/fmprc/:category?",
-          "/mfa/wjdt/:category?"
-        ],
-        "name": "Unknown",
+      }
+    },
+    "apiRoutes": {},
+    "name": "中华人民共和国应急管理部",
+    "url": "www.mem.gov.cn",
+    "lang": "zh-CN"
+  },
+  "gov/mfa": {
+    "routes": {
+      "/wjdt/:category?": {
+        "path": "/wjdt/:category?",
+        "name": "外交动态",
         "maintainers": [
           "nicolaszf",
           "nczitzk"
         ],
         "description": "| 分类       | category |\n| ---------- | -------- |\n| 领导人活动 | gjldrhd  |\n| 外事日程   | wsrc     |\n| 部领导活动 | wjbxw    |\n| 业务动态   | sjxw     |\n| 发言人表态 | fyrbt    |\n| 吹风会     | cfhsl    |\n| 大使任免   | dsrm     |\n| 驻外报道   | zwbd     |\n| 政策解读   | zcjd     |",
-        "location": "mfa/wjdt.ts",
+        "location": "wjdt.ts",
         "module": () => import('@/routes/gov/mfa/wjdt.ts')
-      },
-      "/mfa/wjdt/:category?": {
-        "path": [
-          "/fmprc/:category?",
-          "/mfa/wjdt/:category?"
-        ],
-        "name": "Unknown",
+      }
+    },
+    "apiRoutes": {},
+    "name": "中华人民共和国外交部",
+    "url": "www.mfa.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/mgs": {
+    "routes": {
+      "/:path{.+}": {
+        "path": "/:path{.+}",
+        "name": "通用",
+        "example": "/gov/mgs/www/zwgk/zcjd",
+        "parameters": {
+          "path": "路径，只填写 `www` 默认为 政务公开 > 政策解读"
+        },
         "maintainers": [
-          "nicolaszf",
-          "nczitzk"
+          "ShuiHuo"
         ],
-        "description": "| 分类       | category |\n| ---------- | -------- |\n| 领导人活动 | gjldrhd  |\n| 外事日程   | wsrc     |\n| 部领导活动 | wjbxw    |\n| 业务动态   | sjxw     |\n| 发言人表态 | fyrbt    |\n| 吹风会     | cfhsl    |\n| 大使任免   | dsrm     |\n| 驻外报道   | zwbd     |\n| 政策解读   | zcjd     |",
-        "location": "mfa/wjdt.ts",
-        "module": () => import('@/routes/gov/mfa/wjdt.ts')
-      },
-      "/miit/wjfb/:ministry": {
-        "path": "/miit/wjfb/:ministry",
+        "description": "::: tip\n\n路径处填写对应页面 URL 中最前面的部分和域名后的字段。下面是一个例子。\n\n若订阅 [政务公开 > 政策解读](http://www.mgs.gov.cn/zwgk/zcjd/) 则将对应页面 URL <http://www.mgs.gov.cn/zwgk/zcjd/> 中 `http://www.mgs.gov.cn/` 的字段 `www` 和 `zwgk/zcjd/` 作为路径填入。此时路由为 [`/gov/mgs/www/zwgk/zcjd/`](https://rsshub.app/gov/mgs/www/zwgk/zcjd/)\n\n:::",
+        "location": "mgs.ts",
+        "module": () => import('@/routes/gov/mgs/mgs.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "广东茂名滨海新区",
+    "url": "www.mgs.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/miit": {
+    "routes": {
+      "/wjfb/:ministry": {
+        "path": "/wjfb/:ministry",
         "categories": [
           "government"
         ],
@@ -53431,11 +54135,11 @@ export default {
         "maintainers": [
           "Fatpandac"
         ],
-        "location": "miit/wjfb.ts",
+        "location": "wjfb.ts",
         "module": () => import('@/routes/gov/miit/wjfb.ts')
       },
-      "/miit/wjgs": {
-        "path": "/miit/wjgs",
+      "/wjgs": {
+        "path": "/wjgs",
         "categories": [
           "government"
         ],
@@ -53453,11 +54157,11 @@ export default {
         "maintainers": [
           "Yoge-Code"
         ],
-        "location": "miit/wjgs.ts",
+        "location": "wjgs.ts",
         "module": () => import('@/routes/gov/miit/wjgs.ts')
       },
-      "/miit/yjzj": {
-        "path": "/miit/yjzj",
+      "/yjzj": {
+        "path": "/yjzj",
         "categories": [
           "government"
         ],
@@ -53483,11 +54187,11 @@ export default {
           "Fatpandac"
         ],
         "url": "miit.gov.cn/gzcy/yjzj/index.html",
-        "location": "miit/yjzj.ts",
+        "location": "yjzj.ts",
         "module": () => import('@/routes/gov/miit/yjzj.ts')
       },
-      "/miit/zcjd": {
-        "path": "/miit/zcjd",
+      "/zcjd": {
+        "path": "/zcjd",
         "categories": [
           "government"
         ],
@@ -53505,11 +54209,11 @@ export default {
         "maintainers": [
           "Yoge-Code"
         ],
-        "location": "miit/zcjd.ts",
+        "location": "zcjd.ts",
         "module": () => import('@/routes/gov/miit/zcjd.ts')
       },
-      "/miit/zcwj": {
-        "path": "/miit/zcwj",
+      "/zcwj": {
+        "path": "/zcwj",
         "categories": [
           "government"
         ],
@@ -53527,12 +54231,48 @@ export default {
         "maintainers": [
           "Yoge-Code"
         ],
-        "location": "miit/zcwj.ts",
+        "location": "zcwj.ts",
         "module": () => import('@/routes/gov/miit/zcwj.ts')
-      },
-      "/moa/gjs/:category{.+}?": {
-        "path": "/moa/gjs/:category{.+}?",
-        "name": "中华人民共和国农业农村部国际合作司",
+      }
+    },
+    "apiRoutes": {},
+    "name": "中华人民共和国工业和信息化部",
+    "url": "www.miit.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/mmht": {
+    "routes": {
+      "/:path{.+}": {
+        "path": "/:path{.+}",
+        "name": "通用",
+        "example": "/gov/mmht/www/xwzx/zcjd",
+        "parameters": {
+          "path": "路径，只填写 `www` 默认为 政务公开 > 政策解读"
+        },
+        "maintainers": [
+          "ShuiHuo"
+        ],
+        "description": "::: tip\n\n路径处填写对应页面 URL 中最前面的部分和域名后的字段。下面是一个例子。\n\n若订阅 [政务公开 > 政策解读](http://www.mmht.gov.cn/xwzx/zcjd/) 则将对应页面 URL <http://www.mmht.gov.cn/xwzx/zcjd/> 中 `http://www.mmht.gov.cn/` 的字段 `www` 和 `xwzx/zcjd/` 作为路径填入。此时路由为 [`/gov/mmht/www/xwzx/zcjd/`](https://rsshub.app/gov/mmht/www/xwzx/zcjd/)\n\n:::",
+        "location": "mmht.ts",
+        "module": () => import('@/routes/gov/mmht/mmht.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "茂名高新技术产业开发区",
+    "url": "www.mmht.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/moa": {
+    "routes": {
+      "/gjs/:category{.+}?": {
+        "path": "/gjs/:category{.+}?",
+        "name": "国际合作司",
         "url": "www.gjs.moa.gov.cn",
         "maintainers": [
           "nczitzk"
@@ -53589,43 +54329,43 @@ export default {
             "source": [
               "www.gjs.moa.gov.cn/gzdt/"
             ],
-            "target": "/moa/gjs/gzdt"
+            "target": "/gjs/gzdt"
           },
           {
             "title": "通知公告",
             "source": [
               "www.gjs.moa.gov.cn/tzgg/"
             ],
-            "target": "/moa/gjs/tzgg"
+            "target": "/gjs/tzgg"
           },
           {
             "title": "“一带一路”合作和农业走出去",
             "source": [
               "www.gjs.moa.gov.cn/ydylhzhhnyzcq/"
             ],
-            "target": "/moa/gjs/ydylhzhhnyzcq"
+            "target": "/gjs/ydylhzhhnyzcq"
           },
           {
             "title": "农业国际贸易监测与展望",
             "source": [
               "www.gjs.moa.gov.cn/ncpmy/"
             ],
-            "target": "/moa/gjs/ncpmy"
+            "target": "/gjs/ncpmy"
           },
           {
             "title": "多双边合作",
             "source": [
               "www.gjs.moa.gov.cn/dsbhz/"
             ],
-            "target": "/moa/gjs/dsbhz"
+            "target": "/gjs/dsbhz"
           }
         ],
         "view": 0,
-        "location": "moa/gjs.ts",
+        "location": "gjs.ts",
         "module": () => import('@/routes/gov/moa/gjs.ts')
       },
-      "/moa/suburl/:suburl{.+}": {
-        "path": "/moa/suburl/:suburl{.+}",
+      "/suburl/:suburl{.+}": {
+        "path": "/suburl/:suburl{.+}",
         "categories": [
           "government"
         ],
@@ -53635,25 +54375,25 @@ export default {
             "source": [
               "moa.gov.cn/"
             ],
-            "target": "/moa/suburl/:suburl"
+            "target": "/suburl/:suburl"
           }
         ],
         "parameters": {
           "suburl": "下级目录，请使用最下级的目录"
         },
-        "name": "中华人民共和国农业农村部 - 新闻",
+        "name": "新闻",
         "maintainers": [
           "Origami404",
           "lyqluis"
         ],
         "url": "moa.gov.cn/",
         "description": "更多例子：\n\n- `农业农村部动态`的网页链接是`http://www.moa.gov.cn/xw/zwdt/`, 对应的`suburl`是`xw/zwdt`\n- `财务公开`的网页链接是`http://www.moa.gov.cn/gk/cwgk_1/`, 对应的`suburl`是`gk/cwgk_1`\n- 像[政策法规](http://www.moa.gov.cn/gk/zcfg/)这种页面 (`http://www.moa.gov.cn/gk/zcfg/`), 它**不是**一个合法的分类目录，它是`法律`, `行政法规`, `部门规章`等一堆栏目的集合，这时候请点开对应栏目的`更多 >>`进入栏目的最下级目录，再根据上面的规则提取`suburl`\n- 特别地，`图片新闻`对应的`suburl`为`xw/tpxw/`, `最新公开`对应的`suburl`为`govpublic`, `数据>最新发布`对应的`suburl`为`sj/zxfb`",
-        "location": "moa/moa.ts",
+        "location": "moa.ts",
         "module": () => import('@/routes/gov/moa/moa.ts')
       },
-      "/moa/szcpxx": {
-        "path": "/moa/szcpxx",
-        "name": "中华人民共和国农业农村部生猪专题重要政策",
+      "/szcpxx": {
+        "path": "/szcpxx",
+        "name": "生猪专题重要政策",
         "url": "www.moa.gov.cn",
         "maintainers": [
           "nczitzk"
@@ -53676,15 +54416,15 @@ export default {
             "source": [
               "www.moa.gov.cn/ztzl/szcpxx/zyzc/index.htm"
             ],
-            "target": "/moa/szcpxx"
+            "target": "/szcpxx"
           }
         ],
-        "location": "moa/szcpxx.ts",
+        "location": "szcpxx.ts",
         "module": () => import('@/routes/gov/moa/szcpxx.ts')
       },
-      "/moa/zdscxx/:category{.+}?": {
-        "path": "/moa/zdscxx/:category{.+}?",
-        "name": "中华人民共和国农业农村部数据",
+      "/zdscxx/:category{.+}?": {
+        "path": "/zdscxx/:category{.+}?",
+        "name": "数据",
         "url": "www.moa.gov.cn",
         "maintainers": [
           "nczitzk"
@@ -53712,49 +54452,60 @@ export default {
             "source": [
               "zdscxx.moa.gov.cn:8080/nyb/pc/messageList.jsp"
             ],
-            "target": "/gov/moa/zdscxx/价格指数"
+            "target": "/zdscxx/价格指数"
           },
           {
             "title": "供需形势",
             "source": [
               "zdscxx.moa.gov.cn:8080/nyb/pc/messageList.jsp"
             ],
-            "target": "/gov/moa/zdscxx/供需形势"
+            "target": "/zdscxx/供需形势"
           },
           {
             "title": "分析报告周报",
             "source": [
               "zdscxx.moa.gov.cn:8080/nyb/pc/messageList.jsp"
             ],
-            "target": "/gov/moa/zdscxx/分析报告周报"
+            "target": "/zdscxx/分析报告周报"
           },
           {
             "title": "分析报告日报",
             "source": [
               "zdscxx.moa.gov.cn:8080/nyb/pc/messageList.jsp"
             ],
-            "target": "/gov/moa/zdscxx/分析报告日报"
+            "target": "/zdscxx/分析报告日报"
           },
           {
             "title": "日历信息",
             "source": [
               "zdscxx.moa.gov.cn:8080/nyb/pc/messageList.jsp"
             ],
-            "target": "/gov/moa/zdscxx/日历信息"
+            "target": "/zdscxx/日历信息"
           },
           {
             "title": "蔬菜生产",
             "source": [
               "zdscxx.moa.gov.cn:8080/nyb/pc/messageList.jsp"
             ],
-            "target": "/gov/moa/zdscxx/蔬菜生产"
+            "target": "/zdscxx/蔬菜生产"
           }
         ],
-        "location": "moa/zdscxx.ts",
+        "location": "zdscxx.ts",
         "module": () => import('@/routes/gov/moa/zdscxx.ts')
-      },
-      "/moe/:type": {
-        "path": "/moe/:type",
+      }
+    },
+    "apiRoutes": {},
+    "name": "中华人民共和国农业农村部",
+    "url": "www.moa.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/moe": {
+    "routes": {
+      "/:type": {
+        "path": "/:type",
         "categories": [
           "government"
         ],
@@ -53775,11 +54526,11 @@ export default {
           "Crawler995"
         ],
         "description": "|   政策解读   |   最新文件   | 公告公示 |      教育部简报     |     教育要闻     |\n| :----------: | :----------: | :------: | :-----------------: | :--------------: |\n| policy\\_anal | newest\\_file |  notice  | edu\\_ministry\\_news | edu\\_focus\\_news |",
-        "location": "moe/moe.ts",
+        "location": "moe.ts",
         "module": () => import('@/routes/gov/moe/moe.ts')
       },
-      "/moe/s78/:column": {
-        "path": "/moe/s78/:column",
+      "/s78/:column": {
+        "path": "/s78/:column",
         "categories": [
           "government"
         ],
@@ -53807,11 +54558,22 @@ export default {
         "maintainers": [
           "TonyRL"
         ],
-        "location": "moe/s78.ts",
+        "location": "s78.ts",
         "module": () => import('@/routes/gov/moe/s78.ts')
-      },
-      "/mof/bond/:category?": {
-        "path": "/mof/bond/:category?",
+      }
+    },
+    "apiRoutes": {},
+    "name": "中华人民共和国教育部",
+    "url": "www.moe.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/mof": {
+    "routes": {
+      "/bond/:category?": {
+        "path": "/bond/:category?",
         "categories": [
           "government"
         ],
@@ -53832,11 +54594,11 @@ export default {
           "la3rence"
         ],
         "description": "#### 政府债券管理\n\n| 国债管理工作动态 | 记账式国债 (含特别国债) 发行 | 储蓄国债发行 | 地方政府债券管理      |\n| ---------------- | ---------------------------- | ------------ | --------------------- |\n| gzfxgzdt         | gzfxzjs                      | gzfxdzs      | difangzhengfuzhaiquan |",
-        "location": "mof/bond.ts",
+        "location": "bond.ts",
         "module": () => import('@/routes/gov/mof/bond.ts')
       },
-      "/mof/gss/:category?": {
-        "path": "/mof/gss/:category?",
+      "/gss/:category?": {
+        "path": "/gss/:category?",
         "categories": [
           "government"
         ],
@@ -53862,21 +54624,49 @@ export default {
             "source": [
               "gss.mof.gov.cn/gzdt/:category/"
             ],
-            "target": "/mof/gss/:category"
+            "target": "/gss/:category"
           }
         ],
-        "location": "mof/gss.ts",
+        "location": "gss.ts",
         "module": () => import('@/routes/gov/mof/gss.ts')
-      },
-      "/mofcom/article/:suffix{.+}": {
-        "path": "/mofcom/article/:suffix{.+}",
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "mofcom/article.ts",
+      }
+    },
+    "apiRoutes": {},
+    "name": "中华人民共和国财政部",
+    "url": "www.mof.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/mofcom": {
+    "routes": {
+      "/article/:suffix{.+}": {
+        "path": "/article/:suffix{.+}",
+        "name": "政务公开",
+        "example": "/gov/mofcom/article/b",
+        "parameters": {
+          "suffix": "支持形如 `http://www.mofcom.gov.cn/article/*` 的网站，传入 article 之后的后缀"
+        },
+        "maintainers": [
+          "LogicJake"
+        ],
+        "location": "article.ts",
         "module": () => import('@/routes/gov/mofcom/article.ts')
-      },
-      "/moj/aac/news/:type?": {
-        "path": "/moj/aac/news/:type?",
+      }
+    },
+    "apiRoutes": {},
+    "name": "中华人民共和国商务部",
+    "url": "www.mofcom.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/moj": {
+    "routes": {
+      "/aac/news/:type?": {
+        "path": "/aac/news/:type?",
         "categories": [
           "government"
         ],
@@ -53897,11 +54687,11 @@ export default {
           "TonyRL"
         ],
         "description": "| 全部 | 其他 | 採購公告 | 新聞稿 | 肅貪 | 預防 | 綜合 | 防疫專區 |\n| ---- | ---- | -------- | ------ | ---- | ---- | ---- | -------- |\n|      | 02   | 01       | 06     | 05   | 04   | 03   | 99       |",
-        "location": "moj/aac/news.ts",
+        "location": "aac/news.ts",
         "module": () => import('@/routes/gov/moj/aac/news.ts')
       },
-      "/moj/lfyjzj": {
-        "path": "/moj/lfyjzj",
+      "/lfyjzj": {
+        "path": "/lfyjzj",
         "categories": [
           "government"
         ],
@@ -53928,12 +54718,23 @@ export default {
           "la3rence"
         ],
         "url": "www.moj.gov.cn/lfyjzj/lflfyjzj/*",
-        "location": "moj/lfyjzj.ts",
+        "location": "lfyjzj.ts",
         "module": () => import('@/routes/gov/moj/lfyjzj.ts')
-      },
-      "/mot/:category{.+}?": {
-        "path": "/mot/:category{.+}?",
-        "name": "中华人民共和国交通运输部",
+      }
+    },
+    "apiRoutes": {},
+    "name": "中华人民共和国司法部",
+    "url": "www.moj.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/mot": {
+    "routes": {
+      "/:category{.+}?": {
+        "path": "/:category{.+}?",
+        "name": "通用",
         "url": "www.mot.gov.cn",
         "maintainers": [
           "ladeng07",
@@ -53983,29 +54784,40 @@ export default {
             "source": [
               "www.mot.gov.cn/jiaotongyaowen/"
             ],
-            "target": "/mot/jiaotongyaowen"
+            "target": "/jiaotongyaowen"
           },
           {
             "title": "时政要闻",
             "source": [
               "www.mot.gov.cn/shizhengyaowen/"
             ],
-            "target": "/mot/shizhengyaowen"
+            "target": "/shizhengyaowen"
           },
           {
             "title": "重要会议",
             "source": [
               "www.mot.gov.cn/zhongyaohuiyi/"
             ],
-            "target": "/mot/zhongyaohuiyi"
+            "target": "/zhongyaohuiyi"
           }
         ],
         "view": 0,
-        "location": "mot/index.ts",
+        "location": "index.ts",
         "module": () => import('@/routes/gov/mot/index.ts')
-      },
-      "/ndrc/fggz/:category{.+}?": {
-        "path": "/ndrc/fggz/:category{.+}?",
+      }
+    },
+    "apiRoutes": {},
+    "name": "中华人民共和国交通运输部",
+    "url": "www.mot.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/ndrc": {
+    "routes": {
+      "/fggz/:category{.+}?": {
+        "path": "/fggz/:category{.+}?",
         "name": "发展改革工作",
         "example": "/gov/ndrc/fggz",
         "parameters": {
@@ -54030,637 +54842,637 @@ export default {
             "source": [
               "ndrc.gov.cn/fggz/jgbg/ywgz"
             ],
-            "target": "/ndrc/fggz/jgbg/ywgz"
+            "target": "/fggz/jgbg/ywgz"
           },
           {
             "title": "机关办公 - 学思践悟",
             "source": [
               "ndrc.gov.cn/fggz/jgbg/xsjw"
             ],
-            "target": "/ndrc/fggz/jgbg/xsjw"
+            "target": "/fggz/jgbg/xsjw"
           },
           {
             "title": "发改政研 - 经济数据概览",
             "source": [
               "ndrc.gov.cn/fggz/fgzy/jjsjgl"
             ],
-            "target": "/ndrc/fggz/fgzy/jjsjgl"
+            "target": "/fggz/fgzy/jjsjgl"
           },
           {
             "title": "发改政研 - 社会关切回应",
             "source": [
               "ndrc.gov.cn/fggz/fgzy/shgqhy"
             ],
-            "target": "/ndrc/fggz/fgzy/shgqhy"
+            "target": "/fggz/fgzy/shgqhy"
           },
           {
             "title": "发改政研 - 新媒体解读",
             "source": [
               "ndrc.gov.cn/fggz/fgzy/xmtjd"
             ],
-            "target": "/ndrc/fggz/fgzy/xmtjd"
+            "target": "/fggz/fgzy/xmtjd"
           },
           {
             "title": "发展战略和规划 - 国家发展战略和规划",
             "source": [
               "ndrc.gov.cn/fggz/fzzlgh/gjfzgh"
             ],
-            "target": "/ndrc/fggz/fzzlgh/gjfzgh"
+            "target": "/fggz/fzzlgh/gjfzgh"
           },
           {
             "title": "发展战略和规划 - 国家级专项规划",
             "source": [
               "ndrc.gov.cn/fggz/fzzlgh/gjjzxgh"
             ],
-            "target": "/ndrc/fggz/fzzlgh/gjjzxgh"
+            "target": "/fggz/fzzlgh/gjjzxgh"
           },
           {
             "title": "发展战略和规划 - 地方发展规划",
             "source": [
               "ndrc.gov.cn/fggz/fzzlgh/dffzgh"
             ],
-            "target": "/ndrc/fggz/fzzlgh/dffzgh"
+            "target": "/fggz/fzzlgh/dffzgh"
           },
           {
             "title": "发展战略和规划 - 发展规划工作",
             "source": [
               "ndrc.gov.cn/fggz/fzzlgh/fzgggz"
             ],
-            "target": "/ndrc/fggz/fzzlgh/fzgggz"
+            "target": "/fggz/fzzlgh/fzgggz"
           },
           {
             "title": "发改综合 - 国内经济监测",
             "source": [
               "ndrc.gov.cn/fggz/fgzh/gnjjjc"
             ],
-            "target": "/ndrc/fggz/fgzh/gnjjjc"
+            "target": "/fggz/fgzh/gnjjjc"
           },
           {
             "title": "发改综合 - 工业经济",
             "source": [
               "ndrc.gov.cn/fggz/fgzh/gnjjjc/gyjj"
             ],
-            "target": "/ndrc/fggz/fgzh/gnjjjc/gyjj"
+            "target": "/fggz/fgzh/gnjjjc/gyjj"
           },
           {
             "title": "发改综合 - 投资运行",
             "source": [
               "ndrc.gov.cn/fggz/fgzh/gnjjjc/tzyx"
             ],
-            "target": "/ndrc/fggz/fgzh/gnjjjc/tzyx"
+            "target": "/fggz/fgzh/gnjjjc/tzyx"
           },
           {
             "title": "发改综合 - 市场消费",
             "source": [
               "ndrc.gov.cn/fggz/fgzh/gnjjjc/scxf"
             ],
-            "target": "/ndrc/fggz/fgzh/gnjjjc/scxf"
+            "target": "/fggz/fgzh/gnjjjc/scxf"
           },
           {
             "title": "发改综合 - 价格情况",
             "source": [
               "ndrc.gov.cn/fggz/fgzh/gnjjjc/jgqk"
             ],
-            "target": "/ndrc/fggz/fgzh/gnjjjc/jgqk"
+            "target": "/fggz/fgzh/gnjjjc/jgqk"
           },
           {
             "title": "发改综合 - 财政收支",
             "source": [
               "ndrc.gov.cn/fggz/fgzh/gnjjjc/czsz"
             ],
-            "target": "/ndrc/fggz/fgzh/gnjjjc/czsz"
+            "target": "/fggz/fgzh/gnjjjc/czsz"
           },
           {
             "title": "发改综合 - 货币金融",
             "source": [
               "ndrc.gov.cn/fggz/fgzh/gnjjjc/hbjr"
             ],
-            "target": "/ndrc/fggz/fgzh/gnjjjc/hbjr"
+            "target": "/fggz/fgzh/gnjjjc/hbjr"
           },
           {
             "title": "发改综合 - 就业情况",
             "source": [
               "ndrc.gov.cn/fggz/fgzh/gnjjjc/jyqk"
             ],
-            "target": "/ndrc/fggz/fgzh/gnjjjc/jyqk"
+            "target": "/fggz/fgzh/gnjjjc/jyqk"
           },
           {
             "title": "发改综合 - 地区经济",
             "source": [
               "ndrc.gov.cn/fggz/fgzh/gnjjjc/dqjj"
             ],
-            "target": "/ndrc/fggz/fgzh/gnjjjc/dqjj"
+            "target": "/fggz/fgzh/gnjjjc/dqjj"
           },
           {
             "title": "发改综合 - 国际经济监测",
             "source": [
               "ndrc.gov.cn/fggz/fgzh/gjjjjc"
             ],
-            "target": "/ndrc/fggz/fgzh/gjjjjc"
+            "target": "/fggz/fgzh/gjjjjc"
           },
           {
             "title": "发改综合 - 先行指数",
             "source": [
               "ndrc.gov.cn/fggz/fgzh/gjjjjc/xxzs"
             ],
-            "target": "/ndrc/fggz/fgzh/gjjjjc/xxzs"
+            "target": "/fggz/fgzh/gjjjjc/xxzs"
           },
           {
             "title": "发改综合 - 大宗商品市场情况",
             "source": [
               "ndrc.gov.cn/fggz/fgzh/gjjjjc/dzspscqk"
             ],
-            "target": "/ndrc/fggz/fgzh/gjjjjc/dzspscqk"
+            "target": "/fggz/fgzh/gjjjjc/dzspscqk"
           },
           {
             "title": "发改综合 - 国别分析",
             "source": [
               "ndrc.gov.cn/fggz/fgzh/gjjjjc/gbfx"
             ],
-            "target": "/ndrc/fggz/fgzh/gjjjjc/gbfx"
+            "target": "/fggz/fgzh/gjjjjc/gbfx"
           },
           {
             "title": "发改综合 - 国际组织预测和研究动态",
             "source": [
               "ndrc.gov.cn/fggz/fgzh/gjzzychyjdt"
             ],
-            "target": "/ndrc/fggz/fgzh/gjzzychyjdt"
+            "target": "/fggz/fgzh/gjzzychyjdt"
           },
           {
             "title": "发改综合 - 国际组织预测",
             "source": [
               "ndrc.gov.cn/fggz/fgzh/gjzzychyjdt/gjzzyc"
             ],
-            "target": "/ndrc/fggz/fgzh/gjzzychyjdt/gjzzyc"
+            "target": "/fggz/fgzh/gjzzychyjdt/gjzzyc"
           },
           {
             "title": "发改综合 - 国际组织研究动态",
             "source": [
               "ndrc.gov.cn/fggz/fgzh/gjzzychyjdt/gjzzyjdt"
             ],
-            "target": "/ndrc/fggz/fgzh/gjzzychyjdt/gjzzyjdt"
+            "target": "/fggz/fgzh/gjzzychyjdt/gjzzyjdt"
           },
           {
             "title": "经济运行与调节 - 宏观经济运行",
             "source": [
               "ndrc.gov.cn/fggz/jjyxtj/hgjjyx"
             ],
-            "target": "/ndrc/fggz/jjyxtj/hgjjyx"
+            "target": "/fggz/jjyxtj/hgjjyx"
           },
           {
             "title": "经济运行与调节 - 地方经济运行",
             "source": [
               "ndrc.gov.cn/fggz/jjyxtj/dfjjyx"
             ],
-            "target": "/ndrc/fggz/jjyxtj/dfjjyx"
+            "target": "/fggz/jjyxtj/dfjjyx"
           },
           {
             "title": "经济运行与调节 - 煤电油气运",
             "source": [
               "ndrc.gov.cn/fggz/jjyxtj/mdyqy"
             ],
-            "target": "/ndrc/fggz/jjyxtj/mdyqy"
+            "target": "/fggz/jjyxtj/mdyqy"
           },
           {
             "title": "经济运行与调节 - 现代物流",
             "source": [
               "ndrc.gov.cn/fggz/jjyxtj/xdwl"
             ],
-            "target": "/ndrc/fggz/jjyxtj/xdwl"
+            "target": "/fggz/jjyxtj/xdwl"
           },
           {
             "title": "经济运行与调节 - 应急管理",
             "source": [
               "ndrc.gov.cn/fggz/jjyxtj/yjgl"
             ],
-            "target": "/ndrc/fggz/jjyxtj/yjgl"
+            "target": "/fggz/jjyxtj/yjgl"
           },
           {
             "title": "体制改革 - 改革快讯",
             "source": [
               "ndrc.gov.cn/fggz/tzgg/ggkx"
             ],
-            "target": "/ndrc/fggz/tzgg/ggkx"
+            "target": "/fggz/tzgg/ggkx"
           },
           {
             "title": "体制改革 - 半月改革动态",
             "source": [
               "ndrc.gov.cn/fggz/tzgg/byggdt"
             ],
-            "target": "/ndrc/fggz/tzgg/byggdt"
+            "target": "/fggz/tzgg/byggdt"
           },
           {
             "title": "体制改革 - 地方改革经验",
             "source": [
               "ndrc.gov.cn/fggz/tzgg/dfggjx"
             ],
-            "target": "/ndrc/fggz/tzgg/dfggjx"
+            "target": "/fggz/tzgg/dfggjx"
           },
           {
             "title": "固定资产投资 - 投资法规与政策动态",
             "source": [
               "ndrc.gov.cn/fggz/gdzctz/tzfg"
             ],
-            "target": "/ndrc/fggz/gdzctz/tzfg"
+            "target": "/fggz/gdzctz/tzfg"
           },
           {
             "title": "利用外资和境外投资 - 境外投资",
             "source": [
               "ndrc.gov.cn/fggz/lywzjw/jwtz"
             ],
-            "target": "/ndrc/fggz/lywzjw/jwtz"
+            "target": "/fggz/lywzjw/jwtz"
           },
           {
             "title": "利用外资和境外投资 - 外商投资",
             "source": [
               "ndrc.gov.cn/fggz/lywzjw/wstz"
             ],
-            "target": "/ndrc/fggz/lywzjw/wstz"
+            "target": "/fggz/lywzjw/wstz"
           },
           {
             "title": "利用外资和境外投资 - 外债管理",
             "source": [
               "ndrc.gov.cn/fggz/lywzjw/wzgl"
             ],
-            "target": "/ndrc/fggz/lywzjw/wzgl"
+            "target": "/fggz/lywzjw/wzgl"
           },
           {
             "title": "利用外资和境外投资 - 政策法规",
             "source": [
               "ndrc.gov.cn/fggz/lywzjw/zcfg"
             ],
-            "target": "/ndrc/fggz/lywzjw/zcfg"
+            "target": "/fggz/lywzjw/zcfg"
           },
           {
             "title": "地区经济 - 重大战略",
             "source": [
               "ndrc.gov.cn/fggz/dqjj/zdzl"
             ],
-            "target": "/ndrc/fggz/dqjj/zdzl"
+            "target": "/fggz/dqjj/zdzl"
           },
           {
             "title": "地区经济 - 四大板块",
             "source": [
               "ndrc.gov.cn/fggz/dqjj/sdbk"
             ],
-            "target": "/ndrc/fggz/dqjj/sdbk"
+            "target": "/fggz/dqjj/sdbk"
           },
           {
             "title": "地区经济 - 国土海洋流域新区",
             "source": [
               "ndrc.gov.cn/fggz/dqjj/qt"
             ],
-            "target": "/ndrc/fggz/dqjj/qt"
+            "target": "/fggz/dqjj/qt"
           },
           {
             "title": "地区振兴 - 巩固拓展脱贫攻坚成果和欠发达地区振兴发展",
             "source": [
               "ndrc.gov.cn/fggz/dqzx/tpgjypkfq"
             ],
-            "target": "/ndrc/fggz/dqzx/tpgjypkfq"
+            "target": "/fggz/dqzx/tpgjypkfq"
           },
           {
             "title": "地区振兴 - 对口支援与合作",
             "source": [
               "ndrc.gov.cn/fggz/dqzx/dkzyyhz"
             ],
-            "target": "/ndrc/fggz/dqzx/dkzyyhz"
+            "target": "/fggz/dqzx/dkzyyhz"
           },
           {
             "title": "地区振兴 - 革命老区振兴发展",
             "source": [
               "ndrc.gov.cn/fggz/dqzx/gglqzxfz"
             ],
-            "target": "/ndrc/fggz/dqzx/gglqzxfz"
+            "target": "/fggz/dqzx/gglqzxfz"
           },
           {
             "title": "地区振兴 - 生态退化地区治理",
             "source": [
               "ndrc.gov.cn/fggz/dqzx/stthdqzl"
             ],
-            "target": "/ndrc/fggz/dqzx/stthdqzl"
+            "target": "/fggz/dqzx/stthdqzl"
           },
           {
             "title": "地区振兴 - 资源型地区转型发展",
             "source": [
               "ndrc.gov.cn/fggz/dqzx/zyxdqzxfz"
             ],
-            "target": "/ndrc/fggz/dqzx/zyxdqzxfz"
+            "target": "/fggz/dqzx/zyxdqzxfz"
           },
           {
             "title": "地区振兴 - 老工业地区振兴发展",
             "source": [
               "ndrc.gov.cn/fggz/dqzx/lzydfzxfz"
             ],
-            "target": "/ndrc/fggz/dqzx/lzydfzxfz"
+            "target": "/fggz/dqzx/lzydfzxfz"
           },
           {
             "title": "区域开放 - 信息集萃",
             "source": [
               "ndrc.gov.cn/fggz/qykf/xxjc"
             ],
-            "target": "/ndrc/fggz/qykf/xxjc"
+            "target": "/fggz/qykf/xxjc"
           },
           {
             "title": "农业农村经济 - 重点建设",
             "source": [
               "ndrc.gov.cn/fggz/nyncjj/zdjs"
             ],
-            "target": "/ndrc/fggz/nyncjj/zdjs"
+            "target": "/fggz/nyncjj/zdjs"
           },
           {
             "title": "农业农村经济 - 投资指南",
             "source": [
               "ndrc.gov.cn/fggz/nyncjj/tzzn"
             ],
-            "target": "/ndrc/fggz/nyncjj/tzzn"
+            "target": "/fggz/nyncjj/tzzn"
           },
           {
             "title": "农业农村经济 - 乡村振兴",
             "source": [
               "ndrc.gov.cn/fggz/nyncjj/xczx"
             ],
-            "target": "/ndrc/fggz/nyncjj/xczx"
+            "target": "/fggz/nyncjj/xczx"
           },
           {
             "title": "农业农村经济 - 农经信息",
             "source": [
               "ndrc.gov.cn/fggz/nyncjj/njxx"
             ],
-            "target": "/ndrc/fggz/nyncjj/njxx"
+            "target": "/fggz/nyncjj/njxx"
           },
           {
             "title": "基础设施发展 - 政策规划",
             "source": [
               "ndrc.gov.cn/fggz/zcssfz/zcgh"
             ],
-            "target": "/ndrc/fggz/zcssfz/zcgh"
+            "target": "/fggz/zcssfz/zcgh"
           },
           {
             "title": "基础设施发展 - 城轨监管",
             "source": [
               "ndrc.gov.cn/fggz/zcssfz/cgjg"
             ],
-            "target": "/ndrc/fggz/zcssfz/cgjg"
+            "target": "/fggz/zcssfz/cgjg"
           },
           {
             "title": "基础设施发展 - 重大工程",
             "source": [
               "ndrc.gov.cn/fggz/zcssfz/zdgc"
             ],
-            "target": "/ndrc/fggz/zcssfz/zdgc"
+            "target": "/fggz/zcssfz/zdgc"
           },
           {
             "title": "基础设施发展 - 问题研究",
             "source": [
               "ndrc.gov.cn/fggz/zcssfz/wtyj"
             ],
-            "target": "/ndrc/fggz/zcssfz/wtyj"
+            "target": "/fggz/zcssfz/wtyj"
           },
           {
             "title": "基础设施发展 - 行业数据",
             "source": [
               "ndrc.gov.cn/fggz/zcssfz/hysj"
             ],
-            "target": "/ndrc/fggz/zcssfz/hysj"
+            "target": "/fggz/zcssfz/hysj"
           },
           {
             "title": "基础设施发展 - 地方发展",
             "source": [
               "ndrc.gov.cn/fggz/zcssfz/dffz"
             ],
-            "target": "/ndrc/fggz/zcssfz/dffz"
+            "target": "/fggz/zcssfz/dffz"
           },
           {
             "title": "产业发展 - 制造业发展",
             "source": [
               "ndrc.gov.cn/fggz/cyfz/zcyfz"
             ],
-            "target": "/ndrc/fggz/cyfz/zcyfz"
+            "target": "/fggz/cyfz/zcyfz"
           },
           {
             "title": "产业发展 - 服务业发展",
             "source": [
               "ndrc.gov.cn/fggz/cyfz/fwyfz"
             ],
-            "target": "/ndrc/fggz/cyfz/fwyfz"
+            "target": "/fggz/cyfz/fwyfz"
           },
           {
             "title": "创新和高技术发展 - 地方进展",
             "source": [
               "ndrc.gov.cn/fggz/cxhgjsfz/dfjz"
             ],
-            "target": "/ndrc/fggz/cxhgjsfz/dfjz"
+            "target": "/fggz/cxhgjsfz/dfjz"
           },
           {
             "title": "环境与资源 - 碳达峰碳中和",
             "source": [
               "ndrc.gov.cn/fggz/hjyzy/tdftzh"
             ],
-            "target": "/ndrc/fggz/hjyzy/tdftzh"
+            "target": "/fggz/hjyzy/tdftzh"
           },
           {
             "title": "环境与资源 - 生态文明建设",
             "source": [
               "ndrc.gov.cn/fggz/hjyzy/stwmjs"
             ],
-            "target": "/ndrc/fggz/hjyzy/stwmjs"
+            "target": "/fggz/hjyzy/stwmjs"
           },
           {
             "title": "环境与资源 - 节能和能效",
             "source": [
               "ndrc.gov.cn/fggz/hjyzy/jnhnx"
             ],
-            "target": "/ndrc/fggz/hjyzy/jnhnx"
+            "target": "/fggz/hjyzy/jnhnx"
           },
           {
             "title": "环境与资源 - 资源利用和循环经济",
             "source": [
               "ndrc.gov.cn/fggz/hjyzy/zyzhlyhxhjj"
             ],
-            "target": "/ndrc/fggz/hjyzy/zyzhlyhxhjj"
+            "target": "/fggz/hjyzy/zyzhlyhxhjj"
           },
           {
             "title": "环境与资源 - 水节约与保护",
             "source": [
               "ndrc.gov.cn/fggz/hjyzy/sjyybh"
             ],
-            "target": "/ndrc/fggz/hjyzy/sjyybh"
+            "target": "/fggz/hjyzy/sjyybh"
           },
           {
             "title": "环境与资源 - 环境与保护",
             "source": [
               "ndrc.gov.cn/fggz/hjyzy/hjybh"
             ],
-            "target": "/ndrc/fggz/hjyzy/hjybh"
+            "target": "/fggz/hjyzy/hjybh"
           },
           {
             "title": "就业与收入 - 就业收入社保消费",
             "source": [
               "ndrc.gov.cn/fggz/jyysr/jysrsbxf"
             ],
-            "target": "/ndrc/fggz/jyysr/jysrsbxf"
+            "target": "/fggz/jyysr/jysrsbxf"
           },
           {
             "title": "就业与收入 - 地方经验",
             "source": [
               "ndrc.gov.cn/fggz/jyysr/dfjx"
             ],
-            "target": "/ndrc/fggz/jyysr/dfjx"
+            "target": "/fggz/jyysr/dfjx"
           },
           {
             "title": "经济贸易 - 重要商品情况",
             "source": [
               "ndrc.gov.cn/fggz/jjmy/zyspqk"
             ],
-            "target": "/ndrc/fggz/jjmy/zyspqk"
+            "target": "/fggz/jjmy/zyspqk"
           },
           {
             "title": "经济贸易 - 对外经贸及政策分析",
             "source": [
               "ndrc.gov.cn/fggz/jjmy/dwjmjzcfx"
             ],
-            "target": "/ndrc/fggz/jjmy/dwjmjzcfx"
+            "target": "/fggz/jjmy/dwjmjzcfx"
           },
           {
             "title": "经济贸易 - 流通业发展",
             "source": [
               "ndrc.gov.cn/fggz/jjmy/ltyfz"
             ],
-            "target": "/ndrc/fggz/jjmy/ltyfz"
+            "target": "/fggz/jjmy/ltyfz"
           },
           {
             "title": "财金信用 - 工作动态",
             "source": [
               "ndrc.gov.cn/fggz/cjxy/gzdt03"
             ],
-            "target": "/ndrc/fggz/cjxy/gzdt03"
+            "target": "/fggz/cjxy/gzdt03"
           },
           {
             "title": "价格管理 - 地方工作",
             "source": [
               "ndrc.gov.cn/fggz/jggl/dfgz"
             ],
-            "target": "/ndrc/fggz/jggl/dfgz"
+            "target": "/fggz/jggl/dfgz"
           },
           {
             "title": "发改法规 - 地方信息",
             "source": [
               "ndrc.gov.cn/fggz/fgfg/dfxx"
             ],
-            "target": "/ndrc/fggz/fgfg/dfxx"
+            "target": "/fggz/fgfg/dfxx"
           },
           {
             "title": "国际合作 - 世经动态",
             "source": [
               "ndrc.gov.cn/fggz/gjhz/zywj"
             ],
-            "target": "/ndrc/fggz/gjhz/zywj"
+            "target": "/fggz/gjhz/zywj"
           },
           {
             "title": "干部之家 - 系统风采",
             "source": [
               "ndrc.gov.cn/fggz/gbzj/xtfc"
             ],
-            "target": "/ndrc/fggz/gbzj/xtfc"
+            "target": "/fggz/gbzj/xtfc"
           },
           {
             "title": "干部之家 - 人才招聘",
             "source": [
               "ndrc.gov.cn/fggz/gbzj/rczp"
             ],
-            "target": "/ndrc/fggz/gbzj/rczp"
+            "target": "/fggz/gbzj/rczp"
           },
           {
             "title": "干部之家 - 委属工作",
             "source": [
               "ndrc.gov.cn/fggz/gbzj/wsgz"
             ],
-            "target": "/ndrc/fggz/gbzj/wsgz"
+            "target": "/fggz/gbzj/wsgz"
           },
           {
             "title": "干部之家 - 学习园地",
             "source": [
               "ndrc.gov.cn/fggz/gbzj/xxyd"
             ],
-            "target": "/ndrc/fggz/gbzj/xxyd"
+            "target": "/fggz/gbzj/xxyd"
           },
           {
             "title": "评估督导 - 评督动态",
             "source": [
               "ndrc.gov.cn/fggz/pgdd/pddt"
             ],
-            "target": "/ndrc/fggz/pgdd/pddt"
+            "target": "/fggz/pgdd/pddt"
           },
           {
             "title": "评估督导 - 评督经验",
             "source": [
               "ndrc.gov.cn/fggz/pgdd/pdjy"
             ],
-            "target": "/ndrc/fggz/pgdd/pdjy"
+            "target": "/fggz/pgdd/pdjy"
           },
           {
             "title": "发改党建 - 中央精神",
             "source": [
               "ndrc.gov.cn/fggz/fgdj/zydj"
             ],
-            "target": "/ndrc/fggz/fgdj/zydj"
+            "target": "/fggz/fgdj/zydj"
           },
           {
             "title": "发改党建 - 机关党建",
             "source": [
               "ndrc.gov.cn/fggz/fgdj/jgdj"
             ],
-            "target": "/ndrc/fggz/fgdj/jgdj"
+            "target": "/fggz/fgdj/jgdj"
           },
           {
             "title": "发改党建 - 委属党建",
             "source": [
               "ndrc.gov.cn/fggz/fgdj/wsdj"
             ],
-            "target": "/ndrc/fggz/fgdj/wsdj"
+            "target": "/fggz/fgdj/wsdj"
           },
           {
             "title": "发改党建 - 系统党建",
             "source": [
               "ndrc.gov.cn/fggz/fgdj/xtdj"
             ],
-            "target": "/ndrc/fggz/fgdj/xtdj"
+            "target": "/fggz/fgdj/xtdj"
           },
           {
             "title": "发改金辉 - 党建之窗",
             "source": [
               "ndrc.gov.cn/fggz/fgjh/djzc"
             ],
-            "target": "/ndrc/fggz/fgjh/djzc"
+            "target": "/fggz/fgjh/djzc"
           },
           {
             "title": "发改金辉 - 系统交流",
             "source": [
               "ndrc.gov.cn/fggz/fgjh/zthd"
             ],
-            "target": "/ndrc/fggz/fgjh/zthd"
+            "target": "/fggz/fgjh/zthd"
           },
           {
             "title": "发改金辉 - 学习园地",
             "source": [
               "ndrc.gov.cn/fggz/fgjh/yxyd"
             ],
-            "target": "/ndrc/fggz/fgjh/yxyd"
+            "target": "/fggz/fgjh/yxyd"
           },
           {
             "title": "发改金辉 - 金色夕阳",
             "source": [
               "ndrc.gov.cn/fggz/fgjh/jsxy"
             ],
-            "target": "/ndrc/fggz/fgjh/jsxy"
+            "target": "/fggz/fgjh/jsxy"
           }
         ],
-        "location": "ndrc/fggz.ts",
+        "location": "fggz.ts",
         "module": () => import('@/routes/gov/ndrc/fggz.ts')
       },
-      "/ndrc/xwdt/:category{.+}?": {
-        "path": "/ndrc/xwdt/:category{.+}?",
+      "/xwdt/:category{.+}?": {
+        "path": "/xwdt/:category{.+}?",
         "name": "新闻动态",
         "example": "/gov/ndrc/xwdt",
         "parameters": {
@@ -54681,14 +55493,12 @@ export default {
           }
         ],
         "description": "| 新闻发布 | 通知通告 | 委领导动态 | 司局动态 | 地方动态 |\n| -------- | -------- | ---------- | -------- | -------- |\n| xwfb     | tzgg     | wlddt      | sjdt     | dfdt     |",
-        "location": "ndrc/xwdt.ts",
+        "location": "xwdt.ts",
         "module": () => import('@/routes/gov/ndrc/xwdt.ts')
       },
-      "/ndrc/zfxxgk": {
-        "path": [
-          "/ndrc/zfxxgk"
-        ],
-        "name": "中华人民共和国国家发展和改革委员会政府信息公开",
+      "/zfxxgk": {
+        "path": "/zfxxgk",
+        "name": "政府信息公开",
         "url": "zfxxgk.ndrc.gov.cn",
         "maintainers": [
           "howfool",
@@ -54712,14 +55522,25 @@ export default {
             "source": [
               "zfxxgk.ndrc.gov.cn/web/dirlist.jsp"
             ],
-            "target": "/ndrc/zfxxgk"
+            "target": "/zfxxgk"
           }
         ],
-        "location": "ndrc/zfxxgk.ts",
+        "location": "zfxxgk.ts",
         "module": () => import('@/routes/gov/ndrc/zfxxgk.ts')
-      },
-      "/nea/sjzz/:bureau": {
-        "path": "/nea/sjzz/:bureau",
+      }
+    },
+    "apiRoutes": {},
+    "name": "中华人民共和国国家发展和改革委员会",
+    "url": "ndrc.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "description": ""
+  },
+  "gov/nea": {
+    "routes": {
+      "/sjzz/:bureau": {
+        "path": "/sjzz/:bureau",
         "categories": [
           "government"
         ],
@@ -54796,7 +55617,7 @@ export default {
             "source": [
               "nea.gov.cn/sjzz/:bureau/index.htm"
             ],
-            "target": "/nea/sjzz/:bureau"
+            "target": "/sjzz/:bureau"
           }
         ],
         "name": "司工作进展",
@@ -54805,32 +55626,409 @@ export default {
           "pseudoyu"
         ],
         "url": "www.nea.gov.cn/",
-        "location": "nea/bureau.ts",
+        "location": "bureau.ts",
         "module": () => import('@/routes/gov/nea/bureau.ts')
-      },
-      "/nifdc/:path{.+}?": {
-        "path": "/nifdc/:path{.+}?",
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "nifdc/index.ts",
+      }
+    },
+    "apiRoutes": {},
+    "name": "国家能源局",
+    "url": "www.nea.gov.cn",
+    "categories": [
+      "government"
+    ]
+  },
+  "gov/nfra": {
+    "routes": {
+      "/:id?": {
+        "path": "/:id?",
+        "name": "分类",
+        "url": "www.nfra.gov.cn",
+        "maintainers": [
+          "nczitzk",
+          "JkCheung"
+        ],
+        "example": "/gov/nfra/915",
+        "parameters": {
+          "id": "分类，默认为监管动态，即 915，可在对应分类页 URL 中找到"
+        },
+        "description": "::: tip\n若订阅 [监管动态](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemId=915\\&itemUrl=ItemListRightList.html)，网址为 `https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemId=915&itemUrl=ItemListRightList.html`。截取 `itemId` 的值 `915` 作为参数填入，此时路由为 [`/gov/nfra/915`](https://rsshub.app/gov/nfra/915)。\n:::\n\n#### [首页](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=899\\&itemId=971\\&itemUrl=ItemListRightMore.html)\n\n| [弹出公告](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=971\\&itemId=972\\&itemUrl=sss) | [法律声明](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=971\\&itemId=4128\\&itemUrl=ItemListRightArticle.html) |\n| ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |\n| [972](https://rsshub.app/gov/nfra/972)                                                               | [4128](https://rsshub.app/gov/nfra/4128)                                                                                    |\n\n#### [机构概况](https://www.nfra.gov.cn/cn/view/pages/jigougaikuang/jigougaikuang.html)\n\n| [主要职责](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=900\\&itemId=901\\&itemUrl=ItemListRightArticle.html) | [总局领导](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=900\\&itemId=902\\&itemUrl=jigougaikuang/huilingdao.html) | [内设机构](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=900\\&itemId=911\\&itemUrl=jigougaikuang/neishejigou.html) | [直属行政机构](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=900\\&itemId=4243\\&itemUrl=jigougaikuang/zhishuxingzhengjigou.html) | [派出机构](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=900\\&itemId=912\\&itemUrl=jigougaikuang/paichujigou.html) |\n| -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |\n| [901](https://rsshub.app/gov/nfra/901)                                                                                     | [902](https://rsshub.app/gov/nfra/902)                                                                                         | [911](https://rsshub.app/gov/nfra/911)                                                                                          | [4243](https://rsshub.app/gov/nfra/4243)                                                                                                      | [912](https://rsshub.app/gov/nfra/912)                                                                                          |\n\n| [联系方式](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=900\\&itemId=913\\&itemUrl=jigougaikuang/lianxifangshi.html) |\n| --------------------------------------------------------------------------------------------------------------------------------- |\n| [913](https://rsshub.app/gov/nfra/913)                                                                                            |\n\n#### [新闻资讯](https://www.nfra.gov.cn/cn/view/pages/xinwenzixun/xinwenzixun.html)\n\n| [监管动态](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=914\\&itemId=915\\&itemUrl=ItemListRightList.html) | [政策解读](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=914\\&itemId=916\\&itemUrl=ItemListRightMore.html) | [领导活动及讲话](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=914\\&itemId=919\\&itemUrl=ItemListRightList.html) | [新闻发布会及访谈](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=914\\&itemId=920\\&itemUrl=xinwenzixun/xinwenfabu.html) | [新闻发言人](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=914\\&itemId=921\\&itemUrl=xinwenzixun/xinwenfayan.html) |\n| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |\n| [915](https://rsshub.app/gov/nfra/915)                                                                                  | [916](https://rsshub.app/gov/nfra/916)                                                                                  | [919](https://rsshub.app/gov/nfra/919)                                                                                        | [920](https://rsshub.app/gov/nfra/920)                                                                                               | [921](https://rsshub.app/gov/nfra/921)                                                                                          |\n\n#### [政务信息](https://www.nfra.gov.cn/cn/view/pages/zhengwuxinxi/zhengwuxinxi.html)\n\n| [政府信息公开](https://www.nfra.gov.cn/cn/view/pages/zhengwuxinxi/zhengfuxinxi.html) | [公告通知](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=923\\&itemId=925\\&itemUrl=ItemListRightList.html) | [政策法规](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=923\\&itemId=926\\&itemUrl=ItemListRightMore.html) | [行政许可](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=923\\&itemId=930\\&itemUrl=zhengwuxinxi/xingzhengxuke.html) | [行政处罚](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=923\\&itemId=931\\&itemUrl=zhengwuxinxi/xingzhengchufa.html) |\n| ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |\n| [924](https://rsshub.app/gov/nfra/924)                                               | [925](https://rsshub.app/gov/nfra/925)                                                                                  | [926](https://rsshub.app/gov/nfra/926)                                                                                  | [930](https://rsshub.app/gov/nfra/930)                                                                                           | [931](https://rsshub.app/gov/nfra/931)                                                                                            |\n\n| [行政监管措施](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=923\\&itemId=932\\&itemUrl=ItemListRightList.html) | [人事信息](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=923\\&itemId=933\\&itemUrl=ItemListRightList.html) |\n| --------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |\n| [932](https://rsshub.app/gov/nfra/932)                                                                                      | [933](https://rsshub.app/gov/nfra/933)                                                                                  |\n\n#### [在线服务](https://www.nfra.gov.cn/cn/view/pages/zaixianfuwu/zaixianfuwu.html)\n\n| [行政许可办事服务指南](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=937\\&itemId=938\\&itemUrl=zaixianfuwu/banshifuwu.html) | [查询服务](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=937\\&itemId=939\\&itemUrl=zaixianfuwu/chaxunfuwu.html) |\n| ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |\n| [938](https://rsshub.app/gov/nfra/938)                                                                                                   | [939](https://rsshub.app/gov/nfra/939)                                                                                       |\n\n#### [互动交流](https://www.nfra.gov.cn/cn/view/pages/hudongjiaoliu/hudongjiaoliu.html)\n\n| [政务咨询](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=945\\&itemId=946\\&itemUrl=tosubmenu:hudongjiaoliu/woyaozixun.html) | [征集调查](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=945\\&itemId=950\\&itemUrl=ItemListRightMore.html) | [国务院办公厅开通 \"国家政务服务投诉与建议\" 小程序](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=945\\&itemId=952\\&itemUrl=http://www.gov.cn/xinwen/2018-09/20/content_5323786.htm) |\n| ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |\n| [946](https://rsshub.app/gov/nfra/946)                                                                                                   | [950](https://rsshub.app/gov/nfra/950)                                                                                  | [952](https://rsshub.app/gov/nfra/952)                                                                                                                                                           |\n\n#### [统计数据](https://www.nfra.gov.cn/cn/view/pages/tongjishuju/tongjishuju.html)\n\n| [统计信息](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=953\\&itemId=954\\&itemUrl=ItemListRightList.html) | [数据图表](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=953\\&itemId=955\\&itemUrl=tosubmenu:tongjishuju/zongzichan.html) |\n| ----------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |\n| [954](https://rsshub.app/gov/nfra/954)                                                                                  | [955](https://rsshub.app/gov/nfra/955)                                                                                                 |\n\n#### [专题专栏](https://www.nfra.gov.cn/cn/view/pages/zhuantizhuanlan/zhuantizhuanlan.html)\n\n| [推进普惠金融高质量发展](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=960\\&itemId=4234\\&itemUrl=ItemListRightMore.html) | [防范和处置非法集资](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=960\\&itemId=963\\&itemUrl=ItemListRightMore.html) | [消费者保护](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=960\\&itemId=4097\\&itemUrl=ItemListRightMore.html) | [法治宣传](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=960\\&itemId=4106\\&itemUrl=ItemListRightMore.html) | [政府网站年度报表](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=960\\&itemId=970\\&itemUrl=ItemListRightList.html) |\n| -------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |\n| [4234](https://rsshub.app/gov/nfra/4234)                                                                                               | [963](https://rsshub.app/gov/nfra/963)                                                                                            | [4097](https://rsshub.app/gov/nfra/4097)                                                                                   | [4106](https://rsshub.app/gov/nfra/4106)                                                                                 | [970](https://rsshub.app/gov/nfra/970)                                                                                          |\n\n| [服务民营企业](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=960\\&itemId=4171\\&itemUrl=ItemListRightList.html) | [服务制造业发展](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=960\\&itemId=4217\\&itemUrl=ItemListRightList.html) | [学习贯彻习近平新时代中国特色社会主义思想主题教育](https://www.nfra.gov.cn/cn/view/pages/ItemList.html?itemPId=960\\&itemId=4229\\&itemUrl=ItemListRightMore.html) |\n| ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| [4171](https://rsshub.app/gov/nfra/4171)                                                                                     | [4217](https://rsshub.app/gov/nfra/4217)                                                                                       | [4229](https://rsshub.app/gov/nfra/4229)                                                                                                                         |",
+        "categories": [
+          "government"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "title": "首页 - 弹出公告",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/972"
+          },
+          {
+            "title": "首页 - 法律声明",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/4128"
+          },
+          {
+            "title": "机构概况 - 主要职责",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/901"
+          },
+          {
+            "title": "机构概况 - 总局领导",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/902"
+          },
+          {
+            "title": "机构概况 - 内设机构",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/911"
+          },
+          {
+            "title": "机构概况 - 直属行政机构",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/4243"
+          },
+          {
+            "title": "机构概况 - 派出机构",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/912"
+          },
+          {
+            "title": "机构概况 - 联系方式",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/913"
+          },
+          {
+            "title": "新闻资讯 - 监管动态",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/915"
+          },
+          {
+            "title": "新闻资讯 - 政策解读",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/916"
+          },
+          {
+            "title": "新闻资讯 - 领导活动及讲话",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/919"
+          },
+          {
+            "title": "新闻资讯 - 新闻发布会及访谈",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/920"
+          },
+          {
+            "title": "新闻资讯 - 新闻发言人",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/921"
+          },
+          {
+            "title": "政务信息 - 政府信息公开",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/zhengwuxinxi/zhengfuxinxi.html"
+            ],
+            "target": "/924"
+          },
+          {
+            "title": "政务信息 - 公告通知",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/925"
+          },
+          {
+            "title": "政务信息 - 政策法规",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/926"
+          },
+          {
+            "title": "政务信息 - 行政许可",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/930"
+          },
+          {
+            "title": "政务信息 - 行政处罚",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/931"
+          },
+          {
+            "title": "政务信息 - 行政监管措施",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/932"
+          },
+          {
+            "title": "政务信息 - 人事信息",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/933"
+          },
+          {
+            "title": "在线服务 - 行政许可办事服务指南",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/938"
+          },
+          {
+            "title": "在线服务 - 查询服务",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/939"
+          },
+          {
+            "title": "互动交流 - 政务咨询",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/946"
+          },
+          {
+            "title": "互动交流 - 征集调查",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/950"
+          },
+          {
+            "title": "互动交流 - 国务院办公厅开通\"国家政务服务投诉与建议\"小程序",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/952"
+          },
+          {
+            "title": "统计数据 - 统计信息",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/954"
+          },
+          {
+            "title": "统计数据 - 数据图表",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/955"
+          },
+          {
+            "title": "专题专栏 - 推进普惠金融高质量发展",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/4234"
+          },
+          {
+            "title": "专题专栏 - 防范和处置非法集资",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/963"
+          },
+          {
+            "title": "专题专栏 - 消费者保护",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/4097"
+          },
+          {
+            "title": "专题专栏 - 法治宣传",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/4106"
+          },
+          {
+            "title": "专题专栏 - 政府网站年度报表",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/970"
+          },
+          {
+            "title": "专题专栏 - 服务民营企业",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/4171"
+          },
+          {
+            "title": "专题专栏 - 服务制造业发展",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/4217"
+          },
+          {
+            "title": "专题专栏 - 学习贯彻习近平新时代中国特色社会主义思想主题教育",
+            "source": [
+              "www.nfra.gov.cn/cn/view/pages/ItemList.html"
+            ],
+            "target": "/4229"
+          }
+        ],
+        "location": "index.ts",
+        "module": () => import('@/routes/gov/nfra/index.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "国家金融监督管理总局",
+    "url": "www.nfra.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/nifdc": {
+    "routes": {
+      "/:path{.+}?": {
+        "path": "/:path{.+}?",
+        "name": "国家药品监督管理局医疗器械标准管理中心 - 通用",
+        "example": "/gov/nifdc/bshff/ylqxbzhgl/qxggtzh",
+        "parameters": {
+          "path": "路径，默认为公告通告"
+        },
+        "radar": [
+          {
+            "source": [
+              "www.nifdc.org.cn/nifdc/*path/index.html",
+              "www.nifdc.org.cn/nifdc/*path"
+            ],
+            "target": "/:path"
+          }
+        ],
+        "maintainers": [
+          "nczitzk"
+        ],
+        "description": "::: tip\n\n路径处填写对应页面 URL 中 `https://www.nifdc.org.cn/nifdc/` 与 `/index.html` 之间的字段，下面是一个例子。\n\n若订阅 [公告通告](https://www.nifdc.org.cn/nifdc/bshff/ylqxbzhgl/qxggtzh/index.html) 则将对应页面 URL <https://www.nifdc.org.cn/nifdc/bshff/ylqxbzhgl/qxggtzh/index.html> 中 `https://www.nifdc.org.cn/nifdc/` 和 `/index.html` 之间的字段 `bshff/ylqxbzhgl/qxggtzh` 作为路径填入。此时路由为 [`/gov/nifdc/bshff/ylqxbzhgl/qxggtzh`](https://rsshub.app/gov/nifdc/bshff/ylqxbzhgl/qxggtzh)\n\n:::",
+        "location": "index.ts",
         "module": () => import('@/routes/gov/nifdc/index.ts')
-      },
-      "/nmpa/*": {
-        "path": "/nmpa/*",
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "nmpa/generic.ts",
+      }
+    },
+    "apiRoutes": {},
+    "name": "中国食品药品检定研究院",
+    "url": "www.nifdc.org.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/nmpa": {
+    "routes": {
+      "/:path{.+}": {
+        "path": "/:path{.+}",
+        "name": "通用",
+        "example": "/gov/nmpa/xxgk/ggtg",
+        "parameters": {
+          "path": "路径，默认为公告通告"
+        },
+        "radar": [
+          {
+            "source": [
+              "www.nmpa.gov.cn/*path/index.html",
+              "www.nmpa.gov.cn/*path"
+            ],
+            "target": "/:path"
+          }
+        ],
+        "maintainers": [
+          "TonyRL"
+        ],
+        "description": "::: tip\n\n路径处填写对应页面 URL 中 `https://www.nmpa.gov.cn/` 与 `/index.html` 之间的字段，下面是一个例子。\n\n若订阅 [公告通告](https://www.nmpa.gov.cn/xxgk/ggtg/index.html) 则将对应页面 URL <https://www.nmpa.gov.cn/xxgk/ggtg/index.html> 中 `https://www.nmpa.gov.cn/` 和 `/index.html` 之间的字段 `xxgk/ggtg` 作为路径填入。此时路由为 [`/gov/nmpa/xxgk/ggtg`](https://rsshub.app/gov/nmpa/xxgk/ggtg)\n\n:::",
+        "location": "generic.ts",
         "module": () => import('@/routes/gov/nmpa/generic.ts')
-      },
-      "/nopss/*": {
-        "path": "/nopss/*",
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "nopss/index.ts",
+      }
+    },
+    "apiRoutes": {},
+    "name": "国家药品监督管理局",
+    "url": "www.nmpa.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/nopss": {
+    "routes": {
+      "/:path{.+}?": {
+        "path": "/:path{.+}?",
+        "name": "通用",
+        "example": "/gov/nopss/GB/219469",
+        "parameters": {
+          "path": "路径，默认为通知公告"
+        },
+        "radar": [
+          {
+            "source": [
+              "www.nopss.gov.cn/*path/index.html",
+              "www.nopss.gov.cn/*path"
+            ],
+            "target": "/:path"
+          }
+        ],
+        "maintainers": [
+          "nczitzk"
+        ],
+        "description": "::: tip\n\n路径处填写对应页面 URL 中 `http://www.nopss.gov.cn/` 后的字段。下面是一个例子。\n\n若订阅 [年度项目、青年项目和西部项目](http://www.nopss.gov.cn/GB/219469/431027) 则将对应页面 URL <http://www.nopss.gov.cn/GB/219469/431027> 中 `http://www.nopss.gov.cn/` 后的字段 `GB/219469/431027` 作为路径填入。此时路由为 [`/gov/nopss/GB/219469/431027`](https://rsshub.app/gov/nopss/GB/219469/431027)\n\n:::",
+        "location": "index.ts",
         "module": () => import('@/routes/gov/nopss/index.ts')
-      },
-      "/npc/:caty": {
-        "path": "/npc/:caty",
+      }
+    },
+    "apiRoutes": {},
+    "name": "全国哲学社会科学工作办公室",
+    "url": "www.nopss.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/npc": {
+    "routes": {
+      "/:caty": {
+        "path": "/:caty",
         "categories": [
           "government"
         ],
@@ -54858,11 +56056,22 @@ export default {
           "233yeee"
         ],
         "description": "| 立法 | 监督 | 代表 | 理论 | 权威发布 | 滚动新闻 |\n| ---- | ---- | ---- | ---- | -------- | -------- |\n| c183 | c184 | c185 | c189 | c12435   | c10134   |",
-        "location": "npc/index.ts",
+        "location": "index.ts",
         "module": () => import('@/routes/gov/npc/index.ts')
-      },
-      "/nrta/dsj/:category?": {
-        "path": "/nrta/dsj/:category?",
+      }
+    },
+    "apiRoutes": {},
+    "name": "全国人民代表大会",
+    "url": "www.npc.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/nrta": {
+    "routes": {
+      "/dsj/:category?": {
+        "path": "/dsj/:category?",
         "categories": [
           "government"
         ],
@@ -54883,11 +56092,11 @@ export default {
           "nczitzk"
         ],
         "description": "| 备案公示 | 发行许可通告 | 重大题材立项     | 重大题材摄制    | 变更通报 |\n| -------- | ------------ | ---------------- | --------------- | -------- |\n| note     | announce     | importantLixiang | importantShezhi | changing |",
-        "location": "nrta/dsj.ts",
+        "location": "dsj.ts",
         "module": () => import('@/routes/gov/nrta/dsj.ts')
       },
-      "/nrta/news/:category?": {
-        "path": "/nrta/news/:category?",
+      "/news/:category?": {
+        "path": "/news/:category?",
         "categories": [
           "government"
         ],
@@ -54908,18 +56117,48 @@ export default {
           "yuxinliu-alex"
         ],
         "description": "| 总局要闻 | 公告公示 | 工作动态 | 其他 |\n| -------- | -------- | -------- | ---- |\n| 112      | 113      | 114      |      |",
-        "location": "nrta/news.ts",
+        "location": "news.ts",
         "module": () => import('@/routes/gov/nrta/news.ts')
-      },
-      "/nsfc/*": {
-        "path": "/nsfc/*",
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "nsfc/index.ts",
+      }
+    },
+    "apiRoutes": {},
+    "name": "国家广播电视总局",
+    "url": "www.nrta.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/nsfc": {
+    "routes": {
+      "/:path{.+}?": {
+        "path": "/:path{.+}?",
+        "name": "通用",
+        "example": "/gov/nsfc",
+        "parameters": {
+          "path": "路径，默认为基金要闻"
+        },
+        "maintainers": [
+          "Derekmini",
+          "nczitzk"
+        ],
+        "description": "::: tip\n\n若订阅 [基金要闻 - 通知公告](https://www.nsfc.gov.cn/publish/portal0/tab442)，网址为 <https://www.nsfc.gov.cn/publish/portal0/tab442>。截取 `https://www.nsfc.gov.cn` 到末尾的部分 `/publish/portal0/tab442` 作为参数，此时路由为 [`/gov/nsfc/publish/portal0/tab442`](https://rsshub.app/gov/nsfc/publish/portal0/tab442)。\n\n当然，也可以填入路径在下表中对应的快捷方式。其中 [基金要闻 - 通知公告](https://www.nsfc.gov.cn/publish/portal0/tab442) 的快捷方式为 `tzgg`，此时路由为 [`/gov/nsfc/tzgg`](https://rsshub.app/gov/nsfc/tzgg)。\n\n若订阅 [管理科学部 - 通知公告](https://www.nsfc.gov.cn/publish/portal0/tab1212)，网址为 <https://www.nsfc.gov.cn/publish/portal0/tab1212>。截取 `https://www.nsfc.gov.cn` 到末尾的部分 `/publish/portal0/tab1212` 作为参数，此时路由为 [`/gov/nsfc/publish/portal0/tab1212`](https://rsshub.app/gov/nsfc/publish/portal0/tab1212)。\n\n同理，也可以填入路径在下表中对应的快捷方式。其中 [管理科学部 - 通知公告](https://www.nsfc.gov.cn/publish/portal0/tab1212) 的快捷方式为 `glkxb-tzgg`，此时路由为 [`/gov/nsfc/glkxb-tzgg`](https://rsshub.app/gov/nsfc/glkxb-tzgg)。\n\n:::\n\n基金要闻\n\n| 基金要闻 | 通知公告 | 部门动态 | 科普快讯 | 资助成果 |\n| -------- | -------- | -------- | -------- | -------- |\n| jjyw     | tzgg     | bmdt     | kpkx     | zzcg     |\n\n政策法规\n\n| 国家自然科学基金条例 | 国家自然科学基金发展规划 | 国家自然科学基金规章制度 | 国家科学技术相关法律法规 |\n| -------------------- | ------------------------ | ------------------------ | ------------------------ |\n| zcfg-jjtl            | zcfg-fzgh                | zcfg-gzzd                | zcfg-flfg                |\n\n管理科学部\n\n| 工作动态   | 通知公告   | 资助成果   |\n| ---------- | ---------- | ---------- |\n| glkxb-gzdt | glkxb-tzgg | glkxb-zzcg |\n\n国际合作局\n\n| 项目指南   | 初审结果   | 批准通知   | 进程简表   | 信息公开   |\n| ---------- | ---------- | ---------- | ---------- | ---------- |\n| gjhzj-xmzn | gjhzj-csjg | gjhzj-pztz | gjhzj-jcjb | gjhzj-xxgk |",
+        "location": "index.ts",
         "module": () => import('@/routes/gov/nsfc/index.ts')
-      },
-      "/pbc/goutongjiaoliu": {
-        "path": "/pbc/goutongjiaoliu",
+      }
+    },
+    "apiRoutes": {},
+    "name": "国家自然科学基金委员会",
+    "url": "www.nsfc.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/pbc": {
+    "routes": {
+      "/goutongjiaoliu": {
+        "path": "/goutongjiaoliu",
         "categories": [
           "finance"
         ],
@@ -54945,11 +56184,11 @@ export default {
           "nczitzk"
         ],
         "url": "pbc.gov.cn/goutongjiaoliu/113456/113469/index.html",
-        "location": "pbc/goutongjiaoliu.ts",
+        "location": "goutongjiaoliu.ts",
         "module": () => import('@/routes/gov/pbc/goutongjiaoliu.ts')
       },
-      "/pbc/gzlw": {
-        "path": "/pbc/gzlw",
+      "/gzlw": {
+        "path": "/gzlw",
         "categories": [
           "finance"
         ],
@@ -54975,11 +56214,11 @@ export default {
           "Fatpandac"
         ],
         "url": "pbc.gov.cn/redianzhuanti/118742/4122386/4122692/index.html",
-        "location": "pbc/gzlw.ts",
+        "location": "gzlw.ts",
         "module": () => import('@/routes/gov/pbc/gzlw.ts')
       },
-      "/pbc/tradeAnnouncement": {
-        "path": "/pbc/tradeAnnouncement",
+      "/tradeAnnouncement": {
+        "path": "/tradeAnnouncement",
         "categories": [
           "finance"
         ],
@@ -54997,11 +56236,12 @@ export default {
         "maintainers": [
           "nczitzk"
         ],
-        "location": "pbc/trade-announcement.ts",
+        "location": "trade-announcement.ts",
         "module": () => import('@/routes/gov/pbc/trade-announcement.ts')
       },
-      "/pbc/zcyj": {
-        "path": "/pbc/zcyj",
+      "/zcyj": {
+        "path": "/zcyj",
+        "example": "/gov/pbc/zcyj",
         "radar": [
           {
             "source": [
@@ -55009,16 +56249,24 @@ export default {
             ]
           }
         ],
-        "name": "Unknown",
+        "name": "政策研究",
         "maintainers": [
           "Fatpandac"
         ],
         "url": "pbc.gov.cn/redianzhuanti/118742/4122386/4122510/index.html",
-        "location": "pbc/zcyj.ts",
+        "location": "zcyj.ts",
         "module": () => import('@/routes/gov/pbc/zcyj.ts')
-      },
-      "/pudong/zwgk": {
-        "path": "/pudong/zwgk",
+      }
+    },
+    "apiRoutes": {},
+    "name": "中国人民银行",
+    "url": "pbc.gov.cn",
+    "description": "<details>\n<summary>*业务咨询* 和 *投诉建议* 可用的站点参数</summary>\n\n| 上海市   | 北京市  | 天津市  | 河北省 |\n| -------- | ------- | ------- | ------ |\n| shanghai | beijing | tianjin | hebei  |\n\n| 山西省 | 内蒙古自治区 | 辽宁省   | 吉林省 |\n| ------ | ------------ | -------- | ------ |\n| shanxi | neimenggu    | liaoning | jilin  |\n\n| 黑龙江省     | 江苏省  | 浙江省   | 安徽省 |\n| ------------ | ------- | -------- | ------ |\n| heilongjiang | jiangsu | zhejiang | anhui  |\n\n| 福建省 | 江西省  | 山东省   | 河南省 |\n| ------ | ------- | -------- | ------ |\n| fujian | jiangxi | shandong | henan  |\n\n| 湖北省 | 湖南省 | 广东省    | 广西壮族自治区 |\n| ------ | ------ | --------- | -------------- |\n| hubei  | hunan  | guangdong | guangxi        |\n\n| 海南省 | 重庆市    | 四川省  | 贵州省  |\n| ------ | --------- | ------- | ------- |\n| hainan | chongqing | sichuan | guizhou |\n\n| 云南省 | 西藏自治区 | 陕西省  | 甘肃省 |\n| ------ | ---------- | ------- | ------ |\n| yunnan | xizang     | shaanxi | gansu  |\n\n| 青海省  | 宁夏回族自治区 | 新疆维吾尔自治区 | 大连市 |\n| ------- | -------------- | ---------------- | ------ |\n| qinghai | ningxia        | xinjiang         | dalian |\n\n| 宁波市 | 厦门市 | 青岛市  | 深圳市   |\n| ------ | ------ | ------- | -------- |\n| ningbo | xiamen | qingdao | shenzhen |\n\n</details>"
+  },
+  "gov/pudong": {
+    "routes": {
+      "/zwgk": {
+        "path": "/zwgk",
         "categories": [
           "government"
         ],
@@ -55036,18 +56284,88 @@ export default {
             "source": [
               "www.pudong.gov.cn/zwgk/zxxxgk/index.html"
             ],
-            "target": "/pudong/zwgk"
+            "target": "/zwgk"
           }
         ],
-        "name": "政务公开-浦东新区",
+        "name": "政务公开",
         "maintainers": [
           "himingway"
         ],
-        "location": "pudong/zwgk.ts",
+        "location": "zwgk.ts",
         "module": () => import('@/routes/gov/pudong/zwgk.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "上海市浦东新区人民政府",
+    "url": "www.pudong.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/safe": {
+    "routes": {
+      "/business/:site?": {
+        "path": "/business/:site?",
+        "categories": [
+          "government"
+        ],
+        "example": "/gov/safe/business/beijing",
+        "parameters": {
+          "site": "站点，见上表，默认为 beijing"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "name": "业务咨询",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "location": "business.ts",
+        "module": () => import('@/routes/gov/safe/business.ts')
       },
-      "/samr/xgzlyhd/:category?/:department?": {
-        "path": "/samr/xgzlyhd/:category?/:department?",
+      "/complaint/:site?": {
+        "path": "/complaint/:site?",
+        "categories": [
+          "government"
+        ],
+        "example": "/gov/safe/complaint/beijing",
+        "parameters": {
+          "site": "站点，见上表，默认为 beijing"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "name": "投诉建议",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "location": "complaint.ts",
+        "module": () => import('@/routes/gov/safe/complaint.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "国家外汇管理局",
+    "url": "www.safe.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/samr": {
+    "routes": {
+      "/xgzlyhd/:category?/:department?": {
+        "path": "/xgzlyhd/:category?/:department?",
         "categories": [
           "government"
         ],
@@ -55077,22 +56395,82 @@ export default {
         ],
         "url": "xgzlyhd.samr.gov.cn/gjjly/index",
         "description": "#### 留言类型\n\n| 类型                                       | 类型 id                          |\n| ------------------------------------------ | -------------------------------- |\n| 反腐倡廉                                   | 14101a4192df48b592b5cfd77a26c0cf |\n| 规划统计                                   | b807cf9cdf434635ae908d48757e0f39 |\n| 行政执法和复议                             | 8af2530e77154d7b939428667b7413f6 |\n| 假冒仿冒行为                               | 75374a34b95341829e08e54d4a0d8c04 |\n| 走私贩私                                   | 84c728530e1e478e94fe3f0030171c53 |\n| 登记注册                                   | 07fff64612dc41aca871c06587abf71d |\n| 个体工商户登记                             | ca8f91ba9a2347a0acd57ea5fd12a5c8 |\n| 信用信息公示系统                           | 1698886c3cdb495998d5ea9285a487f5 |\n| 市场主体垄断                               | 77bfe965843844449c47d29f2feb7999 |\n| 反不正当竞争                               | 2c919b1dc39440d8850c4f6c405869f8 |\n| 商业贿赂                                   | b494e6535af149c5a51fd4197993f061 |\n| 打击传销与规范直销                         | 407a1404844e48558da46139f16d6232 |\n| 消费环境建设                               | 94c2003331dd4c5fa19b0cf88d720676 |\n| 网络交易监管                               | 6302aac5b87140598da53f85c1ccb8fa |\n| 动产抵押登记                               | 3856de5835444229943b18cac7781e9f |\n| 广告监管                                   | d0e38171042048c2bf31b05c5e57aa68 |\n| 三包                                       | c4dbd85692604a428b1ea7613e67beb8 |\n| 缺陷产品召回                               | f93c9a6b81e941d09a547406370e1c0c |\n| 工业生产许可                               | 2b41afaabaa24325b53a5bd7deba895b |\n| 产品质量监督抽查                           | 4388504cb0c04e988e2cf0c90d4a3f14 |\n| 食品安全协调                               | 3127b9f409c24d0eaa60b13c25f819fa |\n| 食品生产监管                               | beaa5555d1364e5bb2a0f0a7cc9720e5 |\n| 食品销售、餐饮服务、食用农产品销售监管     | 3b6c49c6ce934e1b9505601a3b881a6a |\n| 保健、特殊医学用途配方和婴幼儿配方乳粉监管 | 13b43888f8554e078b1dfa475e2aaab0 |\n| 食品监督抽检、召回                         | 0eb6c75581bf41ecaedc629370cb425c |\n| 食品安全标准                               | 399cfd9abfa34c22a5cb3bb971a43819 |\n| 特种设备人员、机构管理                     | e5d0e51cc7d0412790efac605008bf20 |\n| 特种设备检验                               | 03f22fb3d4cd4f09b632079359e9dd7d |\n| 计量器具                                   | 90b25e22861446d5822e07c7c1f5169a |\n| 计量机构和人员管理                         | 76202742f06c459da7482160e0ce17ad |\n| 国家标准                                   | 299b9672e1c246e69485a5b695f42c5b |\n| 行业、地方、团体、企业标准                 | cbdc804c9b2c4e259a159c32eccf4ca9 |\n| 认证监督管理                               | 41259262a42e4de49b5c0b7362ac3796 |\n| 认可与检验检测                             | cb3c9d1e3d364f2a8b1cd70efa69d1cb |\n| 新闻宣传                                   | e3e553e4019c46ccbdc06136900138e9 |\n| 科技财务                                   | 47367b9704964355ba52899a4c5abbb0 |\n| 干部人事                                   | 6b978e3c127c489ea8e2d693b768887e |\n| 国际合作                                   | dd5ce768e33e435ab4bfb769ab6e079a |\n| 党群工作                                   | aa71052978af4304937eb382f24f9902 |\n| 退休干部                                   | 44505fc58c81428eb5cef15706007b5e |\n| 虚假宣传                                   | 5bb2b83ecadb4bf89a779cee414a81dd |\n| 滥用行政权力                               | 1215206156dc48029b98da825f26fcbc |\n| 公平竞争                                   | 9880a23dcbb04deba2cc7b4404e13ff6 |\n| 滥用市场支配地位                           | fea04f0acd84486e84cf71d9c13005b0 |\n| 数字经济领域反垄断执法                     | 4bea424a6e4c4e2aac19fe3c73f9be23 |\n| 并购行为                                   | 90e315647acd415ca68f97fc1b42053d |\n| 经营者集中案件                             | d6571d2cd5624bc18191b342a2e8defb |\n| 数字经济领域反垄断审查                     | 03501ef176ef44fba1c7c70da44ba8a0 |\n| 综合执法                                   | cfbb1b5dade446299670ca38844b265e |\n| 信用监管                                   | a9d76ea04a3a4433946bc02b0bdb77eb |\n| 3C 认证                                    | 111decc7b14a4fdbae86fb4a3ba5c0c1 |\n| 食用农产品                                 | 3159db51f8ca4f23a9340d87d5572d40 |\n| 食品添加                                   | 4e4b0e0152334cbb9c62fd1b80138305 |\n\n#### 回复部门\n\n| 部门                         | 部门 id                          |\n| ---------------------------- | -------------------------------- |\n| 办公厅                       | 6ed539b270634667afc4d466b67a53f7 |\n| 法规司                       | 8625ec7ff8d744ad80a1d1a2bf19cf19 |\n| 执法稽查局                   | 313a8cb1c09042dea52be52cb392c557 |\n| 登记注册局                   | e4553350549f45f38da5602147cf8639 |\n| 信用监督管理司               | 6af98157255a4a858eac5f94ba8d98f4 |\n| 竞争政策协调司               | 8d2266be4791483297822e1aa5fc0a96 |\n| 综合规划司                   | 958e1619159c45a7b76663a59d9052ea |\n| 反垄断执法一司               | f9fb3f6225964c71ab82224a91f21b2c |\n| 反垄断执法二司               | 7986c79e4f16403493d5b480aec30be4 |\n| 价格监督检查和反不正当竞争局 | c5d2b1b273b545cfbc6f874f670654ab |\n| 网络交易监督管理司           | 6ac05b4dbd4e41c69f4529262540459b |\n| 广告监督管理司               | 96457dfe16c54840885b79b4e6e17523 |\n| 质量发展局                   | cb8d2b16fbb540dca296aa33a43fc573 |\n| 质量监督司                   | af2c4e0a54c04f76b512c29ddd075d40 |\n| 食品安全协调司               | cc29962c74e84ef2b21e44336da6c6c5 |\n| 食品生产安全监督管理司       | b334db85a253458285db70b30ee26b0a |\n| 食品经营安全监督管理司       | 4315f0261a5d49f7bdcc5a7524e19ce3 |\n| 特殊食品安全监督管理司       | 62d14f386317486ca94bc53ca7f88891 |\n| 食品安全抽检监测司           | abfc910832cc460a81876ad418618159 |\n| 特种设备安全监察局           | ea79f90bec5840ef9b0881c83682225a |\n| 计量司                       | b0556236fbcf4f45b6fdec8004dac3e4 |\n| 标准技术管理司               | a558d07a51f4454fa59290e0d6e93c26 |\n| 标准创新管理司               | ffb3a80984b344ed8d168f4af6508af0 |\n| 认证监督管理司               | ca4987393d514debb4d1e2126f576987 |\n| 认可与检验检测监督管理司     | 796bfab21b15498e88c9032fe3e3c9f1 |\n| 新闻宣传司                   | 884fc0ea6c184ad58dda10e2170a1eda |\n| 科技和财务司                 | 117355eea94c426199e2e519fd98ce07 |\n| 人事司                       | a341e8b7929e44769b9424b7cf69d32a |\n| 国际司                       | f784499ef24541f5b20de4c24cfc61e7 |\n| 机关党委                     | a49119c6f40045dd994f3910500cedfa |\n| 离退办                       | 6bf265ffd1c94fa4a3f1687b03fa908b |",
-        "location": "samr/xgzlyhd.tsx",
+        "location": "xgzlyhd.tsx",
         "module": () => import('@/routes/gov/samr/xgzlyhd.tsx')
-      },
-      "/sasac/:path{.+}": {
-        "path": "/sasac/:path{.+}",
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "sasac/generic.ts",
+      }
+    },
+    "apiRoutes": {},
+    "name": "国家市场监督管理总局",
+    "url": "www.samr.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/sasac": {
+    "routes": {
+      "/:path{.+}": {
+        "path": "/:path{.+}",
+        "name": "通用",
+        "example": "/gov/sasac/n2588030/n16436141",
+        "parameters": {
+          "path": "路径，可在 URL 找到"
+        },
+        "radar": [
+          {
+            "source": [
+              "www.sasac.gov.cn/*path/index.html",
+              "www.sasac.gov.cn/*path"
+            ],
+            "target": "/:path"
+          }
+        ],
+        "maintainers": [
+          "TonyRL"
+        ],
+        "description": "::: tip\n\n路径处填写对应页面 URL 中 `http://www.sasac.gov.cn/` 与 `/index.html` 之间的字段，下面是一个例子。\n\n若订阅 [其他](http://www.sasac.gov.cn/n2588030/n16436141/index.html) 则将对应页面 URL <http://www.sasac.gov.cn/n2588030/n16436141/index.html> 中 `http://www.sasac.gov.cn/` 和 `/index.html` 之间的字段 `n2588030/n16436141` 作为路径填入。此时路由为 [`/gov/sasac/n2588030/n16436141`](https://rsshub.app/gov/sasac/n2588030/n16436141)\n\n:::",
+        "location": "generic.ts",
         "module": () => import('@/routes/gov/sasac/generic.ts')
-      },
-      "/sh/fgw/:category{.+}?": {
-        "path": [
-          "/sh/fgw/:category{.+}?",
-          "/shanghai/fgw/:category{.+}?"
+      }
+    },
+    "apiRoutes": {},
+    "name": "国务院国有资产监督管理委员会",
+    "url": "www.sasac.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/sdb": {
+    "routes": {
+      "/:path{.+}": {
+        "path": "/:path{.+}",
+        "name": "通用",
+        "example": "/gov/sdb/www/zwgk/zcjd",
+        "parameters": {
+          "path": "路径，只填写 `www` 默认为 政务公开 > 政策解读"
+        },
+        "maintainers": [
+          "ShuiHuo"
         ],
-        "name": "上海市发展和改革委员会",
+        "description": "::: tip\n\n路径处填写对应页面 URL 中最前面的部分和域名后的字段。下面是一个例子。\n\n若订阅 [政务公开 > 政策解读](http://www.sdb.gov.cn/zwgk/zcjd/) 则将对应页面 URL <http://www.sdb.gov.cn/zwgk/zcjd/> 中 `http://www.sdb.gov.cn/` 的字段 `www` 和 `zwgk/zcjd/` 作为路径填入。此时路由为 [`/gov/sdb/www/zwgk/zcjd/`](https://rsshub.app/gov/sdb/www/zwgk/zcjd/)\n\n:::",
+        "location": "sdb.ts",
+        "module": () => import('@/routes/gov/sdb/sdb.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "茂名水东湾新城建设管理委员会",
+    "url": "www.sdb.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/sh": {
+    "routes": {
+      "/fgw/:category{.+}?": {
+        "path": "/fgw/:category{.+}?",
+        "name": "发展和改革委员会",
         "url": "fgw.sh.gov.cn",
         "maintainers": [
           "nczitzk"
@@ -55125,296 +56503,148 @@ export default {
             "source": [
               "fgw.sh.gov.cn/fgw_zxxxgk/index.html"
             ],
-            "target": "/sh/fgw/fgw_zxxxgk"
+            "target": "/fgw/fgw_zxxxgk"
           },
           {
             "title": "要闻动态",
             "source": [
               "fgw.sh.gov.cn/fgw_fzggdt/index.html"
             ],
-            "target": "/sh/fgw/fgw_fzggdt"
+            "target": "/fgw/fgw_fzggdt"
           }
         ],
-        "location": "sh/fgw/index.tsx",
+        "location": "fgw/index.tsx",
         "module": () => import('@/routes/gov/sh/fgw/index.tsx')
       },
-      "/shanghai/fgw/:category{.+}?": {
-        "path": [
-          "/sh/fgw/:category{.+}?",
-          "/shanghai/fgw/:category{.+}?"
+      "/rsj/ksxm": {
+        "path": "/rsj/ksxm",
+        "categories": [
+          "government"
         ],
-        "name": "上海市发展和改革委员会",
-        "url": "fgw.sh.gov.cn",
+        "example": "/gov/sh/rsj/ksxm",
+        "parameters": {},
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "rsj.sh.gov.cn/"
+            ]
+          }
+        ],
+        "name": "职业能力考试院 考试项目",
+        "maintainers": [
+          "Fatpandac"
+        ],
+        "url": "rsj.sh.gov.cn/",
+        "location": "rsj/ksxm.tsx",
+        "module": () => import('@/routes/gov/sh/rsj/ksxm.tsx')
+      },
+      "/wgj/:page?": {
+        "path": "/wgj/:page?",
+        "categories": [
+          "government"
+        ],
+        "example": "/gov/sh/wgj",
+        "parameters": {
+          "page": "页数，默认第 1 页"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "wsbs.wgj.sh.gov.cn/"
+            ],
+            "target": "/wgj"
+          }
+        ],
+        "name": "文旅局审批公告",
+        "maintainers": [
+          "gideonsenku"
+        ],
+        "url": "wsbs.wgj.sh.gov.cn/",
+        "location": "wgj/wgj.tsx",
+        "module": () => import('@/routes/gov/sh/wgj/wgj.tsx')
+      },
+      "/wsjkw/yqtb": {
+        "path": "/wsjkw/yqtb",
+        "categories": [
+          "government"
+        ],
+        "example": "/gov/sh/wsjkw/yqtb",
+        "parameters": {},
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "wsjkw.sh.gov.cn/"
+            ]
+          }
+        ],
+        "name": "卫健委 疫情通报",
+        "maintainers": [
+          "zcf0508"
+        ],
+        "url": "wsjkw.sh.gov.cn/",
+        "location": "wsjkw/yqtb/index.ts",
+        "module": () => import('@/routes/gov/sh/wsjkw/yqtb/index.ts')
+      },
+      "/yjj/:path{.+}?": {
+        "path": "/yjj/:path{.+}?",
+        "name": "药品监督管理局",
+        "example": "/gov/sh/yjj/zh",
+        "parameters": {
+          "path": "路径参数"
+        },
+        "radar": [
+          {
+            "source": [
+              "yjj.sh.gov.cn/*path/index.html",
+              "yjj.sh.gov.cn/*path"
+            ],
+            "target": "/yjj/:path"
+          }
+        ],
         "maintainers": [
           "nczitzk"
         ],
-        "example": "/gov/sh/fgw/fgw_zxxxgk",
-        "parameters": {
-          "category": "分类，默认为 `fgw_zxxxgk`，即最新信息公开，可在对应分类页 URL 中找到"
-        },
-        "description": "::: tip\n若订阅 [最新信息公开](https://fgw.sh.gov.cn/fgw_zxxxgk/index.html)，网址为 `https://fgw.sh.gov.cn/fgw_zxxxgk/index.html`。截取 `https://fgw.sh.gov.cn/` 到末尾 `/index.html` 的部分 `fgw_zxxxgk` 作为参数填入，此时路由为 [`/gov/sh/fgw/fgw_zxxxgk`](https://rsshub.app/gov/sh/fgw/fgw_zxxxgk)。\n:::\n\n| 最新信息公开 | 要闻动态    |\n| ------------ | ----------- |\n| fgw\\_zxxxgk  | fgw\\_fzggdt |",
-        "categories": [
-          "government"
-        ],
-        "features": {
-          "requireConfig": false,
-          "requirePuppeteer": false,
-          "antiCrawler": false,
-          "supportRadar": true,
-          "supportBT": false,
-          "supportPodcast": false,
-          "supportScihub": false
-        },
-        "radar": [
-          {
-            "source": [
-              "fgw.sh.gov.cn/:category"
-            ]
-          },
-          {
-            "title": "最新信息公开",
-            "source": [
-              "fgw.sh.gov.cn/fgw_zxxxgk/index.html"
-            ],
-            "target": "/sh/fgw/fgw_zxxxgk"
-          },
-          {
-            "title": "要闻动态",
-            "source": [
-              "fgw.sh.gov.cn/fgw_fzggdt/index.html"
-            ],
-            "target": "/sh/fgw/fgw_fzggdt"
-          }
-        ],
-        "location": "sh/fgw/index.tsx",
-        "module": () => import('@/routes/gov/sh/fgw/index.tsx')
-      },
-      "/sh/rsj/ksxm": {
-        "path": [
-          "/sh/rsj/ksxm",
-          "/shanghai/rsj/ksxm"
-        ],
-        "categories": [
-          "government"
-        ],
-        "example": "/gov/sh/rsj/ksxm",
-        "parameters": {},
-        "features": {
-          "requireConfig": false,
-          "requirePuppeteer": false,
-          "antiCrawler": false,
-          "supportBT": false,
-          "supportPodcast": false,
-          "supportScihub": false
-        },
-        "radar": [
-          {
-            "source": [
-              "rsj.sh.gov.cn/"
-            ]
-          }
-        ],
-        "name": "上海市职业能力考试院 考试项目",
-        "maintainers": [
-          "Fatpandac"
-        ],
-        "url": "rsj.sh.gov.cn/",
-        "location": "sh/rsj/ksxm.tsx",
-        "module": () => import('@/routes/gov/sh/rsj/ksxm.tsx')
-      },
-      "/shanghai/rsj/ksxm": {
-        "path": [
-          "/sh/rsj/ksxm",
-          "/shanghai/rsj/ksxm"
-        ],
-        "categories": [
-          "government"
-        ],
-        "example": "/gov/sh/rsj/ksxm",
-        "parameters": {},
-        "features": {
-          "requireConfig": false,
-          "requirePuppeteer": false,
-          "antiCrawler": false,
-          "supportBT": false,
-          "supportPodcast": false,
-          "supportScihub": false
-        },
-        "radar": [
-          {
-            "source": [
-              "rsj.sh.gov.cn/"
-            ]
-          }
-        ],
-        "name": "上海市职业能力考试院 考试项目",
-        "maintainers": [
-          "Fatpandac"
-        ],
-        "url": "rsj.sh.gov.cn/",
-        "location": "sh/rsj/ksxm.tsx",
-        "module": () => import('@/routes/gov/sh/rsj/ksxm.tsx')
-      },
-      "/sh/wgj/:page?": {
-        "path": [
-          "/sh/wgj/:page?",
-          "/shanghai/wgj/:page?"
-        ],
-        "categories": [
-          "government"
-        ],
-        "example": "/gov/sh/wgj",
-        "parameters": {
-          "page": "页数，默认第 1 页"
-        },
-        "features": {
-          "requireConfig": false,
-          "requirePuppeteer": false,
-          "antiCrawler": false,
-          "supportBT": false,
-          "supportPodcast": false,
-          "supportScihub": false
-        },
-        "radar": [
-          {
-            "source": [
-              "wsbs.wgj.sh.gov.cn/"
-            ],
-            "target": "/sh/wgj"
-          }
-        ],
-        "name": "上海市文旅局审批公告",
-        "maintainers": [
-          "gideonsenku"
-        ],
-        "url": "wsbs.wgj.sh.gov.cn/",
-        "location": "sh/wgj/wgj.tsx",
-        "module": () => import('@/routes/gov/sh/wgj/wgj.tsx')
-      },
-      "/shanghai/wgj/:page?": {
-        "path": [
-          "/sh/wgj/:page?",
-          "/shanghai/wgj/:page?"
-        ],
-        "categories": [
-          "government"
-        ],
-        "example": "/gov/sh/wgj",
-        "parameters": {
-          "page": "页数，默认第 1 页"
-        },
-        "features": {
-          "requireConfig": false,
-          "requirePuppeteer": false,
-          "antiCrawler": false,
-          "supportBT": false,
-          "supportPodcast": false,
-          "supportScihub": false
-        },
-        "radar": [
-          {
-            "source": [
-              "wsbs.wgj.sh.gov.cn/"
-            ],
-            "target": "/sh/wgj"
-          }
-        ],
-        "name": "上海市文旅局审批公告",
-        "maintainers": [
-          "gideonsenku"
-        ],
-        "url": "wsbs.wgj.sh.gov.cn/",
-        "location": "sh/wgj/wgj.tsx",
-        "module": () => import('@/routes/gov/sh/wgj/wgj.tsx')
-      },
-      "/sh/wsjkw/yqtb": {
-        "path": [
-          "/sh/wsjkw/yqtb",
-          "/shanghai/wsjkw/yqtb"
-        ],
-        "categories": [
-          "government"
-        ],
-        "example": "/gov/sh/wsjkw/yqtb",
-        "parameters": {},
-        "features": {
-          "requireConfig": false,
-          "requirePuppeteer": false,
-          "antiCrawler": false,
-          "supportBT": false,
-          "supportPodcast": false,
-          "supportScihub": false
-        },
-        "radar": [
-          {
-            "source": [
-              "wsjkw.sh.gov.cn/"
-            ]
-          }
-        ],
-        "name": "上海卫健委 疫情通报",
-        "maintainers": [
-          "zcf0508"
-        ],
-        "url": "wsjkw.sh.gov.cn/",
-        "location": "sh/wsjkw/yqtb/index.ts",
-        "module": () => import('@/routes/gov/sh/wsjkw/yqtb/index.ts')
-      },
-      "/shanghai/wsjkw/yqtb": {
-        "path": [
-          "/sh/wsjkw/yqtb",
-          "/shanghai/wsjkw/yqtb"
-        ],
-        "categories": [
-          "government"
-        ],
-        "example": "/gov/sh/wsjkw/yqtb",
-        "parameters": {},
-        "features": {
-          "requireConfig": false,
-          "requirePuppeteer": false,
-          "antiCrawler": false,
-          "supportBT": false,
-          "supportPodcast": false,
-          "supportScihub": false
-        },
-        "radar": [
-          {
-            "source": [
-              "wsjkw.sh.gov.cn/"
-            ]
-          }
-        ],
-        "name": "上海卫健委 疫情通报",
-        "maintainers": [
-          "zcf0508"
-        ],
-        "url": "wsjkw.sh.gov.cn/",
-        "location": "sh/wsjkw/yqtb/index.ts",
-        "module": () => import('@/routes/gov/sh/wsjkw/yqtb/index.ts')
-      },
-      "/sh/yjj/*": {
-        "path": [
-          "/sh/yjj/*",
-          "/shanghai/yjj/*"
-        ],
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "sh/yjj/index.ts",
+        "description": "::: tip\n\n路径处填写对应页面 URL 中 `https://yjj.sh.gov.cn/` 与 `/index.html` 之间的字段，下面是一个例子。\n\n若订阅 [最新信息公开 > 综合](https://yjj.sh.gov.cn/zh/index.html) 则将对应页面 URL <https://yjj.sh.gov.cn/zh/index.html> 中 `https://yjj.sh.gov.cn/` 和 `/index.html` 之间的字段 `zh` 作为路径填入。此时路由为 [`/gov/sh/yjj/zh`](https://rsshub.app/gov/sh/yjj/zh)\n\n:::",
+        "location": "yjj/index.ts",
         "module": () => import('@/routes/gov/sh/yjj/index.ts')
-      },
-      "/shanghai/yjj/*": {
-        "path": [
-          "/sh/yjj/*",
-          "/shanghai/yjj/*"
-        ],
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "sh/yjj/index.ts",
-        "module": () => import('@/routes/gov/sh/yjj/index.ts')
-      },
-      "/shaanxi/kjt/:id?": {
-        "path": "/shaanxi/kjt/:id?",
+      }
+    },
+    "apiRoutes": {},
+    "name": "上海市人民政府",
+    "url": "sh.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "description": ""
+  },
+  "gov/shaanxi": {
+    "routes": {
+      "/kjt/:id?": {
+        "path": "/kjt/:id?",
         "categories": [
           "government"
         ],
@@ -55435,11 +56665,22 @@ export default {
           "nczitzk"
         ],
         "description": "| 科技头条 | 工作动态 | 基层科技 | 科技博览 | 媒体聚焦 | 通知公告 |\n| -------- | -------- | -------- | -------- | -------- | -------- |\n| 1061     | 24       | 27       | 25       | 28       | 221      |",
-        "location": "shaanxi/kjt.ts",
+        "location": "kjt.ts",
         "module": () => import('@/routes/gov/shaanxi/kjt.ts')
-      },
-      "/shenzhen/hrss/szksy/:caty/:page?": {
-        "path": "/shenzhen/hrss/szksy/:caty/:page?",
+      }
+    },
+    "apiRoutes": {},
+    "name": "陕西省人民政府",
+    "url": "www.shaanxi.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/shenzhen": {
+    "routes": {
+      "/hrss/szksy/:caty/:page?": {
+        "path": "/hrss/szksy/:caty/:page?",
         "categories": [
           "government"
         ],
@@ -55463,17 +56704,17 @@ export default {
             ]
           }
         ],
-        "name": "深圳市考试院",
+        "name": "考试院",
         "maintainers": [
           "zlasd"
         ],
         "url": "hrss.sz.gov.cn/*",
         "description": "| 通知公告 | 报名信息 | 成绩信息 | 合格标准 | 合格人员公示 | 证书发放信息 |\n| :------: | :------: | :------: | :------: | :----------: | :----------: |\n|   tzgg   |   bmxx   |   cjxx   |   hgbz   |    hgrygs    |     zsff     |",
-        "location": "shenzhen/hrss/szksy/index.ts",
+        "location": "hrss/szksy/index.ts",
         "module": () => import('@/routes/gov/shenzhen/hrss/szksy/index.ts')
       },
-      "/shenzhen/szlh/zwfw/zffw/:caty": {
-        "path": "/shenzhen/szlh/zwfw/zffw/:caty",
+      "/szlh/zwfw/zffw/:caty": {
+        "path": "/szlh/zwfw/zffw/:caty",
         "categories": [
           "government"
         ],
@@ -55496,16 +56737,16 @@ export default {
             ]
           }
         ],
-        "name": "深圳市罗湖区人民政府",
+        "name": "罗湖区人民政府 政务服务",
         "maintainers": [
           "lonn"
         ],
         "description": "| 通知公告 |\n| :------: |\n|   tzgg   |",
-        "location": "shenzhen/szlh/index.ts",
+        "location": "szlh/index.ts",
         "module": () => import('@/routes/gov/shenzhen/szlh/index.ts')
       },
-      "/shenzhen/xxgk/zfxxgj/:caty": {
-        "path": "/shenzhen/xxgk/zfxxgj/:caty",
+      "/xxgk/zfxxgj/:caty": {
+        "path": "/xxgk/zfxxgj/:caty",
         "categories": [
           "government"
         ],
@@ -55521,16 +56762,16 @@ export default {
           "supportPodcast": false,
           "supportScihub": false
         },
-        "name": "深圳市人民政府",
+        "name": "政府信息公开",
         "maintainers": [
           "laoxua"
         ],
         "description": "| 通知公告 | 政府采购 | 资金信息 | 重大项目 |\n| :------: | :------: | :------: | :------: |\n|   tzgg   |   zfcg   |   zjxx   |   zdxm   |",
-        "location": "shenzhen/xxgk/zfxxgj.ts",
+        "location": "xxgk/zfxxgj.ts",
         "module": () => import('@/routes/gov/shenzhen/xxgk/zfxxgj.ts')
       },
-      "/shenzhen/zjj/xxgk/:caty": {
-        "path": "/shenzhen/zjj/xxgk/:caty",
+      "/zjj/xxgk/:caty": {
+        "path": "/zjj/xxgk/:caty",
         "categories": [
           "government"
         ],
@@ -55553,16 +56794,16 @@ export default {
             ]
           }
         ],
-        "name": "深圳市住房和建设局",
+        "name": "住房和建设局",
         "maintainers": [
           "lonn"
         ],
         "description": "| 通知公告 |\n| :------: |\n|   tzgg   |",
-        "location": "shenzhen/zjj/index.ts",
+        "location": "zjj/index.ts",
         "module": () => import('@/routes/gov/shenzhen/zjj/index.ts')
       },
-      "/shenzhen/zzb/:caty/:page?": {
-        "path": "/shenzhen/zzb/:caty/:page?",
+      "/zzb/:caty/:page?": {
+        "path": "/zzb/:caty/:page?",
         "categories": [
           "government"
         ],
@@ -55592,11 +56833,22 @@ export default {
         ],
         "url": "zzb.sz.gov.cn/*",
         "description": "| 通知公告 | 任前公示 | 政策法规 | 工作动态 | 部门预算决算公开 | 业务表格下载 |\n| :------: | :------: | :------: | :------: | :--------------: | :----------: |\n|   tzgg   |   rqgs   |   zcfg   |   gzdt   |       xcbd       |     bgxz     |",
-        "location": "shenzhen/zzb/index.ts",
+        "location": "zzb/index.ts",
         "module": () => import('@/routes/gov/shenzhen/zzb/index.ts')
-      },
-      "/sichuan/deyang/govpublicinfo/:countyName/:infoType?": {
-        "path": "/sichuan/deyang/govpublicinfo/:countyName/:infoType?",
+      }
+    },
+    "apiRoutes": {},
+    "name": "深圳市人民政府",
+    "url": "www.sz.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/sichuan": {
+    "routes": {
+      "/deyang/govpublicinfo/:countyName/:infoType?": {
+        "path": "/deyang/govpublicinfo/:countyName/:infoType?",
         "categories": [
           "government"
         ],
@@ -55618,11 +56870,11 @@ export default {
           "zytomorrow"
         ],
         "description": "| 法定主动内容 | 公示公告 |\n| :----------: | :------: |\n|    fdzdnr    |   gsgg   |",
-        "location": "sichuan/deyang/govpublicinfo.tsx",
+        "location": "deyang/govpublicinfo.tsx",
         "module": () => import('@/routes/gov/sichuan/deyang/govpublicinfo.tsx')
       },
-      "/sichuan/deyang/mztoday/:infoType?": {
-        "path": "/sichuan/deyang/mztoday/:infoType?",
+      "/deyang/mztoday/:infoType?": {
+        "path": "/deyang/mztoday/:infoType?",
         "categories": [
           "government"
         ],
@@ -55643,7 +56895,7 @@ export default {
             "source": [
               "www.mztoday.gov.cn/*"
             ],
-            "target": "/sichuan/deyang/mztoday"
+            "target": "/deyang/mztoday"
           }
         ],
         "name": "今日绵竹",
@@ -55652,12 +56904,23 @@ export default {
         ],
         "url": "www.mztoday.gov.cn/*",
         "description": "| 最新 | 推荐 | 时政 | 教育 | 民生 | 文旅 | 经济 | 文明创建 | 部门 | 镇（街道） | 健康绵竹 | 南轩讲堂 | 视频 | 文明实践 | 领航中国 | 绵竹年画 | 绵竹历史 | 绵竹旅游 | 外媒看绵竹 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | -------- | ---- | ---------- | -------- | -------- | ---- | -------- | -------- | -------- | -------- | -------- | ---------- |\n| zx   | tj   | sz   | jy   | ms   | wl   | jj   | wmcj     | bm   | zj         | jkmz     | nxjt     | sp   | wmsj     | lhzg     | mznh     | mzls     | mzly     | wmkmz      |",
-        "location": "sichuan/deyang/mztoday.tsx",
+        "location": "deyang/mztoday.tsx",
         "module": () => import('@/routes/gov/sichuan/deyang/mztoday.tsx')
-      },
-      "/stats/*": {
-        "path": "/stats/*",
-        "name": "国家统计局 通用",
+      }
+    },
+    "apiRoutes": {},
+    "name": "四川省人民政府",
+    "url": "www.sc.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/stats": {
+    "routes": {
+      "/:path{.+}?": {
+        "path": "/:path{.+}?",
+        "name": "通用",
         "url": "www.stats.gov.cn",
         "categories": [
           "government"
@@ -55668,21 +56931,34 @@ export default {
           "reply2future"
         ],
         "example": "/gov/stats/sj/zxfb",
+        "parameters": {
+          "path": "路径，默认为 统计数据 > 最新发布"
+        },
         "radar": [
           {
-            "title": "国家统计局 通用",
             "source": [
               "www.stats.gov.cn/*path"
             ],
-            "target": "/gov/stats/*path"
+            "target": "/:path"
           }
         ],
         "description": "::: tip\n路径处填写对应页面 URL 中 `http://www.stats.gov.cn/` 后的字段。下面是一个例子。\n\n若订阅 [数据 > 数据解读](http://www.stats.gov.cn/sj/sjjd/)\n则将对应页面 URL `http://www.stats.gov.cn/sj/sjjd/` 中 `http://www.stats.gov.cn/` 后的字段 `sj/sjjd` 作为路径填入。\n此时路由为 [`/gov/stats/sj/sjjd`](https://rsshub.app/gov/stats/sj/sjjd)\n\n若订阅 [新闻 > 时政要闻 > 中央精神](http://www.stats.gov.cn/xw/szyw/zyjs/)\n则将对应页面 URL `http://www.stats.gov.cn/xw/szyw/zyjs/` 中 `http://www.stats.gov.cn/`\n后的字段 `xw/szyw/zyjs` 作为路径填入。此时路由为 [`/gov/stats/xw/szyw/zyjs`](https://rsshub.app/gov/stats/xw/szyw/zyjs)\n:::",
-        "location": "stats/index.tsx",
+        "location": "index.tsx",
         "module": () => import('@/routes/gov/stats/index.tsx')
-      },
-      "/suzhou/doc": {
-        "path": "/suzhou/doc",
+      }
+    },
+    "apiRoutes": {},
+    "name": "国家统计局",
+    "url": "www.stats.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/suzhou": {
+    "routes": {
+      "/doc": {
+        "path": "/doc",
         "categories": [
           "government"
         ],
@@ -55709,18 +56985,33 @@ export default {
           "EsuRt"
         ],
         "url": "www.suzhou.gov.cn/szxxgk/front/xxgk_right.jsp",
-        "location": "suzhou/doc.ts",
+        "location": "doc.ts",
         "module": () => import('@/routes/gov/suzhou/doc.ts')
       },
-      "/suzhou/fg/:category{.+}?": {
-        "path": "/suzhou/fg/:category{.+}?",
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "suzhou/fg.ts",
+      "/fg/:category{.+}?": {
+        "path": "/fg/:category{.+}?",
+        "name": "发展和改革委员会",
+        "example": "/gov/suzhou/fg/szfgw/ggl/nav_list",
+        "parameters": {
+          "category": "分类，见下表，默认为通知公告"
+        },
+        "radar": [
+          {
+            "source": [
+              "fg.suzhou.gov.cn/*category"
+            ],
+            "target": "/fg/:category"
+          }
+        ],
+        "maintainers": [
+          "nczitzk"
+        ],
+        "description": "| 通知公告            | 发改要闻             |\n| ------------------- | -------------------- |\n| szfgw/ggl/nav\\_list | szfgw/gzdt/nav\\_list |",
+        "location": "fg.ts",
         "module": () => import('@/routes/gov/suzhou/fg.ts')
       },
-      "/suzhou/news/:uid": {
-        "path": "/suzhou/news/:uid",
+      "/news/:uid": {
+        "path": "/news/:uid",
         "categories": [
           "government"
         ],
@@ -55749,11 +57040,22 @@ export default {
           "luyuhuang"
         ],
         "description": "| 新闻栏目名 |       :uid       |\n| :--------: | :--------------: |\n|  苏州要闻  |   news 或 szyw   |\n|  区县快讯  | district 或 qxkx |\n|  部门动态  |       bmdt       |\n|  新闻视频  |       xwsp       |\n|  政务公告  |       zwgg       |\n|  便民公告  |       mszx       |\n|  民生资讯  |       bmzx       |\n\n| 热点专题栏目名 |  :uid  |\n| :------------: | :----: |\n|    热点专题    |  rdzt  |\n|   市本级专题   |  sbjzt |\n|  最新热点专题  | zxrdzt |\n|    往期专题    |  wqzt  |\n|    区县专题    |  qxzt  |\n\n::: tip\n**热点专题**栏目包含**市本级专题**和**区县专题**\n\n**市本级专题**栏目包含**最新热点专题**和**往期专题**\n\n如需订阅完整的热点专题，仅需订阅 **热点专题**`rdzt` 一项即可。\n:::",
-        "location": "suzhou/news.ts",
+        "location": "news.ts",
         "module": () => import('@/routes/gov/suzhou/news.ts')
-      },
-      "/taiyuan/rsj/:caty/:page?": {
-        "path": "/taiyuan/rsj/:caty/:page?",
+      }
+    },
+    "apiRoutes": {},
+    "name": "苏州市人民政府",
+    "url": "www.suzhou.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/taiyuan": {
+    "routes": {
+      "/rsj/:caty/:page?": {
+        "path": "/rsj/:caty/:page?",
         "categories": [
           "government"
         ],
@@ -55777,17 +57079,28 @@ export default {
             ]
           }
         ],
-        "name": "太原市人力资源和社会保障局政府公开信息",
+        "name": "人力资源和社会保障局政府公开信息",
         "maintainers": [
           "2PoL"
         ],
         "url": "rsj.taiyuan.gov.cn/*",
         "description": "| 工作动态 | 太原新闻 | 通知公告 | 县区动态 | 国内动态 | 图片新闻 |\n| -------- | -------- | -------- | -------- | -------- | -------- |\n| gzdt     | tyxw     | gggs     | xqdt     | gndt     | tpxw     |",
-        "location": "taiyuan/rsj.ts",
+        "location": "rsj.ts",
         "module": () => import('@/routes/gov/taiyuan/rsj.ts')
-      },
-      "/tianjin/tjftz-notice/:channelId": {
-        "path": "/tianjin/tjftz-notice/:channelId",
+      }
+    },
+    "apiRoutes": {},
+    "name": "太原市人民政府",
+    "url": "www.taiyuan.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/tianjin": {
+    "routes": {
+      "/tjftz-notice/:channelId": {
+        "path": "/tjftz-notice/:channelId",
         "categories": [
           "government"
         ],
@@ -55800,7 +57113,7 @@ export default {
             "source": [
               "tjftz.gov.cn/channels/:channelId.html"
             ],
-            "target": "/tianjin/tjftz-notice/:channelId"
+            "target": "/tjftz-notice/:channelId"
           }
         ],
         "name": "天津港保税区-公告",
@@ -55809,11 +57122,11 @@ export default {
           "HaoyuLee"
         ],
         "description": "| 公告类别                            | channelId |\n| ----------------------------------- | --------- |\n| 首页 > 新闻 > 保税区要闻 > 区域聚焦 | 6302      |",
-        "location": "tianjin/tjftz.ts",
+        "location": "tjftz.ts",
         "module": () => import('@/routes/gov/tianjin/tjftz.ts')
       },
-      "/tianjin/tjrcgzw-notice/:cate/:subCate": {
-        "path": "/tianjin/tjrcgzw-notice/:cate/:subCate",
+      "/tjrcgzw-notice/:cate/:subCate": {
+        "path": "/tjrcgzw-notice/:cate/:subCate",
         "categories": [
           "government"
         ],
@@ -55826,19 +57139,30 @@ export default {
             "source": [
               "hrss.tj.gov.cn/ztzl/ztzl1/tjrcgzw/"
             ],
-            "target": "/tianjin/tjrcgzw-notice/:cate/:subCate"
+            "target": "/tjrcgzw-notice/:cate/:subCate"
           }
         ],
-        "name": "天津人才工作网-公告",
+        "name": "人才工作网-公告",
         "url": "hrss.tj.gov.cn/ztzl/ztzl1/tjrcgzw/",
         "maintainers": [
           "HaoyuLee"
         ],
-        "location": "tianjin/tjrcgzw.ts",
+        "location": "tjrcgzw.ts",
         "module": () => import('@/routes/gov/tianjin/tjrcgzw.ts')
-      },
-      "/wuhan/sy/whyw": {
-        "path": "/wuhan/sy/whyw",
+      }
+    },
+    "apiRoutes": {},
+    "name": "天津市人民政府",
+    "url": "www.tianjin.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/wuhan": {
+    "routes": {
+      "/sy/whyw": {
+        "path": "/sy/whyw",
         "categories": [
           "government"
         ],
@@ -55861,16 +57185,52 @@ export default {
             ]
           }
         ],
-        "name": "武汉要闻",
+        "name": "要闻",
         "maintainers": [
           "nczitzk"
         ],
         "url": "wuhan.gov.cn/sy/whyw/",
-        "location": "wuhan/whyw.ts",
+        "location": "whyw.ts",
         "module": () => import('@/routes/gov/wuhan/whyw.ts')
-      },
-      "/xuzhou/hrss/:category?": {
-        "path": "/xuzhou/hrss/:category?",
+      }
+    },
+    "apiRoutes": {},
+    "name": "武汉市人民政府",
+    "url": "www.wuhan.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/xinyi": {
+    "routes": {
+      "/:path{.+}": {
+        "path": "/:path{.+}",
+        "name": "通用",
+        "example": "/gov/xinyi/www/zwgk/zcjd",
+        "parameters": {
+          "path": "路径，只填写 `www` 默认为 政务公开 > 政策解读"
+        },
+        "maintainers": [
+          "ShuiHuo"
+        ],
+        "description": "::: tip\n\n路径处填写对应页面 URL 中最前面的部分和域名后的字段。下面是一个例子。\n\n若订阅 [政务公开 > 政策解读](http://www.xinyi.gov.cn/zwgk/zcjd/) 则将对应页面 URL <http://www.xinyi.gov.cn/zwgk/zcjd/> 中 `http://www.xinyi.gov.cn/` 的字段 `www` 和 `zwgk/zcjd/` 作为路径填入。此时路由为 [`/gov/xinyi/www/zwgk/zcjd/`](https://rsshub.app/gov/xinyi/www/zwgk/zcjd/)\n\n:::",
+        "location": "xinyi.ts",
+        "module": () => import('@/routes/gov/xinyi/xinyi.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "信宜市人民政府",
+    "url": "www.xinyi.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/xuzhou": {
+    "routes": {
+      "/hrss/:category?": {
+        "path": "/hrss/:category?",
         "categories": [
           "government"
         ],
@@ -55886,16 +57246,27 @@ export default {
           "supportPodcast": false,
           "supportScihub": false
         },
-        "name": "徐州市人力资源和社会保障局",
+        "name": "人力资源和社会保障局",
         "maintainers": [
           "nczitzk"
         ],
         "description": "| 通知公告 | 要闻动态 | 县区动态 | 事业招聘 | 企业招聘 | 政声传递 |\n| -------- | -------- | -------- | -------- | -------- | -------- |\n|          | 001001   | 001002   | 001004   | 001005   | 001006   |",
-        "location": "xuzhou/hrss.ts",
+        "location": "hrss.ts",
         "module": () => import('@/routes/gov/xuzhou/hrss.ts')
-      },
-      "/zhejiang/gwy/:category?/:column?": {
-        "path": "/zhejiang/gwy/:category?/:column?",
+      }
+    },
+    "apiRoutes": {},
+    "name": "徐州市人民政府",
+    "url": "www.xuzhou.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/zhejiang": {
+    "routes": {
+      "/gwy/:category?/:column?": {
+        "path": "/gwy/:category?/:column?",
         "categories": [
           "government"
         ],
@@ -55919,7 +57290,7 @@ export default {
               "zjks.gov.cn/zjgwy/website/queryDetail.htm",
               "zjks.gov.cn/zjgwy/website/queryMore.htm"
             ],
-            "target": "/zhejiang/gwy"
+            "target": "/gwy"
           }
         ],
         "name": "通知",
@@ -55928,11 +57299,22 @@ export default {
         ],
         "url": "zjks.gov.cn/zjgwy/website/init.htm",
         "description": "| 分类         | id |\n| ------------ | -- |\n| 重要通知     | 1  |\n| 招考公告     | 2  |\n| 招考政策     | 3  |\n| 面试体检考察 | 4  |\n| 录用公示专栏 | 5  |\n\n| 地市         | id    |\n| ------------ | ----- |\n| 浙江省       | 133   |\n| 浙江省杭州市 | 13301 |\n| 浙江省宁波市 | 13302 |\n| 浙江省温州市 | 13303 |\n| 浙江省嘉兴市 | 13304 |\n| 浙江省湖州市 | 13305 |\n| 浙江省绍兴市 | 13306 |\n| 浙江省金华市 | 13307 |\n| 浙江省衢州市 | 13308 |\n| 浙江省舟山市 | 13309 |\n| 浙江省台州市 | 13310 |\n| 浙江省丽水市 | 13311 |\n| 省级单位     | 13317 |",
-        "location": "zhejiang/gwy.ts",
+        "location": "gwy.ts",
         "module": () => import('@/routes/gov/zhejiang/gwy.ts')
-      },
-      "/zhengce/govall/:advance?": {
-        "path": "/zhengce/govall/:advance?",
+      }
+    },
+    "apiRoutes": {},
+    "name": "浙江公务员考试录用",
+    "url": "gwy.zjks.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
+  },
+  "gov/zhengce": {
+    "routes": {
+      "/govall/:advance?": {
+        "path": "/govall/:advance?",
         "categories": [
           "government"
         ],
@@ -55953,7 +57335,7 @@ export default {
             "source": [
               "www.gov.cn/"
             ],
-            "target": "/zhengce/govall"
+            "target": "/govall"
           }
         ],
         "name": "信息稿件",
@@ -55962,19 +57344,18 @@ export default {
         ],
         "url": "www.gov.cn/",
         "description": "|               选项              |                       意义                       |              备注              |\n| :-----------------------------: | :----------------------------------------------: | :----------------------------: |\n|              orpro              |             包含以下任意一个关键词。             |          用空格分隔。          |\n|              allpro             |                包含以下全部关键词                |                                |\n|              notpro             |                 不包含以下关键词                 |                                |\n|              inpro              |                完整不拆分的关键词                |                                |\n|           searchfield           | title: 搜索词在标题中；content: 搜索词在正文中。 |  默认为空，即网页的任意位置。  |\n| pubmintimeYear, pubmintimeMonth |                    从某年某月                    | 单独使用月份参数无法只筛选月份 |\n| pubmaxtimeYear, pubmaxtimeMonth |                    到某年某月                    | 单独使用月份参数无法只筛选月份 |\n|              colid              |                       栏目                       |      比较复杂，不建议使用      |",
-        "location": "zhengce/govall.ts",
+        "location": "govall.ts",
         "module": () => import('@/routes/gov/zhengce/govall.ts')
       },
-      "/zhengce/zuixin": {
-        "path": [
-          "/zhengce/zuixin",
-          "/zhengce/:category{.+}?"
-        ],
+      "/:category{.+}?": {
+        "path": "/:category{.+}?",
         "categories": [
           "government"
         ],
-        "example": "/gov/zhengce/zuixin",
-        "parameters": {},
+        "example": "/gov/zhengce",
+        "parameters": {
+          "category": "分类，见下表，默认为最新"
+        },
         "features": {
           "requireConfig": false,
           "requirePuppeteer": false,
@@ -55986,57 +57367,22 @@ export default {
         "radar": [
           {
             "source": [
-              "www.gov.cn/zhengce/zuixin.htm",
-              "www.gov.cn/"
-            ]
+              "www.gov.cn/zhengce/*category"
+            ],
+            "target": "/:category"
           }
         ],
-        "name": "最新政策",
+        "name": "政策",
         "maintainers": [
-          "SettingDust",
           "nczitzk"
         ],
-        "url": "www.gov.cn/zhengce/zuixin.htm",
-        "location": "zhengce/index.ts",
+        "url": "www.gov.cn/zhengce/",
+        "description": "| 最新政策 | 政策解读 | 图解政策    |\n| -------- | -------- | ----------- |\n| zuixin   | jiedu    | jiedu/tujie |",
+        "location": "index.ts",
         "module": () => import('@/routes/gov/zhengce/index.ts')
       },
-      "/zhengce/:category{.+}?": {
-        "path": [
-          "/zhengce/zuixin",
-          "/zhengce/:category{.+}?"
-        ],
-        "categories": [
-          "government"
-        ],
-        "example": "/gov/zhengce/zuixin",
-        "parameters": {},
-        "features": {
-          "requireConfig": false,
-          "requirePuppeteer": false,
-          "antiCrawler": false,
-          "supportBT": false,
-          "supportPodcast": false,
-          "supportScihub": false
-        },
-        "radar": [
-          {
-            "source": [
-              "www.gov.cn/zhengce/zuixin.htm",
-              "www.gov.cn/"
-            ]
-          }
-        ],
-        "name": "最新政策",
-        "maintainers": [
-          "SettingDust",
-          "nczitzk"
-        ],
-        "url": "www.gov.cn/zhengce/zuixin.htm",
-        "location": "zhengce/index.ts",
-        "module": () => import('@/routes/gov/zhengce/index.ts')
-      },
-      "/zhengce/wenjian/:pcodeJiguan?": {
-        "path": "/zhengce/wenjian/:pcodeJiguan?",
+      "/wenjian/:pcodeJiguan?": {
+        "path": "/wenjian/:pcodeJiguan?",
         "categories": [
           "government"
         ],
@@ -56057,7 +57403,7 @@ export default {
             "source": [
               "www.gov.cn/"
             ],
-            "target": "/zhengce/wenjian"
+            "target": "/wenjian"
           }
         ],
         "name": "最新文件",
@@ -56065,203 +57411,11 @@ export default {
           "ciaranchen"
         ],
         "url": "www.gov.cn/",
-        "location": "zhengce/wenjian.ts",
+        "location": "wenjian.ts",
         "module": () => import('@/routes/gov/zhengce/wenjian.ts')
       },
-      "/zj/ningbogzw-notice/:colId?": {
-        "path": "/zj/ningbogzw-notice/:colId?",
-        "categories": [
-          "government"
-        ],
-        "example": "/gov/zj/ningbogzw-notice/1229116730",
-        "parameters": {
-          "colId": "公告分类id、详细信息点击源网站http://gzw.ningbo.gov.cn/请求中寻找"
-        },
-        "radar": [
-          {
-            "source": [
-              "gzw.ningbo.gov.cn/col/col1229116730/index.html"
-            ],
-            "target": "/zj/ningbogzw-notice/:colId?"
-          }
-        ],
-        "name": "宁波市国资委-公告",
-        "url": "gzw.ningbo.gov.cn",
-        "maintainers": [
-          "HaoyuLee"
-        ],
-        "description": "| 公告类别                           | colId      |\n| ---------------------------------- | ---------- |\n| 首页 - 市属国企招聘信息 - 招聘公告 | 1229116730 |",
-        "location": "zj/ningbogzw-notice.ts",
-        "module": () => import('@/routes/gov/zj/ningbogzw-notice.ts')
-      },
-      "/zj/ningborsjnotice/:colId?": {
-        "path": "/zj/ningborsjnotice/:colId?",
-        "categories": [
-          "government"
-        ],
-        "example": "/gov/zj/ningborsjnotice/1229676740",
-        "parameters": {
-          "colId": "公告分类id、详细信息点击源网站http://rsj.ningbo.gov.cn/请求中寻找"
-        },
-        "radar": [
-          {
-            "source": [
-              "rsj.ningbo.gov.cn/col/col1229676740/index.html"
-            ],
-            "target": "/zj/ningborsjnotice/:colId?"
-          }
-        ],
-        "name": "宁波市人力资源和社会保障局-公告",
-        "url": "rsj.ningbo.gov.cn",
-        "maintainers": [
-          "HaoyuLee"
-        ],
-        "description": "| 公告类别         | colId      |\n| ---------------- | ---------- |\n| 事业单位进人公告 | 1229676740 |",
-        "location": "zj/ningborsjnotice.ts",
-        "module": () => import('@/routes/gov/zj/ningborsjnotice.ts')
-      },
-      "/zj/search/:websiteid?/:word/:cateid?": {
-        "path": "/zj/search/:websiteid?/:word/:cateid?",
-        "categories": [
-          "government"
-        ],
-        "example": "/gov/zj/search",
-        "parameters": {
-          "websiteid": "搜索范围-全省、各市各区、详细信息点击源网站https://www.zj.gov.cn/请求中寻找",
-          "word": "搜索关键词-默认：人才",
-          "cateid": "信息分类-默认：658（全部）",
-          "sortType": "排序类型-默认：2（按时间）"
-        },
-        "radar": [
-          {
-            "source": [
-              "search.zj.gov.cn/jsearchfront/search.do"
-            ],
-            "target": "/zj/search/:websiteid?/:word/:cateid?"
-          }
-        ],
-        "name": "浙江省人民政府-全省政府网站统一搜索",
-        "url": "search.zj.gov.cn/jsearchfront/search.do",
-        "maintainers": [
-          "HaoyuLee"
-        ],
-        "description": "| 行政区域   | websiteid       |\n| ---------- | --------------- |\n| 宁波市本级 | 330201000000000 |\n\n| 排序类型 | sortType |\n| -------- | -------- |\n| 按相关度 | 1        |\n| 按时间   | 2        |",
-        "location": "zj/search.ts",
-        "module": () => import('@/routes/gov/zj/search.ts')
-      },
-      "/ccdi/*": {
-        "path": "/ccdi/*",
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "ccdi/index.ts",
-        "module": () => import('@/routes/gov/ccdi/index.ts')
-      },
-      "/dianbai/*": {
-        "path": "/dianbai/*",
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "dianbai/dianbai.ts",
-        "module": () => import('@/routes/gov/dianbai/dianbai.ts')
-      },
-      "/gaozhou/*": {
-        "path": "/gaozhou/*",
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "gaozhou/gaozhou.ts",
-        "module": () => import('@/routes/gov/gaozhou/gaozhou.ts')
-      },
-      "/huazhou/*": {
-        "path": "/huazhou/*",
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "huazhou/huazhou.ts",
-        "module": () => import('@/routes/gov/huazhou/huazhou.ts')
-      },
-      "/maoming/*": {
-        "path": "/maoming/*",
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "maoming/maoming.ts",
-        "module": () => import('@/routes/gov/maoming/maoming.ts')
-      },
-      "/mgs/*": {
-        "path": "/mgs/*",
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "mgs/mgs.ts",
-        "module": () => import('@/routes/gov/mgs/mgs.ts')
-      },
-      "/mmht/*": {
-        "path": "/mmht/*",
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "mmht/mmht.ts",
-        "module": () => import('@/routes/gov/mmht/mmht.ts')
-      },
-      "/safe/business/:site?": {
-        "path": "/safe/business/:site?",
-        "categories": [
-          "government"
-        ],
-        "example": "/gov/safe/business/beijing",
-        "parameters": {
-          "site": "站点，见上表，默认为 beijing"
-        },
-        "features": {
-          "requireConfig": false,
-          "requirePuppeteer": false,
-          "antiCrawler": false,
-          "supportBT": false,
-          "supportPodcast": false,
-          "supportScihub": false
-        },
-        "name": "业务咨询",
-        "maintainers": [
-          "nczitzk"
-        ],
-        "location": "safe/business.ts",
-        "module": () => import('@/routes/gov/safe/business.ts')
-      },
-      "/safe/complaint/:site?": {
-        "path": "/safe/complaint/:site?",
-        "categories": [
-          "government"
-        ],
-        "example": "/gov/safe/complaint/beijing",
-        "parameters": {
-          "site": "站点，见上表，默认为 beijing"
-        },
-        "features": {
-          "requireConfig": false,
-          "requirePuppeteer": false,
-          "antiCrawler": false,
-          "supportBT": false,
-          "supportPodcast": false,
-          "supportScihub": false
-        },
-        "name": "投诉建议",
-        "maintainers": [
-          "nczitzk"
-        ],
-        "location": "safe/complaint.ts",
-        "module": () => import('@/routes/gov/safe/complaint.ts')
-      },
-      "/sdb/*": {
-        "path": "/sdb/*",
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "sdb/sdb.ts",
-        "module": () => import('@/routes/gov/sdb/sdb.ts')
-      },
-      "/xinyi/*": {
-        "path": "/xinyi/*",
-        "name": "Unknown",
-        "maintainers": [],
-        "location": "xinyi/xinyi.ts",
-        "module": () => import('@/routes/gov/xinyi/xinyi.ts')
-      },
-      "/zhengce/zhengceku/:department": {
-        "path": "/zhengce/zhengceku/:department",
+      "/zhengceku/:department": {
+        "path": "/zhengceku/:department",
         "categories": [
           "government"
         ],
@@ -56277,25 +57431,136 @@ export default {
           "supportPodcast": false,
           "supportScihub": false
         },
-        "name": "国务院政策文件库",
+        "name": "政策文件库",
         "maintainers": [
           "zxx-457"
         ],
-        "location": "zhengce/zhengceku.ts",
+        "location": "zhengceku.ts",
         "module": () => import('@/routes/gov/zhengce/zhengceku.ts')
+      },
+      "/zuixin": {
+        "path": "/zuixin",
+        "categories": [
+          "government"
+        ],
+        "example": "/gov/zhengce/zuixin",
+        "radar": [
+          {
+            "source": [
+              "www.gov.cn/zhengce/zuixin.htm",
+              "www.gov.cn/"
+            ]
+          }
+        ],
+        "name": "最新政策",
+        "maintainers": [
+          "SettingDust",
+          "nczitzk"
+        ],
+        "url": "www.gov.cn/zhengce/zuixin.htm",
+        "location": "zuixin.ts",
+        "module": () => import('@/routes/gov/zhengce/zuixin.ts')
       }
     },
     "apiRoutes": {},
-    "name": "深圳市罗湖区人民政府",
-    "url": "www.szlh.gov.cn",
+    "name": "国务院政策文件库",
+    "url": "www.gov.cn",
     "categories": [
       "government"
     ],
-    "description": "",
-    "lang": "zh-CN",
-    "zh": {
-      "name": "杭州市人民政府"
-    }
+    "lang": "zh-CN"
+  },
+  "gov/zj": {
+    "routes": {
+      "/ningbogzw-notice/:colId?": {
+        "path": "/ningbogzw-notice/:colId?",
+        "categories": [
+          "government"
+        ],
+        "example": "/gov/zj/ningbogzw-notice/1229116730",
+        "parameters": {
+          "colId": "公告分类id、详细信息点击源网站http://gzw.ningbo.gov.cn/请求中寻找"
+        },
+        "radar": [
+          {
+            "source": [
+              "gzw.ningbo.gov.cn/col/col1229116730/index.html"
+            ],
+            "target": "/ningbogzw-notice/:colId?"
+          }
+        ],
+        "name": "宁波市国资委-公告",
+        "url": "gzw.ningbo.gov.cn",
+        "maintainers": [
+          "HaoyuLee"
+        ],
+        "description": "| 公告类别                           | colId      |\n| ---------------------------------- | ---------- |\n| 首页 - 市属国企招聘信息 - 招聘公告 | 1229116730 |",
+        "location": "ningbogzw-notice.ts",
+        "module": () => import('@/routes/gov/zj/ningbogzw-notice.ts')
+      },
+      "/ningborsjnotice/:colId?": {
+        "path": "/ningborsjnotice/:colId?",
+        "categories": [
+          "government"
+        ],
+        "example": "/gov/zj/ningborsjnotice/1229676740",
+        "parameters": {
+          "colId": "公告分类id、详细信息点击源网站http://rsj.ningbo.gov.cn/请求中寻找"
+        },
+        "radar": [
+          {
+            "source": [
+              "rsj.ningbo.gov.cn/col/col1229676740/index.html"
+            ],
+            "target": "/ningborsjnotice/:colId?"
+          }
+        ],
+        "name": "宁波市人力资源和社会保障局-公告",
+        "url": "rsj.ningbo.gov.cn",
+        "maintainers": [
+          "HaoyuLee"
+        ],
+        "description": "| 公告类别         | colId      |\n| ---------------- | ---------- |\n| 事业单位进人公告 | 1229676740 |",
+        "location": "ningborsjnotice.ts",
+        "module": () => import('@/routes/gov/zj/ningborsjnotice.ts')
+      },
+      "/search/:websiteid?/:word/:cateid?": {
+        "path": "/search/:websiteid?/:word/:cateid?",
+        "categories": [
+          "government"
+        ],
+        "example": "/gov/zj/search",
+        "parameters": {
+          "websiteid": "搜索范围-全省、各市各区、详细信息点击源网站https://www.zj.gov.cn/请求中寻找",
+          "word": "搜索关键词-默认：人才",
+          "cateid": "信息分类-默认：658（全部）",
+          "sortType": "排序类型-默认：2（按时间）"
+        },
+        "radar": [
+          {
+            "source": [
+              "search.zj.gov.cn/jsearchfront/search.do"
+            ],
+            "target": "/search/:websiteid?/:word/:cateid?"
+          }
+        ],
+        "name": "全省政府网站统一搜索",
+        "url": "search.zj.gov.cn/jsearchfront/search.do",
+        "maintainers": [
+          "HaoyuLee"
+        ],
+        "description": "| 行政区域   | websiteid       |\n| ---------- | --------------- |\n| 宁波市本级 | 330201000000000 |\n\n| 排序类型 | sortType |\n| -------- | -------- |\n| 按相关度 | 1        |\n| 按时间   | 2        |",
+        "location": "search.ts",
+        "module": () => import('@/routes/gov/zj/search.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "浙江省人民政府",
+    "url": "www.zj.gov.cn",
+    "categories": [
+      "government"
+    ],
+    "lang": "zh-CN"
   },
   "gq": {
     "routes": {
@@ -125419,6 +126684,77 @@ export default {
     "name": "Towards Data Science",
     "url": "towardsdatascience.com",
     "lang": "en"
+  },
+  "tqyb": {
+    "routes": {
+      "/sncsyjxh": {
+        "path": "/sncsyjxh",
+        "categories": [
+          "forecast"
+        ],
+        "example": "/tqyb/sncsyjxh",
+        "parameters": {},
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.tqyb.com.cn/gz/weatherAlarm/otherCity/"
+            ]
+          }
+        ],
+        "name": "广东省内城市预警信号",
+        "maintainers": [
+          "Fatpandac"
+        ],
+        "url": "www.tqyb.com.cn/gz/weatherAlarm/otherCity/",
+        "location": "sncsyjxh.tsx",
+        "module": () => import('@/routes/tqyb/sncsyjxh.tsx')
+      },
+      "/tfxtq": {
+        "path": "/tfxtq",
+        "categories": [
+          "forecast"
+        ],
+        "example": "/tqyb/tfxtq",
+        "parameters": {},
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.tqyb.com.cn/gz/weatherAlarm/suddenWeather/"
+            ]
+          }
+        ],
+        "name": "突发性天气提示",
+        "maintainers": [
+          "Fatpandac"
+        ],
+        "url": "www.tqyb.com.cn/gz/weatherAlarm/suddenWeather/",
+        "location": "tfxtq.tsx",
+        "module": () => import('@/routes/tqyb/tfxtq.tsx')
+      }
+    },
+    "apiRoutes": {},
+    "name": "广东天气",
+    "url": "www.tqyb.com.cn",
+    "categories": [
+      "forecast"
+    ],
+    "lang": "zh-CN"
   },
   "tradingview": {
     "routes": {
