@@ -2869,7 +2869,7 @@
         "categories": [
           "programming"
         ],
-        "example": "/category/css/interactivity",
+        "example": "/30secondsofcode/category/css/interactivity",
         "parameters": {
           "category": {
             "description": "Main Category. For Complete list visit site \"https://www.30secondsofcode.org/collections/p/1/\"",
@@ -2925,7 +2925,7 @@
         "categories": [
           "programming"
         ],
-        "example": "/latest",
+        "example": "/30secondsofcode/latest",
         "features": {
           "requireConfig": false,
           "requirePuppeteer": false,
@@ -5594,7 +5594,7 @@
     "routes": {
       "/:category{.+}?": {
         "path": "/:category{.+}?",
-        "example": "/wa",
+        "example": "/abc/wa",
         "radar": [
           {
             "source": [
@@ -6096,7 +6096,7 @@
         "categories": [
           "anime"
         ],
-        "example": "/news",
+        "example": "/acgvinyl/news",
         "features": {
           "requireConfig": false,
           "requirePuppeteer": false,
@@ -8466,9 +8466,7 @@
         "module": "() => import('@/routes/air-level/index.ts')"
       },
       "/rank/:status?": {
-        "path": [
-          "/rank/:status?"
-        ],
+        "path": "/rank/:status?",
         "radar": [
           {
             "source": [
@@ -12693,9 +12691,7 @@
         "module": "() => import('@/routes/baai/events.ts')"
       },
       "/hub/:tagId?/:sort?/:range?": {
-        "path": [
-          "/hub/:tagId?/:sort?/:range?"
-        ],
+        "path": "/hub/:tagId?/:sort?/:range?",
         "categories": [
           "programming"
         ],
@@ -19420,7 +19416,7 @@
           "social-media"
         ],
         "view": 1,
-        "example": "/bsky.app/profile/jaz.bsky.social/feed/cv:cat",
+        "example": "/bsky/profile/jaz.bsky.social/feed/cv:cat",
         "parameters": {
           "handle": "User handle, can be found in URL",
           "space": "Space ID, can be found in URL"
@@ -21202,9 +21198,7 @@
   "cara": {
     "routes": {
       "/likes/:user": {
-        "path": [
-          "/likes/:user"
-        ],
+        "path": "/likes/:user",
         "categories": [
           "social-media"
         ],
@@ -21229,9 +21223,7 @@
         "module": "() => import('@/routes/cara/likes.ts')"
       },
       "/portfolio/:user": {
-        "path": [
-          "/portfolio/:user"
-        ],
+        "path": "/portfolio/:user",
         "categories": [
           "social-media"
         ],
@@ -21256,9 +21248,7 @@
         "module": "() => import('@/routes/cara/portfolio.ts')"
       },
       "/timeline/:user": {
-        "path": [
-          "/timeline/:user"
-        ],
+        "path": "/timeline/:user",
         "categories": [
           "social-media"
         ],
@@ -26086,7 +26076,7 @@
         "categories": [
           "travel"
         ],
-        "example": "/zx/xingnew",
+        "example": "/chnmuseum/zx/xingnew",
         "parameters": {},
         "features": {
           "requireConfig": false,
@@ -26116,7 +26106,7 @@
         "categories": [
           "travel"
         ],
-        "example": "/zx/xwzt",
+        "example": "/chnmuseum/zx/xwzt",
         "parameters": {},
         "features": {
           "requireConfig": false,
@@ -27601,9 +27591,7 @@
     "routes": {
       "/category/:id": {
         "name": "分类",
-        "path": [
-          "/category/:id"
-        ],
+        "path": "/category/:id",
         "example": "/cnbeta/category/movie",
         "maintainers": [
           "nczitzk"
@@ -27625,9 +27613,7 @@
       },
       "/": {
         "name": "头条资讯",
-        "path": [
-          "/"
-        ],
+        "path": "/",
         "example": "/cnbeta",
         "radar": [
           {
@@ -27647,9 +27633,7 @@
       },
       "/topics/:id": {
         "name": "主题",
-        "path": [
-          "/topics/:id"
-        ],
+        "path": "/topics/:id",
         "example": "/cnbeta/topics/453",
         "maintainers": [
           "cczhong11",
@@ -29145,9 +29129,7 @@
   "cohere": {
     "routes": {
       "/blog": {
-        "path": [
-          "/blog"
-        ],
+        "path": "/blog",
         "name": "Blog",
         "url": "cohere.com/blog",
         "maintainers": [
@@ -29874,9 +29856,7 @@
         "module": "() => import('@/routes/coolapk/toutiao.ts')"
       },
       "/tuwen/:type?": {
-        "path": [
-          "/tuwen/:type?"
-        ],
+        "path": "/tuwen/:type?",
         "categories": [
           "social-media"
         ],
@@ -33923,7 +33903,7 @@
         "categories": [
           "new-media"
         ],
-        "example": "/articles/9",
+        "example": "/dedao/articles/9",
         "parameters": {
           "id": "文章类型 ID，8 为得到头条，9 为得到精选，默认为 8"
         },
@@ -36787,9 +36767,7 @@
         "maintainers": [
           "Rjnishant530"
         ],
-        "path": [
-          "/:category"
-        ],
+        "path": "/:category",
         "example": "/dnaindia/headlines",
         "parameters": {
           "category": "Find it in the URL, or tables below"
@@ -36811,9 +36789,7 @@
         "maintainers": [
           "Rjnishant530"
         ],
-        "path": [
-          "/topic/:topic"
-        ],
+        "path": "/topic/:topic",
         "example": "/dnaindia/topic/dna-verified",
         "parameters": {
           "category": "Find it in the URL"
@@ -48629,7 +48605,7 @@
         "categories": [
           "new-media"
         ],
-        "example": "/gis/c/security-challenges/",
+        "example": "/gisreportsonline/gis/c/security-challenges/",
         "parameters": {
           "path": "包含\"Reports\"页面下的路径"
         },
@@ -59574,7 +59550,7 @@
         "categories": [
           "blog"
         ],
-        "example": "/posts/walnut",
+        "example": "/hedwig/posts/walnut",
         "parameters": {
           "site": "站点名，原则上只要是 `{site}.hedwig.pub` 都可以匹配"
         },
@@ -63419,15 +63395,13 @@
         "module": "() => import('@/routes/hupu/index.ts')"
       },
       "/news/:team": {
-        "path": [
-          "/news/:team"
-        ],
+        "path": "/news/:team",
         "name": "队伍新闻",
         "url": "m.hupu.com",
         "maintainers": [
           "hyoban"
         ],
-        "example": "/news/Spurs",
+        "example": "/hupu/news/Spurs",
         "parameters": {
           "team": {
             "description": "全小写的英文队名，例如：spurs, lakers, warriors 等等"
@@ -64993,9 +64967,7 @@
   "idaily": {
     "routes": {
       "/:language?": {
-        "path": [
-          "/:language?"
-        ],
+        "path": "/:language?",
         "name": "每日环球视野",
         "example": "/idaily",
         "maintainers": [
@@ -72816,7 +72788,7 @@
         "maintainers": [
           "nczitzk"
         ],
-        "example": "/chinese",
+        "example": "/joins/chinese",
         "parameters": {
           "category": "分类，默认为空，可在对应分类页 URL 中找到 `sc_section_code`"
         },
@@ -74990,7 +74962,7 @@
         "categories": [
           "game"
         ],
-        "example": "/blog/DLC",
+        "example": "/kisskiss/blog/DLC",
         "parameters": {
           "category": "category"
         },
@@ -85882,7 +85854,7 @@
         "categories": [
           "traditional-media"
         ],
-        "example": "/zh-tw/Bloomberg/sr-vid-08gw7ky4u229xjsjvnf4n6n7v67gxm0pjmv9fr4y2x9jjmwcri4s",
+        "example": "/msn/zh-tw/Bloomberg/sr-vid-08gw7ky4u229xjsjvnf4n6n7v67gxm0pjmv9fr4y2x9jjmwcri4s",
         "description": "MSN News",
         "features": {
           "requireConfig": false,
@@ -93635,7 +93607,7 @@
           "supportPodcast": false,
           "supportScihub": false
         },
-        "example": "/college/csse/2435",
+        "example": "/nwnu/college/csse/2435",
         "radar": [
           {
             "source": [
@@ -93666,7 +93638,7 @@
           "supportPodcast": false,
           "supportScihub": false
         },
-        "example": "/department/academic-affairs/tzgg",
+        "example": "/nwnu/department/academic-affairs/tzgg",
         "radar": [
           {
             "source": [
@@ -93697,7 +93669,7 @@
           "supportPodcast": false,
           "supportScihub": false
         },
-        "example": "/department/postgraduate/2701",
+        "example": "/nwnu/department/postgraduate/2701",
         "radar": [
           {
             "source": [
@@ -104507,9 +104479,7 @@
         "module": "() => import('@/routes/qq/kg/user.ts')"
       },
       "/pd/guild/:id/:sub?/:sort?": {
-        "path": [
-          "/pd/guild/:id/:sub?/:sort?"
-        ],
+        "path": "/pd/guild/:id/:sub?/:sort?",
         "categories": [
           "bbs"
         ],
@@ -107508,9 +107478,7 @@
         "module": "() => import('@/routes/sankei/news.ts')"
       },
       "/topics/:topic": {
-        "path": [
-          "/topics/:topic"
-        ],
+        "path": "/topics/:topic",
         "categories": [
           "traditional-media"
         ],
@@ -111975,9 +111943,7 @@
         "module": "() => import('@/routes/shu/index.ts')"
       },
       "/jwb/:type?": {
-        "path": [
-          "/jwb/:type?"
-        ],
+        "path": "/jwb/:type?",
         "radar": [
           {
             "source": [
@@ -112000,7 +111966,7 @@
         "categories": [
           "journal"
         ],
-        "example": "/journals/society/current",
+        "example": "/shu/journals/society/current",
         "features": {
           "requireConfig": false,
           "requirePuppeteer": false,
@@ -112370,7 +112336,7 @@
         "categories": [
           "sport"
         ],
-        "example": "/sports",
+        "example": "/sina/sports",
         "parameters": {
           "type": "类别"
         },
@@ -116321,9 +116287,7 @@
   "stanford": {
     "routes": {
       "/hazyresearch/blog": {
-        "path": [
-          "/hazyresearch/blog"
-        ],
+        "path": "/hazyresearch/blog",
         "categories": [
           "blog"
         ],
@@ -116901,7 +116865,7 @@
         "maintainers": [
           "keocheung"
         ],
-        "example": "/news/958260/english",
+        "example": "/steam/news/958260/english",
         "parameters": {
           "appid": "Game App ID, all digits, can be found in the URL",
           "language": "Language, english by default, see below for more languages"
@@ -126754,7 +126718,7 @@
         "categories": [
           "blog"
         ],
-        "example": "/latest",
+        "example": "/towardsdatascience/latest",
         "radar": [
           {
             "source": [
@@ -136064,9 +136028,7 @@
   "ximalaya": {
     "routes": {
       "/:type/:id/:all/:shownote?": {
-        "path": [
-          "/:type/:id/:all/:shownote?"
-        ],
+        "path": "/:type/:id/:all/:shownote?",
         "categories": [
           "multimedia"
         ],
