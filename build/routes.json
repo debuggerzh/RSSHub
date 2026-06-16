@@ -38060,15 +38060,14 @@
         "location": "other/replies.ts",
         "module": "() => import('@/routes/douban/other/replies.ts')"
       },
-      "/people/:userid/wish/:routeParams?": {
-        "path": "/people/:userid/wish/:routeParams?",
+      "/people/:userid/wish": {
+        "path": "/people/:userid/wish",
         "categories": [
           "social-media"
         ],
         "example": "/douban/people/exherb/wish",
         "parameters": {
-          "userid": "用户id",
-          "routeParams": "额外参数；见下"
+          "userid": "用户id"
         },
         "features": {
           "requireConfig": false,
@@ -38082,7 +38081,6 @@
         "maintainers": [
           "exherb"
         ],
-        "description": "对于豆瓣用户想看的内容，在 `routeParams` 参数中以 query string 格式设置如下选项可以控制输出的样式\n\n| 键         | 含义       | 接受的值 | 默认值 |\n| ---------- | ---------- | -------- | ------ |\n| pagesCount | 查询页面数 |          | 1      |",
         "location": "people/wish.ts",
         "module": "() => import('@/routes/douban/people/wish.ts')"
       }
@@ -46684,12 +46682,62 @@
           "supportPodcast": false,
           "supportScihub": false
         },
-        "radar": [],
+        "radar": [
+          {
+            "title": "热点图文",
+            "source": [
+              "www.gamersky.com/ent"
+            ],
+            "target": "/ent/all"
+          },
+          {
+            "title": "趣囧时间",
+            "source": [
+              "www.gamersky.com/ent/qw"
+            ],
+            "target": "/ent/qw"
+          },
+          {
+            "title": "游民影院",
+            "source": [
+              "www.gamersky.com/wenku/movie"
+            ],
+            "target": "/ent/movie"
+          },
+          {
+            "title": "游观天下",
+            "source": [
+              "www.gamersky.com/ent/discovery"
+            ],
+            "target": "/ent/discovery"
+          },
+          {
+            "title": "壁纸图库",
+            "source": [
+              "www.gamersky.com/ent/wp"
+            ],
+            "target": "/ent/wp"
+          },
+          {
+            "title": "游民盘点",
+            "source": [
+              "www.gamersky.com/wenku"
+            ],
+            "target": "/ent/wenku"
+          },
+          {
+            "title": "游民福利",
+            "source": [
+              "www.gamersky.com/ent/xz"
+            ],
+            "target": "/ent/xz"
+          }
+        ],
         "name": "娱乐",
         "maintainers": [
           "LogicJake"
         ],
-        "description": "|\n|\n|\n",
+        "description": "|all|qw|movie|discovery|wp|wenku|xz|\n|---|---|---|---|---|---|---|\n|热点图文|趣囧时间|游民影院|游观天下|壁纸图库|游民盘点|游民福利|\n",
         "location": "ent.ts",
         "module": "() => import('@/routes/gamersky/ent.ts')"
       },
