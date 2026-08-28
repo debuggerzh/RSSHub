@@ -1,7 +1,7 @@
 import { load } from 'cheerio';
 import iconv from 'iconv-lite';
 
-import type { Route } from '@/types';
+import type { Language, Route } from '@/types';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 
@@ -19,7 +19,7 @@ export const handler = async (ctx) => {
 
     const $ = load(iconv.decode(currentResponse, 'gbk'));
 
-    const language = $('html').prop('lang');
+    const language = $('html').prop('lang') as Language;
 
     const { data: response } = await got(apiUrl, {
         searchParams: {

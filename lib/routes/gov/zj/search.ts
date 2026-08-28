@@ -59,23 +59,23 @@ export const route: Route = {
                 const title = $('.titleWrapper>a');
                 const footer = $('.sourceTime>span');
                 return {
-                    title: title.text().trim() || '',
+                    title: title.text().trim(),
                     link: title.attr('href') || '',
-                    pubDate: parseDate(footer.eq(1).text().trim().replace('时间:', '')) || '',
-                    author: footer.eq(0).text().trim().replace('来源:', '') || '',
-                    description: $('.newsDescribe>a').text() || '',
+                    pubDate: parseDate(footer.eq(1).text().replace('时间:', '')) || '',
+                    author: footer.eq(0).text().trim().replace('来源:', ''),
+                    description: $('.newsDescribe>a').text(),
                 };
             }) || [];
-        const res = {};
+        const res = new Map<string, DataItem>();
         for (const current of items) {
-            if (!Object.hasOwn(res, current.link)) {
-                res[current.link] = current;
+            if (!res.has(current.link)) {
+                res.set(current.link, current);
             }
         }
         return {
             title: '浙江省人民政府-全省政府网站统一搜索',
             link: 'https://search.zj.gov.cn/jsearchfront/search.do',
-            item: Object.values(res).map((value) => value) as DataItem[],
+            item: res.values().toArray(),
         };
     },
 };

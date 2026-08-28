@@ -1,7 +1,7 @@
 import { load } from 'cheerio';
 import pMap from 'p-map';
 
-import type { Route } from '@/types';
+import type { DataItem, Language, Route } from '@/types';
 import { ViewType } from '@/types';
 import got from '@/utils/got';
 
@@ -53,7 +53,7 @@ async function handler(ctx) {
             title: $(e).find('span.PagePromoContentIcons-text').text(),
             link: $(e).find('a').attr('href'),
         }))
-        .filter((e) => typeof e.link === 'string');
+        .filter((e) => e.link !== undefined);
 
     const items = ctx.req.query('fulltext') === 'true' ? await pMap(list, (item) => fetchArticle(item), { concurrency: 10 }) : list;
 
@@ -61,7 +61,7 @@ async function handler(ctx) {
         title: $('title').text(),
         description: $("meta[property='og:description']").text(),
         link: url,
-        item: removeDuplicateByKey(items, 'link'),
-        language: $('html').attr('lang'),
+        item: removeDuplicateByKey(items, 'link') as DataItem[],
+        language: $('html').attr('lang') as Language,
     };
 }

@@ -32,7 +32,7 @@ async function handler() {
 
     return {
         title: 'DevolverDigital Blog',
-        language: 'en-us',
+        language: 'en-us' as const,
         link: 'https://www.devolverdigital.com/blog',
         item: items,
     };

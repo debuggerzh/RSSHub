@@ -1,6 +1,6 @@
 import { load } from 'cheerio';
 
-import type { Route } from '@/types';
+import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
@@ -63,27 +63,31 @@ async function handler(ctx) {
     const feed = await parser.parseURL(url);
     const items = await Promise.all(
         feed.items.map((item) =>
-            cache.tryGet(item.link, async () => {
-                item.pubDate = lang === 'ko' ? parseDate(item.pubDate) : timezone(parseDate(item.pubDate), +9); // Timezone is only included in the pubDate of the Korean language RSS
+            cache.tryGet<DataItem>(item.link!, async () => {
                 const response = await got(item.link);
                 const $ = load(response.data);
-                item.author =
-                    item.creator ??
-                    $('.tit-name')
-                        .toArray()
-                        .map((c) => $(c).text())
-                        .join(', ');
                 const article = $('article.story-news');
                 article.find('.related-group').remove();
                 article.find('.writer-zone01').remove();
-                item.description = article.html();
-                return item;
+
+                return {
+                    title: item.title!,
+                    link: item.link,
+                    pubDate: lang === 'ko' ? parseDate(item.pubDate!) : timezone(parseDate(item.pubDate!), 9),
+                    author:
+                        item.creator ??
+                        $('.tit-name')
+                            .toArray()
+                            .map((c) => $(c).text())
+                            .join(', '),
+                    description: article.html(),
+                };
             })
         )
     );
 
     return {
-        title: feed.title,
+        title: feed.title!,
         link: feed.link,
         description: feed.description,
         language: feed.language ?? lang,

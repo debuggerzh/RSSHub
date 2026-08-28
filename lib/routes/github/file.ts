@@ -32,10 +32,7 @@ async function handler(ctx) {
 
     const fileUrl = `https://github.com/${user}/${repo}/commits/${branch}/${filepath}`;
 
-    const headers = {};
-    if (config.github && config.github.access_token) {
-        headers.Authorization = `token ${config.github.access_token}`;
-    }
+    const headers = config.github && config.github.access_token ? { Authorization: `token ${config.github.access_token}` } : {};
     const res = await got.get(`https://api.github.com/repos/${user}/${repo}/commits`, {
         searchParams: queryString.stringify({
             sha: branch,
@@ -44,7 +41,7 @@ async function handler(ctx) {
         headers,
     });
     const list = res.data;
-    const count = [];
+    const count: number[] = [];
     for (let i = 0; i < Math.min(list.length, 10); i++) {
         count.push(i);
     }

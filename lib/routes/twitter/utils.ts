@@ -42,7 +42,31 @@ const formatText = (item) => {
     return text.trim().replaceAll('\n', '<br>');
 };
 
-const ProcessFeed = (ctx, { data = [] }, params = {}) => {
+interface ProcessFeedParams {
+    readable?: boolean;
+    authorNameBold?: boolean;
+    showAuthorInTitle?: boolean;
+    showAuthorAsTitleOnly?: boolean;
+    showAuthorInDesc?: boolean;
+    showQuotedAuthorAvatarInDesc?: boolean;
+    showAuthorAvatarInDesc?: boolean;
+    showEmojiForRetweetAndReply?: boolean;
+    showSymbolForRetweetAndReply?: boolean;
+    showRetweetTextInTitle?: boolean;
+    addLinkForPics?: boolean;
+    showTimestampInDescription?: boolean;
+    showQuotedInTitle?: boolean;
+    widthOfPics?: number;
+    heightOfPics?: number;
+    sizeOfAuthorAvatar?: number;
+    sizeOfQuotedAuthorAvatar?: number;
+    mediaNumber?: number | boolean;
+    showEmojiForSubscriberOnly?: boolean;
+    showSymbolForSubscriberOnly?: boolean;
+    showFullPrefixForSubscriberOnly?: boolean;
+}
+
+const ProcessFeed = (ctx, { data = [] }: { data?: any[] }, params: ProcessFeedParams = {}) => {
     // undefined and strings like "exclude_rts_replies" is also safely parsed, so no if branch is needed
     const routeParams = new URLSearchParams(ctx.req.param('routeParams'));
 
@@ -71,8 +95,6 @@ const ProcessFeed = (ctx, { data = [] }, params = {}) => {
         showFullPrefixForSubscriberOnly: fallback(params.showFullPrefixForSubscriberOnly, queryToBoolean(routeParams.get('showFullPrefixForSubscriberOnly')), false),
     };
 
-    params = mergedParams;
-
     const {
         readable,
         authorNameBold,
@@ -95,11 +117,11 @@ const ProcessFeed = (ctx, { data = [] }, params = {}) => {
         heightOfPics,
         sizeOfAuthorAvatar,
         sizeOfQuotedAuthorAvatar,
-    } = params;
+    } = mergedParams;
 
     const formatVideo = (media, extraAttrs = '') => {
         let content = '';
-        let bestVideo = null;
+        let bestVideo: any = null;
 
         for (const item of media.video_info.variants) {
             if (!bestVideo || (item.bitrate || 0) > (bestVideo.bitrate || -Infinity)) {
@@ -212,7 +234,7 @@ const ProcessFeed = (ctx, { data = [] }, params = {}) => {
         }
         const originalItem = item;
         item = item.retweeted_status || item;
-        item.full_text = item.full_text || item.text;
+        item.full_text ||= item.text;
         item.full_text = formatText(item);
         const img = formatMedia(item);
         let picsPrefix = generatePicsPrefix(item);
@@ -224,7 +246,7 @@ const ProcessFeed = (ctx, { data = [] }, params = {}) => {
             const quoteData = item.quoted_status;
 
             if (quoteData?.user) {
-                quoteData.full_text = quoteData.full_text || quoteData.text;
+                quoteData.full_text ||= quoteData.text;
                 const author = quoteData.user;
                 if (!readable) {
                     quote += quoteSeparator;
@@ -389,7 +411,7 @@ const ProcessFeed = (ctx, { data = [] }, params = {}) => {
 
         description += item.full_text;
         // 从 description 提取 话题作为 category，放在此处是为了避免 匹配到 quote 中的 # 80808030 颜色字符
-        const category = description.match(/(\s)?(#[^\s;<]+)/g)?.map((e) => e?.match(/#([^\s<]+)/)?.[1]);
+        const category = description.match(/(\s)?(#[^\s;<]+)/g)?.map((e) => e?.match(/#([^\s<]+)/)?.[1]) as string[] | undefined;
         description += img;
         description += quote;
         if (readable) {
@@ -477,7 +499,7 @@ const parseRouteParams = (routeParams) => {
 
         default: {
             const parsed = new URLSearchParams(routeParams);
-            count = fallback(undefined, queryToInteger(parsed.get('count')));
+            count = fallback(undefined, queryToInteger(parsed.get('count')), undefined);
             include_replies = fallback(undefined, queryToBoolean(parsed.get('includeReplies')), false);
             include_rts = fallback(undefined, queryToBoolean(parsed.get('includeRts')), true);
             force_web_api = fallback(undefined, queryToBoolean(parsed.get('forceWebApi')), false);
@@ -488,7 +510,7 @@ const parseRouteParams = (routeParams) => {
 };
 
 export const excludeRetweet = function (tweets) {
-    const excluded = [];
+    const excluded: any[] = [];
     for (const t of tweets) {
         if (t.retweeted_status) {
             continue;
@@ -502,6 +524,8 @@ export const keepOnlyMedia = function (tweets) {
     const excluded = tweets.filter((t) => t.extended_entities && t.extended_entities.media);
     return excluded;
 };
+
+export const getTwitterUserCacheKey = (id: string, operationName: string, params: Record<string, string | number | boolean | undefined> | undefined) => `twitter:${id}:${operationName}:${JSON.stringify(params)}`;
 
 export default {
     ProcessFeed,

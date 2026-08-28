@@ -198,9 +198,9 @@ export async function getGameStatus(matchID: string): Promise<string | null> {
             matchId: matchID,
         },
     });
-    const data = res.data;
+    const data: { result?: GameStatusResult } | null = res.data;
     if (data?.result && data.result.playerStats && data.result.matchStats && data.result.teamStats) {
-        const html = generateGameStatusHtml(data.result as GameStatusResult);
+        const html = generateGameStatusHtml(data.result);
         return html;
     }
     return null;
@@ -250,7 +250,7 @@ export function getEntryDetails(item: DataItem): Promise<DataItem> {
                 processedDateString = `${currentYear}-${month}-${day} ${pubDateString}`;
             }
 
-            const pubDate = [item.pubDate, timezone(parseDate(processedDateString), +8), timezone(parseRelativeDate(pubDateString), +8)].find((d) => d instanceof Date && !Number.isNaN(d.getTime()));
+            const pubDate = [item.pubDate, timezone(parseDate(processedDateString), 8), timezone(parseRelativeDate(pubDateString), 8)].find((d) => d instanceof Date && !Number.isNaN(d.getTime()));
             const categories = content('.basketballTobbs_tag > a, .tag-player-team')
                 .toArray()
                 .map((c) => content(c).text())

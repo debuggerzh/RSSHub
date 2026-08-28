@@ -83,7 +83,7 @@ async function handler(ctx) {
     }
 
     const response = await ofetch(apiUrl);
-    const isApi = typeof response === 'object' && Array.isArray(response);
+    const isApi = Array.isArray(response);
     const $ = load(response);
 
     let list;
@@ -122,11 +122,11 @@ async function handler(ctx) {
             .toArray()
             .slice(0, limit)
             .map((item) => {
-                item = $(item);
+                const $item = $(item);
 
                 return {
-                    title: item.text(),
-                    link: `${rootUrl}${item.parent().parent().attr('href')}`,
+                    title: $item.text(),
+                    link: `${rootUrl}${$item.parent().parent().attr('href')}`,
                 };
             });
     }

@@ -9,7 +9,7 @@ import timezone from '@/utils/timezone';
 const host = 'https://www.cs.sjtu.edu.cn';
 const ajaxUrl = `${host}/active/ajax_type_list.html`;
 
-const categoryMap: Record<string, { name: string; code: string }> = {
+const categoryMap = {
     bkspy: { name: '本科生培养', code: 'notice-xssw-bkspy' },
     yjspy: { name: '研究生培养', code: 'notice-xssw-yjspy' },
     gjjl: { name: '国际交流', code: 'notice-xssw-gjjl' },
@@ -59,34 +59,21 @@ function enrichItem(item: ListItem): Promise<DataItem> {
         const $body = $('div.xw-cont');
         const $txt = $body.find('.txt');
 
-        $txt.find('img').each((_, e) => {
-            const src = $(e).attr('src') || $(e).attr('_src');
-            if (src) {
-                $(e).attr('src', absolutize(src));
-            }
-        });
-        $txt.find('a').each((_, e) => {
-            const href = $(e).attr('href');
-            if (href) {
-                $(e).attr('href', absolutize(href));
-            }
-        });
-
         const publishedText = $body.find('.jj p').first().text();
         const publishedMatch = publishedText.match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
         let pubDate: Date | undefined;
         if (publishedMatch) {
             const [, y, m, d] = publishedMatch;
-            pubDate = timezone(parseDate(`${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`, 'YYYY-MM-DD'), +8);
+            pubDate = timezone(parseDate(`${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`, 'YYYY-MM-DD'), 8);
         }
 
         return {
             title: item.title,
             link: item.link,
-            description: $txt.html() ?? '',
-            pubDate: pubDate ?? timezone(parseDate(item.date, 'YYYY-MM-DD'), +8),
+            description: $txt.html(),
+            pubDate: pubDate ?? timezone(parseDate(item.date, 'YYYY-MM-DD'), 8),
         };
-    }) as Promise<DataItem>;
+    });
 }
 
 export const route: Route = {
@@ -147,7 +134,7 @@ async function handler(ctx): Promise<Data> {
             : {
                   title: items[index].title,
                   link: items[index].link,
-                  pubDate: timezone(parseDate(items[index].date, 'YYYY-MM-DD'), +8),
+                  pubDate: timezone(parseDate(items[index].date, 'YYYY-MM-DD'), 8),
               }
     );
 

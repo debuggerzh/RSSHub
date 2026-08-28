@@ -19,7 +19,7 @@ type WordpressPost = {
 
 const ROOT_URL = 'https://www.hudsonrivertrading.com';
 
-const SECTION_LABELS: Record<string, string> = {
+const SECTION_LABELS = {
     algo: 'Algorithm',
     engineers: 'Engineering',
     interns: 'Intern Spotlight',
@@ -27,7 +27,7 @@ const SECTION_LABELS: Record<string, string> = {
 };
 
 // Find the category IDs at https://www.hudsonrivertrading.com/wp-json/wp/v2/categories
-const SECTION_CATEGORY_IDS: Record<string, number> = {
+const SECTION_CATEGORY_IDS = {
     algo: 7,
     engineers: 11,
     interns: 16,
@@ -74,7 +74,7 @@ async function handler(ctx): Promise<Data> {
     const apiBase = `${ROOT_URL}/wp-json/wp/v2`;
 
     // Build query using fixed category IDs
-    let categoriesQuery: undefined | { include?: number; exclude?: number[] };
+    let categoriesQuery: { include?: number; exclude?: number[] } | undefined;
     if (sectionParam) {
         if (Object.hasOwn(SECTION_CATEGORY_IDS, sectionParam)) {
             categoriesQuery = { include: SECTION_CATEGORY_IDS[sectionParam] };

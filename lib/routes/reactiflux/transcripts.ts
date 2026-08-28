@@ -1,6 +1,6 @@
 import { load } from 'cheerio';
 
-import type { Route } from '@/types';
+import type { Language, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
@@ -32,7 +32,7 @@ export async function handler(ctx) {
     const $ = load(response);
 
     const author = 'Reactiflux';
-    const language = 'en';
+    const language: Language = 'en';
     const image = $('meta[property="og:image"]').prop('content');
 
     let items =

@@ -37,7 +37,7 @@ async function handler(ctx) {
 
     return {
         title: 'Obsidian Publish',
-        language: 'en-us',
+        language: 'en-us' as const,
         item: items,
         link: 'https://publish.obsidian.md/',
     };
@@ -79,7 +79,7 @@ async function fetchPage(id: string) {
 
             return item;
         })
-        .filter(Boolean) as DataItem[];
+        .filter((item) => item !== null);
 
     return items;
 }

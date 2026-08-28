@@ -2,7 +2,7 @@ import type { CheerioAPI } from 'cheerio';
 import { load } from 'cheerio';
 import type { Context } from 'hono';
 
-import type { Data, DataItem, Route } from '@/types';
+import type { Data, DataItem, Language, Route } from '@/types';
 import { ViewType } from '@/types';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
@@ -12,14 +12,6 @@ const createSearchParams = (queryString: string, limit: number = 30): URLSearchP
     params.set('offset', '0');
     params.set('limit', limit.toString());
     return params;
-};
-
-const searchParamsToObject = (searchParams: URLSearchParams): Record<string, string> => {
-    const obj: Record<string, string> = {};
-    for (const [key, value] of searchParams) {
-        obj[key] = value;
-    }
-    return obj;
 };
 
 export const handler = async (ctx: Context): Promise<Data> => {
@@ -36,7 +28,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
     // Reason: explicit Accept header needed because RSSHub's ofetch auto-generates
     // browser-like Accept headers, causing the API to return HTML via content negotiation
     const response = await ofetch(apiUrl, {
-        query: searchParamsToObject(params),
+        query: Object.fromEntries(params),
         headers: {
             Accept: 'application/json',
         },
@@ -44,11 +36,11 @@ export const handler = async (ctx: Context): Promise<Data> => {
 
     const targetResponse = await ofetch(targetUrl);
     const $: CheerioAPI = load(targetResponse);
-    const language = $('html').attr('lang') ?? 'en';
+    const language = ($('html').attr('lang') ?? 'en') as Language;
 
-    const items: DataItem[] = (response.results ?? []).slice(0, limit).map((item): DataItem => {
+    const items: DataItem[] = response.results.slice(0, limit).map((item): DataItem => {
         const title: string = item.title;
-        const description: string | undefined = item.latest_event?.description ?? undefined;
+        const description: string | undefined = item.latest_event?.description;
         const pubDate: number | string = item.latest_event?.date;
         const linkUrl: string | undefined = item.slug ? `change/${item.slug}` : undefined;
         const categories: string[] = [
@@ -60,12 +52,11 @@ export const handler = async (ctx: Context): Promise<Data> => {
                 item.type?.name,
             ]),
         ].filter(Boolean);
-        const authors: DataItem['author'] =
-            item.implementers?.map((author) => ({
-                name: author.name,
-                url: undefined,
-                avatar: undefined,
-            })) ?? undefined;
+        const authors: DataItem['author'] = item.implementers?.map((author) => ({
+            name: author.name,
+            url: undefined,
+            avatar: undefined,
+        }));
         const updated: number | string = pubDate;
 
         const processedItem: DataItem = {
@@ -92,7 +83,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
         link: targetUrl,
         item: items,
         allowEmpty: true,
-        image: $('meta[property="og:image"]').attr('content') ? new URL($('meta[property="og:image"]').attr('content'), baseUrl).href : undefined,
+        image: $('meta[property="og:image"]').attr('content') ? new URL($('meta[property="og:image"]').attr('content')!, baseUrl).href : undefined,
         author: $('meta[property="og:site_name"]').attr('content'),
         language,
         id: $('meta[property="og:url"]').attr('content'),

@@ -1,6 +1,6 @@
 import { load } from 'cheerio';
 
-import type { Route } from '@/types';
+import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
@@ -34,14 +34,13 @@ export const route: Route = {
 async function handler() {
     const url = `${rootUrl}/gzcy/yjzj/index.html`;
 
-    const cookieResponse = await got(url);
-    const cookie = cookieResponse.headers['set-cookie'][0].split(';', 1)[0];
-    const indexContent = load(cookieResponse.data);
+    const indexResponse = await got(url);
+    const indexContent = load(indexResponse.data);
     const dataRequestUrl = indexContent('div.clist_con > script:nth-child(2)')
         .toArray()
         .map((item) => ({
             url: `${rootUrl}${indexContent(item).attr('url')}`,
-            queryData: JSON.parse(indexContent(item).attr('querydata').replaceAll('"', '|').replaceAll("'", '"').replaceAll('|', '"')),
+            queryData: JSON.parse(indexContent(item).attr('querydata')!.replaceAll('"', '|').replaceAll(/['|]/g, '"')),
         }))[0];
 
     const dataUrl = `${dataRequestUrl.url}?${Object.entries(dataRequestUrl.queryData)
@@ -50,16 +49,13 @@ async function handler() {
     const response = await got({
         method: 'get',
         url: dataUrl,
-        headers: {
-            Cookie: cookie,
-        },
     });
     const $ = load(response.data.data.html);
     const list = $('ul > li')
         .toArray()
-        .map((item) => ({
+        .map((item): DataItem & { link: string } => ({
             title: $(item).find('a').text(),
-            link: new URL($(item).find('a').attr('href'), rootUrl).href,
+            link: new URL($(item).find('a').attr('href')!, rootUrl).href,
             pubDate: parseDate($(item).find('span').text(), 'YYYY-MM-DD'),
         }));
 
@@ -69,9 +65,7 @@ async function handler() {
                 const detailResponse = await got(item.link);
                 const content = load(detailResponse.data);
 
-                item.description = content('#con_con')
-                    .html()
-                    ?.replaceAll(/(<iframe.*?src=")([^"]*)(".*?>)/g, (_match, p1, p2, p3) => p1 + rootUrl + p2 + p3);
+                item.description = content('#con_con').html();
 
                 return item;
             })

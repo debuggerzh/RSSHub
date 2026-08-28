@@ -1,6 +1,6 @@
 import { load } from 'cheerio';
 
-import type { Route } from '@/types';
+import type { Language, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
@@ -82,16 +82,16 @@ export async function handler(ctx) {
 
     $('i.rj').remove();
 
-    const language = 'zh';
+    const language = 'zh' as const satisfies Language;
 
     const query = id === 'latest' ? $('#newslist ul').first().find('li').not('li.addd').find('a').slice(0, limit) : $('a.soft-title').slice(0, limit);
 
     let items = query.toArray().map((item) => {
-        item = $(item);
+        const $item = $(item);
 
         return {
-            title: item.prop('title') ?? item.text(),
-            link: new URL(item.prop('href'), rootUrl).href,
+            title: $item.prop('title') ?? $item.text(),
+            link: new URL($item.prop('href'), rootUrl).href,
             language,
         };
     });
@@ -105,11 +105,11 @@ export async function handler(ctx) {
 
                 const title = $$('h1.article-title').text();
                 const description = $$('div.article-content').html();
-                const image = new URL($$('div.article-content img').first().prop('src'), rootUrl).href;
+                const image = new URL($$('div.article-content img').first().prop('src')!, rootUrl).href;
 
                 item.title = title;
                 item.description = description;
-                item.pubDate = timezone(parseDate($$('time').text()), +8);
+                item.pubDate = timezone(parseDate($$('time').text()), 8);
                 item.category = $$('b.bq-wg')
                     .toArray()
                     .map((c) => $$(c).text());

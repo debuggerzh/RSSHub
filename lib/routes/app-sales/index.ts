@@ -2,7 +2,7 @@ import type { CheerioAPI } from 'cheerio';
 import { load } from 'cheerio';
 import type { Context } from 'hono';
 
-import type { Data, DataItem, Route } from '@/types';
+import type { Data, DataItem, Language, Route } from '@/types';
 import { ViewType } from '@/types';
 import ofetch from '@/utils/ofetch';
 
@@ -20,12 +20,13 @@ export const handler = async (ctx: Context): Promise<Data> => {
         },
     });
     const $: CheerioAPI = load(response);
-    const language = $('html').attr('lang') ?? 'en';
+    const language = ($('html').attr('lang') ?? 'en') as Language;
     const selector = 'div.card-panel';
 
     const items: DataItem[] = await fetchItems($, selector, targetUrl, country, limit);
 
     const title: string = $('title').text();
+    const logoUrl: string | undefined = $('a.brand-logo img').attr('src');
 
     return {
         title,
@@ -33,7 +34,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
         link: targetUrl,
         item: items,
         allowEmpty: true,
-        image: $('a.brand-logo img').attr('src') ? new URL($('a.brand-logo img').attr('src') as string, baseUrl).href : undefined,
+        image: logoUrl ? new URL(logoUrl, baseUrl).href : undefined,
         author: title.split(/\|/).pop(),
         language,
         id: targetUrl,

@@ -5,7 +5,7 @@ import type { Context } from 'hono';
 import { raw } from 'hono/html';
 import { renderToString } from 'hono/jsx/dom/server';
 
-import type { Data, DataItem, Route } from '@/types';
+import type { Data, DataItem, Language, Route } from '@/types';
 import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
@@ -19,12 +19,12 @@ export const handler = async (ctx: Context): Promise<Data> => {
 
     const response = await ofetch(targetUrl);
     const $: CheerioAPI = load(response);
-    const language = $('html').attr('lang') ?? 'en';
+    const language = ($('html').attr('lang') ?? 'en') as Language;
 
     let items: DataItem[] = $('div.blog-row')
         .slice(0, limit)
         .toArray()
-        .map((el): Element => {
+        .map((el) => {
             const $el: Cheerio<Element> = $(el);
             const $aEl: Cheerio<Element> = $el.find('h4 a');
 
@@ -69,7 +69,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
             }
 
             return cache.tryGet(item.link, async (): Promise<DataItem> => {
-                const detailResponse = await ofetch(item.link);
+                const detailResponse = await ofetch(item.link!);
                 const $$: CheerioAPI = load(detailResponse);
 
                 const title: string = $$('h2.gradient-heading').text() || $$('h1.gradient-heading').text();
@@ -77,17 +77,18 @@ export const handler = async (ctx: Context): Promise<Data> => {
                 $$('h2.gradient-heading').remove();
                 $$('div#shareDiv').remove();
 
-                const description: string | undefined = $$('div.blog-content').html() || $$('div.docs-section').html();
+                const description: string | undefined = ($$('div.blog-content').html() || $$('div.docs-section').html()) ?? undefined;
                 const pubDateStr: string | undefined = $$('div.blog-meta').text();
                 const categoryEls: Element[] = $$('a.under-category').toArray();
                 const categories: string[] = [...new Set(categoryEls.map((el) => $$(el).text()).filter(Boolean))];
                 const authorEls: Element[] = $$('img.avatar').toArray();
                 const authors: DataItem['author'] = authorEls.map((authorEl) => {
                     const $$authorEl: Cheerio<Element> = $$(authorEl).parent().next().find('a');
+                    const authorHref: string | undefined = $$authorEl.attr('href');
 
                     return {
                         name: $$authorEl.text(),
-                        url: $$authorEl.attr('href') ? new URL($$authorEl.attr('href') as string, baseUrl).href : undefined,
+                        url: authorHref ? new URL(authorHref, baseUrl).href : undefined,
                         avatar: `https:${$$(authorEl).attr('src')?.split(/\?/, 1)[0]}`,
                     };
                 });
@@ -115,12 +116,14 @@ export const handler = async (ctx: Context): Promise<Data> => {
         })
     );
 
+    const logoSrc: string | undefined = $('img.navbar-logo').attr('src');
+
     return {
         title: $('title').text(),
         link: targetUrl,
         item: items,
         allowEmpty: true,
-        image: $('img.navbar-logo').attr('src') ? new URL($('img.navbar-logo').attr('src') as string, baseUrl).href : undefined,
+        image: logoSrc ? new URL(logoSrc, baseUrl).href : undefined,
         language,
         id: targetUrl,
     };

@@ -3,7 +3,7 @@ import { load } from 'cheerio';
 import type { Element } from 'domhandler';
 import type { Context } from 'hono';
 
-import type { Data, DataItem, Route } from '@/types';
+import type { Data, DataItem, Language, Route } from '@/types';
 import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
@@ -21,7 +21,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
 
     const response = await ofetch(targetUrl);
     const $: CheerioAPI = load(response);
-    const language: string = $('html').prop('lang') ?? 'zh-CN';
+    const language = ($('html').prop('lang') ?? 'zh-CN') as Language;
 
     let items: DataItem[] = $('div.n_lone')
         .slice(0, limit)
@@ -73,13 +73,13 @@ export const handler = async (ctx: Context): Promise<Data> => {
     items = (
         await Promise.all(
             items.map((item) => {
-                if (!item.link && typeof item.link !== 'string') {
+                if (item.link === undefined) {
                     return item;
                 }
 
                 return cache.tryGet(item.link, async (): Promise<DataItem> => {
                     try {
-                        const detailResponse = await ofetch(item.link);
+                        const detailResponse = await ofetch(item.link!);
                         const $$: CheerioAPI = load(detailResponse);
 
                         const title: string = $$('h1.newstit').text();
@@ -92,7 +92,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
                             mediaContent.each((_, el) => {
                                 const $$el: Cheerio<Element> = $$(el);
 
-                                const pEl: Cheerio<Element> = $$el.closest('p');
+                                const pEl = $$el.closest('p');
 
                                 const mediaUrl: string | undefined = $$el.prop('src');
                                 const mediaType: string | undefined = mediaUrl?.split(/\./).pop();
@@ -134,7 +134,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
                             ...item,
                             title,
                             description,
-                            pubDate: timezone(parseDate($$('div.newstag_l').text().split(/\s/, 1)[0]), +8),
+                            pubDate: timezone(parseDate($$('div.newstag_l').text().split(/\s/, 1)[0]), 8),
                             content: {
                                 html: description,
                                 text: $$('div#Content').html() ?? '',

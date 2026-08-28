@@ -46,10 +46,10 @@ async function handler(ctx) {
 
     const pageUrl = `https://www.douyin.com/user/${uid}`;
 
-    const pageData = (await cache.tryGet(
+    const pageData = await cache.tryGet(
         `douyin:user:${uid}`,
         async () => {
-            let postData;
+            let postData: PostData | undefined;
             const context = await playwright();
             const page = await context.newPage();
             await page.route('**/*', (route) => {
@@ -78,7 +78,7 @@ async function handler(ctx) {
         },
         config.cache.routeExpire,
         false
-    )) as PostData;
+    );
 
     if (!pageData.aweme_list?.length) {
         throw new Error('Empty post data. The request may be filtered by WAF.');
@@ -95,16 +95,15 @@ async function handler(ctx) {
             videoList = videoList.map((item) => proxyVideo(item, relay));
         }
         let duration = post.video?.duration;
-        duration = duration && duration / 1000;
+        duration &&= duration / 1000;
         let img;
         // if (!embed) {
         //     img = post.video && post.video.dynamicCover; // dynamic cover (webp)
         // }
-        img =
-            img ||
+        img ||=
             post.video?.cover?.url_list.at(-1) || // HD
             post.video?.origin_cover?.url_list.at(-1); // LD
-        img = img && resolveUrl(img);
+        img &&= resolveUrl(img);
 
         // render description
         const desc = post.desc?.replaceAll('\n', '<br>');

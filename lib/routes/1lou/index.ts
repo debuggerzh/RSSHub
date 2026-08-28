@@ -1,6 +1,7 @@
 import { load } from 'cheerio';
+import type { Context } from 'hono';
 
-import type { Route } from '@/types';
+import type { DataItem, Language, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
@@ -8,7 +9,7 @@ import timezone from '@/utils/timezone';
 
 const rootUrl = 'https://www.1lou.me';
 
-export const handler = async (ctx) => {
+export const handler = async (ctx: Context) => {
     const { params } = ctx.req.param();
     const limit = ctx.req.query('limit') ? Number(ctx.req.query('limit')) : 50;
 
@@ -22,28 +23,28 @@ export const handler = async (ctx) => {
 
     const $ = load(response);
 
-    const language = $('html').prop('lang');
+    const language = $('html').prop('lang') as Language;
 
     let items = $('li.media.thread.tap:not(li.hidden-sm)')
         .slice(0, limit)
         .toArray()
-        .map((item) => {
-            item = $(item);
+        .map((item): DataItem & { link: string } => {
+            const $item = $(item);
 
-            const subjectEl = item.find('div.subject').children('a').first();
+            const subjectEl = $item.find('div.subject').children('a').first();
 
             return {
                 title: subjectEl.text(),
-                pubDate: timezone(parseDate(item.find('span.date').text()), +8),
-                link: new URL(subjectEl.prop('href'), rootUrl).href,
+                pubDate: timezone(parseDate($item.find('span.date').text()), 8),
+                link: new URL(subjectEl.prop('href')!, rootUrl).href,
                 category: [
-                    item.find('a.text-secondary').text().replaceAll('[]', ''),
-                    ...item
+                    $item.find('a.text-secondary').text().replaceAll('[]', ''),
+                    ...$item
                         .find('a.badge')
                         .toArray()
                         .map((c) => $(c).text()),
                 ].filter(Boolean),
-                author: item.find('a.username').text(),
+                author: $item.find('a.username').text(),
                 language,
             };
         });
@@ -59,11 +60,11 @@ export const handler = async (ctx) => {
 
                 if (title) {
                     const description = $$('div.message.break-all').html();
-                    const image = new URL($$('img').first().prop('src'), rootUrl).href;
+                    const image = new URL($$('img').first().prop('src')!, rootUrl).href;
 
                     item.title = title;
                     item.description = description;
-                    item.pubDate = timezone(parseDate($$('span.date').text()), +8);
+                    item.pubDate = timezone(parseDate($$('span.date').text()), 8);
                     item.category = $$('a.badge')
                         .toArray()
                         .map((c) => $$(c).text());
@@ -80,7 +81,7 @@ export const handler = async (ctx) => {
                     if (torrents.length > 0) {
                         const torrent = torrents.first();
 
-                        item.enclosure_url = new URL(torrent.prop('href'), rootUrl).href;
+                        item.enclosure_url = new URL(torrent.prop('href')!, rootUrl).href;
                         item.enclosure_type = 'application/x-bittorrent';
                         item.enclosure_title = torrent.text();
                     }
@@ -92,7 +93,7 @@ export const handler = async (ctx) => {
     );
 
     const author = 'BT 之家 1LOU 站';
-    const image = new URL($('img.logo-2').prop('src'), rootUrl).href;
+    const image = new URL($('img.logo-2').prop('src')!, rootUrl).href;
 
     return {
         title: `${$('title').text().split(/-/, 1)[0]} - ${author}`,
@@ -138,9 +139,9 @@ export const route: Route = {
         {
             source: ['1lou.me/:params'],
             target: (_, url) => {
-                url = new URL(url);
+                const parsedUrl = new URL(url);
 
-                return `/1lou${url.href.replace(rootUrl, '')}`;
+                return `/1lou${parsedUrl.href.replace(rootUrl, '')}`;
             },
         },
     ],

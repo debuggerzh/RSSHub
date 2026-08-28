@@ -1,13 +1,14 @@
 import { load } from 'cheerio';
 import { raw } from 'hono/html';
 import { renderToString } from 'hono/jsx/dom/server';
-import type { JSX } from 'hono/jsx/jsx-runtime';
 
 import type { Route } from '@/types';
 import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
+
+type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
 type ReutersContent = {
     result: {
@@ -99,7 +100,7 @@ const renderDescription = ({ result }: ReutersContent): string => {
                 }
 
                 if (element.type === 'header') {
-                    const HeaderTag = `h${element.level ?? 1}` as keyof JSX.IntrinsicElements;
+                    const HeaderTag = `h${element.level ?? 1}` as HeadingTag;
                     return <HeaderTag key={`header-${index}`}>{element.content ? raw(element.content) : null}</HeaderTag>;
                 }
 
@@ -197,7 +198,6 @@ async function handler(ctx) {
     const browserHeaders = {
         Accept: 'application/json, text/plain, */*',
         'Accept-Language': 'en-US,en;q=0.9',
-        Referer: 'https://www.reuters.com/',
     };
 
     try {
@@ -231,13 +231,11 @@ async function handler(ctx) {
                         size: limit,
                         section_id,
                         website: 'reuters',
-                        ...(useSophi
-                            ? {
-                                  fetch_type: 'sophi',
-                                  sophi_page: '*',
-                                  sophi_widget: 'topic',
-                              }
-                            : {}),
+                        ...(useSophi && {
+                            fetch_type: 'sophi',
+                            sophi_page: '*',
+                            sophi_widget: 'topic',
+                        }),
                     }),
                 },
                 headers: browserHeaders,
@@ -368,5 +366,6 @@ async function handler(ctx) {
                 item: items.slice(0, limit),
             };
         }
+        return null;
     }
 }

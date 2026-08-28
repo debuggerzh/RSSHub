@@ -1,6 +1,8 @@
 import { load } from 'cheerio';
 import CryptoJS from 'crypto-js';
 
+import type { DataItem } from '@/types';
+import cache from '@/utils/cache';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 
@@ -16,6 +18,8 @@ const apiMomentRootUrl = `https://moment-api.${domain}`;
 const apiSearchRootUrl = `https://search-api.${domain}`;
 const siteTitle = '虎嗅';
 
+type ItemEnclosure = Pick<DataItem, 'enclosure_length' | 'enclosure_type' | 'enclosure_url' | 'itunes_duration' | 'itunes_item_image'>;
+
 /**
  * Cleans up HTML data by removing specific elements and attributes.
  *
@@ -28,39 +32,39 @@ const cleanUpHTML = (data) => {
     $('div.neirong-shouquan').remove();
     $('em.vote__bar, div.vote__btn, div.vote__time').remove();
     $('p img').each((_, e) => {
-        e = $(e);
-        if ((e.prop('src') ?? e.prop('_src')) !== undefined) {
-            e.parent().replaceWith(
+        const $e = $(e);
+        if (($e.prop('src') ?? $e.prop('_src')) !== undefined) {
+            $e.parent().replaceWith(
                 renderDescription({
                     image: {
-                        src: (e.prop('src') ?? e.prop('_src')).split(/\?/, 1)[0],
-                        width: e.prop('data-w'),
-                        height: e.prop('data-h'),
+                        src: ($e.prop('src') ?? $e.prop('_src')).split(/\?/, 1)[0],
+                        width: $e.prop('data-w'),
+                        height: $e.prop('data-h'),
                     },
                 })
             );
         }
     });
     $('p, span').each((_, e) => {
-        e = $(e);
-        if (e.contents().length === 1 && /^\s*$/.test(e.text())) {
-            e.remove();
+        const $e = $(e);
+        if ($e.contents().length === 1 && /^\s*$/.test($e.text())) {
+            $e.remove();
         } else {
-            e.removeClass();
-            e.removeAttr('data-check-id label class');
+            $e.removeClass();
+            $e.removeAttr('data-check-id label class');
         }
     });
     $('.text-big-title').each((_, e) => {
         e.tagName = 'h3';
-        e = $(e);
-        e.removeClass();
-        e.removeAttr('class');
+        const $e = $(e);
+        $e.removeClass();
+        $e.removeAttr('class');
     });
     $('.text-sm-title').each((_, e) => {
         e.tagName = 'h4';
-        e = $(e);
-        e.removeClass();
-        e.removeAttr('class');
+        const $e = $(e);
+        $e.removeClass();
+        $e.removeAttr('class');
     });
 
     return $.html();
@@ -154,11 +158,11 @@ const fetchApiRouteData = async <T>({
         descriptionPrefix?: string;
     };
 }) => {
-    const { data: response } = await got.post(apiUrl, { form });
+    const { data: response }: { data: { data: T } } = await got.post(apiUrl, { form });
 
     return buildFeedMetadata({
         link: currentUrl,
-        ...mapData(response.data as T),
+        ...mapData(response.data),
     });
 };
 
@@ -273,7 +277,7 @@ const fetchItem = async (item) => {
         const { brief, brief_column: briefColumn, club_info: clubInfo } = data;
         const briefAudioInfo = processAudioInfo(brief.audio_info);
         const audio = briefAudioInfo.processed;
-        const audioItem: Record<string, unknown> = briefAudioInfo.processedItem ?? {};
+        const audioItem: ItemEnclosure = briefAudioInfo.processedItem ?? {};
         const body = [brief.preface, brief.content, brief.peroration].filter(Boolean).join('');
 
         return {
@@ -294,7 +298,7 @@ const fetchItem = async (item) => {
 
     const articleAudioInfo = processAudioInfo(data.audio_info);
     const audio = articleAudioInfo.processed;
-    const audioItem: Record<string, unknown> = articleAudioInfo.processedItem ?? {};
+    const audioItem: ItemEnclosure = articleAudioInfo.processedItem ?? {};
 
     if (Object.keys(audioItem).length !== 0) {
         audioItem.itunes_item_image = data.pic_path ?? data.share_info?.share_img ?? undefined;
@@ -410,7 +414,7 @@ const processAudioInfo = (info) => {
  * @param {Object} item - The item to resolve identifiers for.
  * @returns {Object|null} - Object with guid and link, or null if invalid item.
  */
-const resolveItemIdentifiers = (item): null | { guid: string; link: string } => {
+const resolveItemIdentifiers = (item): { guid: string; link: string } | null => {
     if (item.object_type === 8) {
         return {
             guid: `huxiu-moment-${item.object_id}`,
@@ -478,7 +482,7 @@ const mapItem = (item) => {
 
     const mappedAudioInfo = processAudioInfo(item.audio_info);
     const audio = mappedAudioInfo.processed;
-    const audioItem: Record<string, unknown> = mappedAudioInfo.processedItem ?? {};
+    const audioItem: ItemEnclosure = mappedAudioInfo.processedItem ?? {};
 
     if (Object.keys(audioItem).length !== 0) {
         audioItem.itunes_item_image = item.pic_path ?? item.share_info?.share_img ?? undefined;
@@ -511,10 +515,9 @@ const mapItem = (item) => {
  *
  * @param {Object[]} items - The items to process.
  * @param {number} limit - The maximum number of items to process.
- * @param {Function} tryGet   - The tryGet function that handles the retrieval process.
  * @returns {Promise<Object[]>} - A promise that resolves to an array of processed items.
  */
-const processItems = async (items, limit, tryGet) => {
+const processItems = async (items, limit) => {
     const processedItems = items
         .map((item) => mapItem(item))
         .filter(Boolean)
@@ -522,7 +525,7 @@ const processItems = async (items, limit, tryGet) => {
 
     return await Promise.all(
         processedItems.map((item) =>
-            tryGet(item.guid, async () => {
+            cache.tryGet(item.guid, async () => {
                 const isExternalLink = !new RegExp(domain, 'i').test(new URL(item.link).hostname);
                 const isMoment = item.guid.startsWith('huxiu-moment');
 

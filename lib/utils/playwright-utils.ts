@@ -6,11 +6,11 @@
  * @return {string} Cookie-header-style cookie string (e.g. "foobar; foo=bar; baz=qux")
  */
 const parseCookieArray = (cookies, domainFilter?: string | RegExp) => {
-    if (typeof domainFilter === 'string') {
+    if (domainFilter instanceof RegExp) {
+        cookies = cookies.filter(({ domain }) => domainFilter.test(domain));
+    } else if (domainFilter) {
         const dotDomain = '.' + domainFilter;
         cookies = cookies.filter(({ domain }) => domain === domainFilter || domain.endsWith(dotDomain));
-    } else if (domainFilter && domainFilter.test !== undefined) {
-        cookies = cookies.filter(({ domain }) => domainFilter.test(domain));
     }
     // {name: '', value: 'foobar'} => 'foobar' // https://stackoverflow.com/questions/42531198/cookie-without-a-name
     // {name: 'foo', value: 'bar'} => 'foo=bar'
@@ -26,7 +26,7 @@ const parseCookieArray = (cookies, domainFilter?: string | RegExp) => {
  */
 const constructCookieArray = (cookieStr, domain) =>
     cookieStr.split('; ').map((item) => {
-        const [name, value] = item.split('=');
+        const [name, value] = item.split('=', 2);
         return value === undefined ? { name: '', value: name, domain, path: '/' } : { name, value, domain, path: '/' };
     });
 

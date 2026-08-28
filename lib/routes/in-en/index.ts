@@ -6,7 +6,7 @@ import ofetch from '@/utils/ofetch';
 import { parseRelativeDate } from '@/utils/parse-date';
 
 // Subdomain config: name = channel display name, newsPath = news list path
-const CATEGORIES: Record<string, { name: string; newsPath: string }> = {
+const CATEGORIES = {
     solar: { name: '光伏太阳能', newsPath: '/news/' },
     wind: { name: '风电', newsPath: '/windnews/' },
     chuneng: { name: '储能', newsPath: '/news/' },
@@ -47,7 +47,7 @@ export const route: Route = {
 
     async handler(ctx) {
         const type = ctx.req.param('type')!;
-        const cat = CATEGORIES[type];
+        const cat = CATEGORIES[type as keyof typeof CATEGORIES];
         if (!cat) {
             throw new Error(`Unknown channel type: ${type}. Valid values: ${Object.keys(CATEGORIES).join(', ')}`);
         }
@@ -69,14 +69,14 @@ export const route: Route = {
                 const $el = $(el);
                 const $a = $el.find('.listTxt h5 a');
                 const link = $a.attr('href') ?? '';
-                const title = $a.attr('title')?.trim() || $a.text().trim();
+                const title = $a.attr('title') || $a.text();
 
                 const pubDateRaw = $el.find('.listTxt .prompt > i').text().trim();
-                const author = $el.find('.listTxt .prompt > span').first().text().replace('来源：', '').trim();
+                const author = $el.find('.listTxt .prompt > span').first().text().replace('来源：', '');
                 const category = $el
                     .find('.listTxt .prompt > span:not(:first-of-type) em a')
                     .toArray()
-                    .map((a) => $(a).text().trim())
+                    .map((a) => $(a).text())
                     .filter(Boolean);
 
                 return {
@@ -85,7 +85,7 @@ export const route: Route = {
                     author,
                     category,
                     pubDate: pubDateRaw ? parseRelativeDate(pubDateRaw) : undefined,
-                } as DataItem;
+                };
             })
             .filter((item) => item.title && item.link);
 
@@ -95,9 +95,9 @@ export const route: Route = {
                     const detail = await ofetch(item.link!);
                     const $d = load(detail);
 
-                    item.description = $d('#article').html() ?? undefined;
+                    item.description = $d('#article').html();
 
-                    const detailAuthor = $d('p.source a').text().trim();
+                    const detailAuthor = $d('p.source a').text();
                     if (detailAuthor) {
                         item.author = detailAuthor;
                     }
@@ -110,7 +110,7 @@ export const route: Route = {
         return {
             title: `国际能源网 · ${cat.name}`,
             link: listUrl,
-            item: items as DataItem[],
+            item: items,
         };
     },
 };

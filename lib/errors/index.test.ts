@@ -1,8 +1,20 @@
+import Honeybadger from '@honeybadger-io/js';
+import * as Sentry from '@sentry/node';
 import { load } from 'cheerio';
-import { describe, expect, it } from 'vitest';
+import { Hono } from 'hono';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import app from '@/app';
 import { config } from '@/config';
+
+const requestWithErrorHandler = async (errorHandler: Parameters<Hono['onError']>[0]) => {
+    const testApp = new Hono();
+    testApp.onError(errorHandler);
+    testApp.get('/test/path', () => {
+        throw new Error('boom');
+    });
+    return await testApp.request('/test/path');
+};
 
 describe('error', () => {
     it('error', async () => {
@@ -95,5 +107,65 @@ describe('route throws an error', () => {
                 default:
             }
         });
+    });
+});
+
+describe('error handler honeybadger', () => {
+    afterEach(() => {
+        vi.restoreAllMocks();
+        vi.resetModules();
+    });
+
+    it('sends errors to honeybadger when enabled', async () => {
+        process.env.HONEYBADGER_API_KEY = 'hbp_test_key';
+        vi.resetModules();
+
+        const notify = vi.spyOn(Honeybadger, 'notify').mockReturnValue(true);
+        const { default: logger } = await import('@/utils/logger');
+        vi.spyOn(logger, 'error').mockReturnValue(logger);
+
+        const { errorHandler } = await import('@/errors');
+        const response = await requestWithErrorHandler(errorHandler);
+        expect(response.status).toBe(503);
+
+        expect(notify).toHaveBeenCalledWith(expect.any(Error), {
+            context: { name: 'test' },
+        });
+
+        delete process.env.HONEYBADGER_API_KEY;
+    });
+});
+
+describe('error handler sentry', () => {
+    afterEach(async () => {
+        await Sentry.close();
+        vi.restoreAllMocks();
+        vi.resetModules();
+    });
+
+    it('sends errors to sentry when enabled', async () => {
+        process.env.SENTRY = 'dsn';
+        vi.resetModules();
+
+        const beforeSend = vi.fn(() => null);
+        Sentry.init({
+            dsn: 'https://public@sentry.example.test/1',
+            beforeSend,
+            defaultIntegrations: false,
+            skipOpenTelemetrySetup: true,
+        });
+
+        const { default: logger } = await import('@/utils/logger');
+        vi.spyOn(logger, 'error').mockReturnValue(logger);
+
+        const { errorHandler } = await import('@/errors');
+        const response = await requestWithErrorHandler(errorHandler);
+        expect(response.status).toBe(503);
+
+        await vi.waitFor(() => {
+            expect(beforeSend).toHaveBeenCalledWith(expect.objectContaining({ tags: expect.objectContaining({ name: 'test' }) }), expect.any(Object));
+        });
+
+        delete process.env.SENTRY;
     });
 });

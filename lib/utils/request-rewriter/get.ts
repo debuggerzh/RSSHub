@@ -1,6 +1,7 @@
 // oxlint-disable unicorn-js/no-this-outside-of-class
 import type http from 'node:http';
 import type https from 'node:https';
+import type { ParsedUrlQuery } from 'node:querystring';
 
 import type { HeaderGeneratorOptions } from 'header-generator';
 
@@ -13,17 +14,22 @@ type Get = typeof http.get | typeof https.get | typeof http.request | typeof htt
 
 interface ExtendedRequestOptions extends http.RequestOptions {
     headerGeneratorOptions?: Partial<HeaderGeneratorOptions>;
+    // legacy `url.parse()` shaped options, still accepted by node:http
+    href?: string;
+    search?: string;
+    query?: string | ParsedUrlQuery;
+    headers?: http.OutgoingHttpHeaders;
 }
 
-const getWrappedGet: <T extends Get>(origin: T) => T = (origin) =>
-    function (this: any, ...args: Parameters<typeof origin>) {
+const getWrappedGet = <T extends Get>(origin: T): T => {
+    const wrapped = function (this: any, ...args: Parameters<T>) {
         let url: URL | null;
         let options: ExtendedRequestOptions = {};
         let callback: ((res: http.IncomingMessage) => void) | undefined;
         if (typeof args[0] === 'string' || args[0] instanceof URL) {
             url = new URL(args[0]);
             if (typeof args[1] === 'object') {
-                options = args[1];
+                options = args[1] as ExtendedRequestOptions;
                 callback = args[2];
             } else if (typeof args[1] === 'function') {
                 options = {};
@@ -41,12 +47,12 @@ const getWrappedGet: <T extends Get>(origin: T) => T = (origin) =>
             }
         }
         if (!url) {
-            return Reflect.apply(origin, this, args) as ReturnType<typeof origin>;
+            return origin.apply(this, args);
         }
 
         logger.debug(`Outgoing request: ${options.method || 'GET'} ${url}`);
 
-        options.headers = options.headers || {};
+        options.headers ||= {};
         const headersLowerCaseKeys = new Set(Object.keys(options.headers).map((key) => key.toLowerCase()));
 
         // ua
@@ -92,7 +98,10 @@ const getWrappedGet: <T extends Get>(origin: T) => T = (origin) =>
         // oxlint-disable-next-line no-unused-vars
         const { headerGeneratorOptions, ...cleanOptions } = options;
 
-        return Reflect.apply(origin, this, [url, cleanOptions, callback]) as ReturnType<typeof origin>;
+        return origin.call(this, url, cleanOptions, callback);
     };
+
+    return wrapped as T;
+};
 
 export default getWrappedGet;

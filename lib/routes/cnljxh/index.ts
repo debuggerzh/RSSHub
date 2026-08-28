@@ -3,7 +3,7 @@ import { load } from 'cheerio';
 import type { Element } from 'domhandler';
 import type { Context } from 'hono';
 
-import type { Data, DataItem, Route } from '@/types';
+import type { Data, DataItem, Language, Route } from '@/types';
 import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
@@ -18,12 +18,12 @@ export const handler = async (ctx: Context): Promise<Data> => {
 
     const response = await ofetch(targetUrl);
     const $: CheerioAPI = load(response);
-    const language = $('html').attr('lang') ?? 'zh';
+    const language = ($('html').attr('lang') ?? 'zh') as Language;
 
     let items: DataItem[] = $('div.main_left ul li')
         .slice(0, limit)
         .toArray()
-        .map((el): Element => {
+        .map((el) => {
             const $el: Cheerio<Element> = $(el);
             const $aEl: Cheerio<Element> = $el.find('a');
 
@@ -50,11 +50,11 @@ export const handler = async (ctx: Context): Promise<Data> => {
             }
 
             return cache.tryGet(item.link, async (): Promise<DataItem> => {
-                const detailResponse = await ofetch(item.link);
+                const detailResponse = await ofetch(item.link!);
                 const $$: CheerioAPI = load(detailResponse);
 
                 const title: string = $$('div.content_title h2').text();
-                const description: string | undefined = $$('div.content_div').html() ?? '';
+                const description = $$('div.content_div').html();
                 const authors: DataItem['author'] = $$('div.content_title p').text().split(/\s/, 1)[0]?.split(/：/).pop();
 
                 let processedItem: DataItem = {
@@ -88,13 +88,15 @@ export const handler = async (ctx: Context): Promise<Data> => {
         })
     );
 
+    const imageUrl: string | undefined = $('div.logo a img').attr('src');
+
     return {
         title: `${$('title').text()}${$('div.mianbao').contents().last().text()}`,
         description: $('meta[name="description"]').attr('content'),
         link: targetUrl,
         item: items,
         allowEmpty: true,
-        image: $('div.logo a img').attr('src') ? new URL($('div.logo a img').attr('src') as string, targetUrl).href : undefined,
+        image: imageUrl ? new URL(imageUrl, targetUrl).href : undefined,
         author: $('meta[name="keywords"]').attr('content'),
         language,
         id: targetUrl,

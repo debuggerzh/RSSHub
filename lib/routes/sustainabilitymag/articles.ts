@@ -66,7 +66,7 @@ const render = (widgets) =>
 async function handler() {
     const baseURL = 'https://sustainabilitymag.com';
     const feedURL = `${baseURL}/articles`;
-    const feedLang = 'en';
+    const feedLang = 'en' as const;
     const feedDescription = 'Sustainability Magazine Articles';
 
     const requestEndpoint = `${baseURL}/graphql`;

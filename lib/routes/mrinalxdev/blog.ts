@@ -69,7 +69,7 @@ async function handler() {
                 link,
                 date,
             };
-        }) as Array<{ title: string; link: string; date?: string }>;
+        });
 
     const items = await Promise.all(
         list.map((item) =>
@@ -83,7 +83,7 @@ async function handler() {
                 $('a[href*="buymeacoffee"]').parent().remove();
 
                 // Extract main content - typically in body after nav
-                const content = $('body').html() || '';
+                const content = $('body').html();
 
                 const dataItem: DataItem = {
                     title: item.title,

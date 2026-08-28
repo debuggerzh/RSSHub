@@ -1,13 +1,13 @@
 import { load } from 'cheerio';
 
-import type { Route } from '@/types';
+import type { Data, Route } from '@/types';
 import { ViewType } from '@/types';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 
 const ROOT_URL = 'https://www.lemonde.fr/en';
 
-const feedMap: Record<string, string> = {
+const feedMap = {
     '': `${ROOT_URL}/rss/une.xml`,
     // World
     international: `${ROOT_URL}/international/rss_full.xml`,
@@ -151,7 +151,7 @@ export const route: Route = {
 | op-eds                  | Opinion – Op-Eds          |`,
 };
 
-async function handler(ctx) {
+async function handler(ctx): Promise<Data> {
     const category = ctx.req.param('category') ?? '';
     const feedUrl = feedMap[category];
 

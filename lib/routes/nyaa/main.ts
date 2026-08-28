@@ -3,7 +3,7 @@ import MarkdownIt from 'markdown-it';
 import Parser from 'rss-parser';
 
 import { config } from '@/config';
-import type { Route } from '@/types';
+import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
 
@@ -28,12 +28,20 @@ export const route: Route = {
         supportScihub: false,
     },
     name: 'Search Result',
-    maintainers: ['Lava-Swimmer', 'noname1776', 'camera-2018', 'Q16KBreak'],
+    maintainers: ['LandonLi', 'noname1776', 'camera-2018', 'Q16KBreak'],
     handler,
 };
 
+type NyaaItem = {
+    magnet?: string;
+    infoHash?: string;
+    description?: string;
+    enclosure_url?: string;
+    enclosure_type?: string;
+};
+
 async function handler(ctx) {
-    const parser = new Parser({
+    const parser = new Parser<object, NyaaItem>({
         customFields: {
             item: ['magnet', ['nyaa:infoHash', 'infoHash']],
         },
@@ -49,12 +57,12 @@ async function handler(ctx) {
     let currentRSSURL = `${rootURL}/?page=rss`;
     let currentLink = `${rootURL}/`;
     if (username !== undefined) {
-        currentRSSURL = `${currentRSSURL}&u=${encodeURI(username)}`;
-        currentLink = `${currentLink}user/${encodeURI(username)}`;
+        currentRSSURL += `&u=${encodeURI(username)}`;
+        currentLink += `user/${encodeURI(username)}`;
     }
     if (query !== undefined) {
-        currentRSSURL = `${currentRSSURL}&q=${encodeURI(query)}`;
-        currentLink = `${currentLink}?q=${encodeURI(query)}`;
+        currentRSSURL += `&q=${encodeURI(query)}`;
+        currentLink += `?q=${encodeURI(query)}`;
     }
 
     const feed = await parser.parseURL(currentRSSURL);
@@ -75,8 +83,8 @@ async function handler(ctx) {
         const limit = Number.parseInt(ctx.req.query('limit')) || 6; // prevent 429 rate limiting
         const items = await Promise.all(
             feed.items.slice(0, limit).map((item) =>
-                cache.tryGet(item.guid, async () => {
-                    const response = await ofetch(item.guid);
+                cache.tryGet(item.guid!, async () => {
+                    const response = await ofetch(item.guid!);
                     const $ = load(response);
 
                     item.description = md.render($('div#torrent-description.panel-body[markdown-text]').text());
@@ -88,10 +96,10 @@ async function handler(ctx) {
         );
 
         return {
-            title: feed.title,
+            title: feed.title!,
             link: currentLink,
             description: feed.description,
-            item: items,
+            item: items as DataItem[],
         };
     }
     feed.items.map((item) => {
@@ -102,9 +110,9 @@ async function handler(ctx) {
     });
 
     return {
-        title: feed.title,
+        title: feed.title!,
         link: currentLink,
         description: feed.description,
-        item: feed.items,
+        item: feed.items as DataItem[],
     };
 }

@@ -35,7 +35,7 @@ async function handler(ctx) {
     return {
         title: 'AInvest - Latest News',
         link: 'https://www.ainvest.com/news/',
-        language: 'en',
+        language: 'en' as const,
         item: items,
     };
 }

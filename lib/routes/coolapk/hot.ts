@@ -5,7 +5,7 @@ import utils from './utils';
 
 const getLinkAndTitle = (type, period) => {
     const baseURL = 'https://api.coolapk.com/v6/page/dataList?url=';
-    const res = {};
+    const res = { link: '', title: '' };
     const types = {
         jrrm: {
             title: '今日热门',
@@ -111,7 +111,7 @@ async function handler(ctx) {
         headers: utils.getHeaders(),
     });
     const data = r.data.data;
-    const t = [];
+    const t: any[] = [];
     for (const i of data) {
         if (i.entityType === 'card') {
             for (const k of i.entities) {
@@ -122,14 +122,12 @@ async function handler(ctx) {
         }
     }
 
-    let out = await Promise.all(t.map((item) => utils.parseDynamic(item)));
-
-    out = out.filter(Boolean);
+    const out = await Promise.all(t.map((item) => utils.parseDynamic(item)));
 
     return {
         title,
         link: 'https://www.coolapk.com/',
         description: '热榜-' + title,
-        item: out,
+        item: out.filter((item) => item !== undefined),
     };
 }

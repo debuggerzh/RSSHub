@@ -2,7 +2,6 @@ import { load } from 'cheerio';
 import { destr } from 'destr';
 
 import cache from '@/utils/cache';
-import got from '@/utils/got';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 
@@ -71,28 +70,6 @@ const redirectGot = (url) =>
         }),
     });
 
-const parseNewsList = async (url, ctx) => {
-    const resp = await got(url);
-    const $ = load(resp.data, {
-        xml: {
-            xmlMode: true,
-        },
-    });
-    const urls = $('urlset url');
-    return urls
-        .toArray()
-        .slice(0, ctx.req.query('limit') ? Number.parseInt(ctx.req.query('limit')) : 50)
-        .map((u) => {
-            u = $(u);
-            const item = {
-                title: u.find(String.raw`news\:title`).text(),
-                link: u.find('loc').text(),
-                pubDate: parseDate(u.find(String.raw`news\:publication_date`).text()),
-            };
-            return item;
-        });
-};
-
 const parseArticle = (item) =>
     cache.tryGet(item.link, async () => {
         const group = regex
@@ -110,7 +87,8 @@ const parseArticle = (item) =>
                     res = await redirectGot(apiUrl);
                 } catch (error) {
                     // fallback
-                    if (error.name && ['HTTPError', 'RequestError', 'FetchError'].includes(error.name)) {
+                    const err = error as Error;
+                    if (err.name && ['HTTPError', 'RequestError', 'FetchError'].includes(err.name)) {
                         try {
                             res = await redirectGot(item.link);
                         } catch {
@@ -119,6 +97,7 @@ const parseArticle = (item) =>
                                 title: item.title,
                                 link: item.link,
                                 pubDate: item.pubDate,
+                                description: item.description,
                             };
                         }
                     }
@@ -130,6 +109,7 @@ const parseArticle = (item) =>
                         title: item.title,
                         link: item.link,
                         pubDate: item.pubDate,
+                        description: item.description,
                     };
                 }
 
@@ -151,7 +131,7 @@ const parseArticle = (item) =>
     });
 
 const parseAudioPage = async (res, api, item) => {
-    const audio_json = JSON.parse(load(res.data)(api.sel).html()).props.pageProps;
+    const audio_json = JSON.parse(load(res.data)(api.sel).html() ?? '').props.pageProps;
     const episode = audio_json.episode;
     const rss_item = {
         title: episode.title || item.title,
@@ -192,18 +172,29 @@ const parseVideoPage = async (res, api, item) => {
                 content: { url: video_story.video?.thumbnail.url || '' },
                 thumbnails: { url: video_story.video?.thumbnail.url || '' },
             },
-            category: desc.keywords ?? [],
+            category: [],
         };
         return rss_item;
     }
     return item;
 };
 
+interface PhotoEssayArticle {
+    headline?: string;
+    canonical?: string;
+    id?: string;
+    body?: string;
+    authors?: Array<{ name: string }>;
+}
+
 const parsePhotoEssaysPage = async (res, api, item) => {
     const $ = load(res.data.html);
-    const article_json = {};
+    const article_json: PhotoEssayArticle = {};
     for (const e of $(api.sel).toArray()) {
-        Object.assign(article_json, JSON.parse($(e).html()));
+        const raw = $(e).html();
+        if (raw !== null) {
+            Object.assign(article_json, JSON.parse(raw));
+        }
     }
     const rss_item = {
         title: article_json.headline || item.title,
@@ -224,7 +215,8 @@ const parseReactRendererPage = async (res, api, item) => {
         return await parseStoryJson(res._data, item);
     } catch (error) {
         // fallback
-        if (error.name && ['HTTPError', 'RequestError', 'FetchError'].includes(error.name)) {
+        const err = error as Error;
+        if (err.name && ['HTTPError', 'RequestError', 'FetchError'].includes(err.name)) {
             return {
                 title: item.title,
                 link: item.link,
@@ -235,7 +227,7 @@ const parseReactRendererPage = async (res, api, item) => {
 };
 
 const parseStoryJson = async (story_json, item) => {
-    const media_img = story_json.ledeImageUrl || Object.values(story_json.imageAttachments ?? {})[0]?.url;
+    const media_img = story_json.ledeImageUrl || Object.values<any>(story_json.imageAttachments ?? {})[0]?.url;
     const rss_item = {
         title: story_json.headline || item.title,
         link: story_json.url || item.link,
@@ -268,7 +260,7 @@ const processLedeMedia = async (story_json) => {
             description: story_json.ledeDescription?.replaceAll(capRegex, '') ?? '',
             credit: story_json.ledeCredit?.replaceAll(capRegex, '') ?? '',
             src: story_json.ledeImageUrl,
-            video: kind === 'video' && (await processVideo(story_json.ledeAttachment.bmmrId)),
+            video: kind === 'video' ? await processVideo(story_json.ledeAttachment.bmmrId) : undefined,
         };
         return renderLedeMedia(media);
     }
@@ -283,7 +275,7 @@ const processLedeMedia = async (story_json) => {
         return renderImageFigure(image);
     }
     if (story_json.imageAttachments) {
-        const attachment = Object.values(story_json.imageAttachments)[0];
+        const attachment = Object.values<any>(story_json.imageAttachments)[0];
         if (attachment) {
             const image = {
                 src: attachment.baseUrl || attachment.url,
@@ -310,7 +302,7 @@ const processLedeMedia = async (story_json) => {
 };
 
 const processBody = async (body_html, story_json) => {
-    const removeSel = ['meta', 'script', '*[class$="-footnotes"]', '*[class$="for-you"]', '*[class$="-newsletter"]', '*[class$="page-ad"]', '*[class$="-recirc"]', '*[data-ad-placeholder="Advertisement"]'];
+    const removeSel = ['meta', '*[class$="-footnotes"]', '*[class$="for-you"]', '*[class$="-newsletter"]', '*[class$="page-ad"]', '*[class$="-recirc"]', '*[data-ad-placeholder="Advertisement"]'];
 
     const $ = load(body_html);
     for (const sel of removeSel) {
@@ -323,12 +315,13 @@ const processBody = async (body_html, story_json) => {
     for await (const e of $('figure')) {
         const imageType = $(e).data('image-type');
         const type = $(e).data('type');
+        const figureId = $(e).data('id') as string | number;
 
         let new_figure = '';
         if (imageType === 'audio') {
             let audio = {};
             if (story_json.audios) {
-                const attachment = story_json.audios.find((a) => a.id.toString() === $(e).data('id').toString());
+                const attachment = story_json.audios.find((a) => a.id.toString() === figureId.toString());
                 audio = {
                     img: attachment.image?.url || $(e).find('img').attr('src'),
                     src: attachment.url || $(e).find('audio source').attr('src'),
@@ -349,18 +342,18 @@ const processBody = async (body_html, story_json) => {
             new_figure = renderAudioMedia(audio);
         } else if (imageType === 'video') {
             if (story_json.videoAttachments) {
-                const attachment = story_json.videoAttachments[$(e).data('id')];
+                const attachment = story_json.videoAttachments[figureId];
                 const video = await processVideo(attachment.bmmrId);
                 new_figure = renderVideoMedia(video);
             }
         } else if (imageType === 'photo' || imageType === 'image' || type === 'image') {
             let src, alt;
             if (story_json.imageAttachments) {
-                const attachment = story_json.imageAttachments[$(e).data('id')];
+                const attachment = story_json.imageAttachments[figureId];
                 alt = attachment?.alt || $(e).find('img').attr('alt')?.trim();
                 src = attachment?.baseUrl;
             } else {
-                alt = $(e).find('img').attr('alt').trim();
+                alt = $(e).find('img').attr('alt')!.trim();
                 src = $(e).find('img').data('native-src');
             }
             const caption = $(e).find('[class$="text"], .caption, .photo-essay__text').html()?.trim() ?? '';
@@ -611,4 +604,4 @@ const documentToHtmlString = async (document) => {
     return str;
 };
 
-export { parseArticle, parseNewsList, rootUrl };
+export { parseArticle, rootUrl };

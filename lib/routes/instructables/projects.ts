@@ -78,7 +78,7 @@ async function handler(ctx) {
         title: 'Instructables Projects', // 项目的标题
         link: `https://${siteDomain}/projects`, // 指向项目的链接
         description: 'Instructables Projects', // 描述项目
-        language: 'en', // 频道语言
+        language: 'en' as const, // 频道语言
         item: data.hits.map((item) => ({
             title: item.document.title,
             link: `https://${siteDomain}/${item.document.urlString}`,

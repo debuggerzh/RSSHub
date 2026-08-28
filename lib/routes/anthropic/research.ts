@@ -1,7 +1,7 @@
 import { load } from 'cheerio';
 import pMap from 'p-map';
 
-import type { Route } from '@/types';
+import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
@@ -22,10 +22,11 @@ export const route: Route = {
     url: 'www.anthropic.com/research',
 };
 
-async function handler() {
+async function handler(ctx) {
     const link = 'https://www.anthropic.com/research';
     const response = await ofetch(link);
     const $ = load(response);
+    const limit = ctx.req.query('limit') ? Number(ctx.req.query('limit')) : 20;
 
     // self.__next_f.push
     const regexp = /self\.__next_f\.push\((.+)\)/;
@@ -70,7 +71,8 @@ async function handler() {
     const publicationSections = sections.filter((section) => section?.title === 'Publications');
     const posts = publicationSections
         .flatMap((section) => section?.posts ?? [])
-        .map((post) => ({
+        .slice(0, limit)
+        .map((post): DataItem => ({
             title: post.title,
             link: `https://www.anthropic.com/research/${post.slug.current}`,
             pubDate: parseDate(post.publishedOn),
@@ -79,8 +81,8 @@ async function handler() {
     const items = await pMap(
         posts,
         (item) =>
-            cache.tryGet(item.link, async () => {
-                const response = await ofetch(item.link);
+            cache.tryGet(item.link!, async () => {
+                const response = await ofetch(item.link!);
                 const $ = load(response);
 
                 const content = $('#main-content > article');

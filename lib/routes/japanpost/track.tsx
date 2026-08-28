@@ -2,6 +2,7 @@ import { load } from 'cheerio';
 import { raw } from 'hono/html';
 import { renderToString } from 'hono/jsx/dom/server';
 
+import type { Language } from '@/types';
 import got from '@/utils/got';
 
 import utils from './utils';
@@ -13,9 +14,8 @@ export async function track(ctx) {
     const reqCode = ctx.req.param('reqCode');
     const reqReqCode = 'reqCodeNo1=' + reqCode;
 
-    let locale = 'ja';
-    if (ctx.req.param('locale') === 'en') {
-        locale = 'en';
+    const locale: Language = ctx.req.param('locale') === 'en' ? 'en' : 'ja';
+    if (locale === 'en') {
         baseTitle = 'Japanpost';
     }
     const reqLocale = '&locale=' + locale;
@@ -38,8 +38,8 @@ export async function track(ctx) {
             const eTd = $(e).find('td');
             return {
                 officeType: eTd.eq(0).text().trim(),
-                officeName: eTd.eq(1).html().trim(),
-                officeTel: eTd.eq(2).html().trim(),
+                officeName: eTd.eq(1).html()!.trim(),
+                officeTel: eTd.eq(2).html()!.trim(),
             };
         });
     }

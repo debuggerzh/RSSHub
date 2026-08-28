@@ -20,7 +20,7 @@ const middleware: MiddlewareHandler = async (ctx, next) => {
     }
 
     const data: Data = ctx.get('data');
-    const outputType = ctx.req.query('format') || 'rss';
+    const outputType = ctx.req.query('format') || config.format;
 
     // only enable when debugInfo=true
     if (config.debugInfo) {
@@ -36,8 +36,8 @@ const middleware: MiddlewareHandler = async (ctx, next) => {
 
     if (data) {
         data.title = collapseWhitespace(data.title) || '';
-        data.description && (data.description = collapseWhitespace(data.description) || '');
-        data.author && (data.author = collapseWhitespace(data.author) || '');
+        data.description &&= collapseWhitespace(data.description) || '';
+        data.author &&= collapseWhitespace(data.author) || '';
 
         if (data.item) {
             for (const item of data.item) {
@@ -59,21 +59,21 @@ const middleware: MiddlewareHandler = async (ctx, next) => {
                     // remove unicode control characters
                     // see #14940 #14943 #15262
                     // oxlint-disable-next-line no-control-regex
-                    item.description = item.description.replaceAll(/[\u0000-\u0009\v\f\u000E-\u001F\u007F\u200B\uFFFF]/g, '');
+                    item.description = item.description.replaceAll(/[\u{0000}-\u{0009}\v\f\u{000E}-\u{001F}\u{007F}\u{200B}\u{FFFF}]/gu, '');
                 }
 
-                if (typeof item.author === 'string') {
-                    item.author = collapseWhitespace(item.author) || '';
-                } else if (typeof item.author === 'object' && item.author !== null) {
+                if (Array.isArray(item.author)) {
                     for (const a of item.author) {
                         a.name = collapseWhitespace(a.name) || '';
                     }
                     if (outputType !== 'json') {
-                        item.author = item.author.map((a: { name: string }) => a.name).join(', ');
+                        item.author = item.author.map((a) => a.name).join(', ');
                     }
+                } else if (item.author) {
+                    item.author = collapseWhitespace(item.author) || '';
                 }
 
-                if (item.itunes_duration && ((typeof item.itunes_duration === 'string' && !item.itunes_duration.includes(':')) || (typeof item.itunes_duration === 'number' && !Number.isNaN(item.itunes_duration)))) {
+                if (item.itunes_duration && !String(item.itunes_duration).includes(':')) {
                     item.itunes_duration = +item.itunes_duration;
                     item.itunes_duration =
                         Math.floor(item.itunes_duration / 3600) + ':' + (Math.floor((item.itunes_duration % 3600) / 60) / 100).toFixed(2).slice(-2) + ':' + (((item.itunes_duration % 3600) % 60) / 100).toFixed(2).slice(-2);
@@ -81,12 +81,12 @@ const middleware: MiddlewareHandler = async (ctx, next) => {
 
                 if (outputType !== 'rss') {
                     try {
-                        item.pubDate && (item.pubDate = convertDateToISO8601(item.pubDate) || '');
+                        item.pubDate &&= convertDateToISO8601(item.pubDate) || '';
                     } catch {
                         item.pubDate = '';
                     }
                     try {
-                        item.updated && (item.updated = convertDateToISO8601(item.updated) || '');
+                        item.updated &&= convertDateToISO8601(item.updated) || '';
                     } catch {
                         item.updated = '';
                     }

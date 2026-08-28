@@ -3,7 +3,7 @@ import { load } from 'cheerio';
 import type { Element } from 'domhandler';
 import type { Context } from 'hono';
 
-import type { Data, DataItem, Route } from '@/types';
+import type { Data, DataItem, Language, Route } from '@/types';
 import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
@@ -19,12 +19,12 @@ export const handler = async (ctx: Context): Promise<Data> => {
 
     const response = await ofetch(targetUrl);
     const $: CheerioAPI = load(response);
-    const language = $('html').attr('lang') ?? 'zh';
+    const language = ($('html').attr('lang') ?? 'zh') as Language;
 
     let items: DataItem[] = $('a.cjcx_biaob, ul#div li a')
         .slice(0, limit)
         .toArray()
-        .map((el): Element => {
+        .map((el) => {
             const $el: Cheerio<Element> = $(el);
 
             const title: string = $el.text();
@@ -32,7 +32,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
 
             const processedItem: DataItem = {
                 title,
-                link: linkUrl ? (linkUrl.startsWith('http') ? linkUrl : new URL(linkUrl as string, baseUrl).href) : undefined,
+                link: linkUrl ? (linkUrl.startsWith('http') ? linkUrl : new URL(linkUrl, baseUrl).href) : undefined,
                 language,
             };
 
@@ -46,11 +46,11 @@ export const handler = async (ctx: Context): Promise<Data> => {
             }
 
             return cache.tryGet(item.link, async (): Promise<DataItem> => {
-                const detailResponse = await ofetch(item.link);
+                const detailResponse = await ofetch(item.link!);
                 const $$: CheerioAPI = load(detailResponse);
 
                 const title: string = $$('meta[name="ArticleTitle"]').attr('content') ?? item.title;
-                const description: string | undefined = $$('div.Custom_UnionStyle').html() ?? undefined;
+                const description = $$('div.Custom_UnionStyle').html();
                 const pubDateStr: string | undefined = $$('meta[name="PubDate"]').attr('content');
                 const categoryEls: Array<Cheerio<Element>> = [$$('meta[name="ColumnName"]'), $$('meta[name="ColumnType"]'), $$('meta[name="ContentSource"]'), $$('meta[name="source"]')];
                 const categories: string[] = [...new Set(categoryEls.map((el) => $$(el)?.attr('content') ?? '').filter(Boolean))];
@@ -68,14 +68,14 @@ export const handler = async (ctx: Context): Promise<Data> => {
                 const processedItem: DataItem = {
                     title,
                     description,
-                    pubDate: pubDateStr ? timezone(parseDate(pubDateStr), +8) : item.pubDate,
+                    pubDate: pubDateStr ? timezone(parseDate(pubDateStr), 8) : item.pubDate,
                     category: categories,
                     author: authors,
                     content: {
                         html: description,
                         text: description,
                     },
-                    updated: upDatedStr ? timezone(parseDate(upDatedStr), +8) : item.updated,
+                    updated: upDatedStr ? timezone(parseDate(upDatedStr), 8) : item.updated,
                     language,
                 };
 
@@ -87,13 +87,15 @@ export const handler = async (ctx: Context): Promise<Data> => {
         })
     );
 
+    const logoSrc: string | undefined = $('a.logo img').attr('src');
+
     return {
         title: $('title').text(),
         description: $('meta[name="description"]').attr('content'),
         link: targetUrl,
         item: items,
         allowEmpty: true,
-        image: $('a.logo img').attr('src') ? new URL($('a.logo img').attr('src') as string, baseUrl).href : undefined,
+        image: logoSrc ? new URL(logoSrc, baseUrl).href : undefined,
         author: $('meta[name="SiteName"]').attr('content'),
         language,
         id: targetUrl,

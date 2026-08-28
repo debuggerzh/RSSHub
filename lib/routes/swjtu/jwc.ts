@@ -1,4 +1,5 @@
 import { load } from 'cheerio';
+import { FetchError } from 'ofetch';
 
 import type { Route } from '@/types';
 import cache from '@/utils/cache';
@@ -31,7 +32,7 @@ const getItem = (item, cache) => {
                 description: newsText,
             };
         } catch (error) {
-            if (error.response && error.response.status === 404) {
+            if (error instanceof FetchError && error.statusCode === 404) {
                 return {
                     title: newsTitle,
                     pubDate: parseDate(String(newsTime)),

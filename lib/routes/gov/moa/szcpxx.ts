@@ -1,6 +1,6 @@
 import { load } from 'cheerio';
 
-import type { Route } from '@/types';
+import type { DataItem, Language, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
@@ -16,20 +16,20 @@ export const handler = async (ctx) => {
 
     const $ = load(response);
 
-    const language = $('html').prop('lang');
+    const language = $('html').prop('lang') as Language;
 
     let items = $('div.ztst_list_contBox_inner ul li')
         .slice(0, limit)
         .toArray()
-        .map((item) => {
-            item = $(item);
+        .map((item): DataItem & { link: string } => {
+            const $item = $(item);
 
-            const a = item.find('a.content');
+            const a = $item.find('a.content');
 
             return {
-                title: a.prop('title'),
-                pubDate: parseDate(item.find('div.pubTime').text().split(/：/).pop(), 'YYYY.MM.DD'),
-                link: new URL(a.prop('href'), currentUrl).href,
+                title: a.prop('title') ?? '',
+                pubDate: parseDate($item.find('div.pubTime').text().split(/：/).pop()!, 'YYYY.MM.DD'),
+                link: new URL(a.prop('href')!, currentUrl).href,
                 language,
             };
         });
@@ -47,7 +47,7 @@ export const handler = async (ctx) => {
 
                 item.title = title;
                 item.description = description;
-                item.pubDate = timezone(parseDate($$('meta[name="PubDate"]').prop('content')), +8);
+                item.pubDate = timezone(parseDate($$('meta[name="PubDate"]').prop('content')), 8);
                 item.category = [
                     ...new Set([
                         $$('meta[name="SiteName"]').prop('content'),
@@ -72,7 +72,7 @@ export const handler = async (ctx) => {
     );
 
     const title = `${$('title').text()} - ${$('li.now').text()}`;
-    const image = new URL($('img.leftLogo').prop('src'), currentUrl).href;
+    const image = new URL($('img.leftLogo').prop('src')!, currentUrl).href;
 
     return {
         title,

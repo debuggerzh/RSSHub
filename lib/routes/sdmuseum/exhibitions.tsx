@@ -5,6 +5,7 @@ import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
+import timezone from '@/utils/timezone';
 
 import { namespace } from './namespace';
 
@@ -88,7 +89,7 @@ export const route: Route = {
                     const itemHtml = $(el).text();
                     const $item = load(itemHtml);
 
-                    const title = $item('.ltit a').attr('title');
+                    const title = $item('.ltit a').attr('title')!;
                     const link = new URL($item('.ltit a').attr('href')!, baseUrl).href;
                     const imgUrlRaw = $item('.img img').attr('src') || '';
                     const imgUrl = new URL(imgUrlRaw, baseUrl).href;
@@ -100,7 +101,7 @@ export const route: Route = {
                     const { startDate, endDate } = extractDates(fullDurationDate);
 
                     // get pubDate from the detail page
-                    return cache.tryGet(link, async () => {
+                    return cache.tryGet(link, async (): Promise<DataItem> => {
                         const detailResponse = await got({
                             method: 'get',
                             url: link,
@@ -108,7 +109,7 @@ export const route: Route = {
                         const $detail = load(detailResponse.data);
 
                         const pubDateStr = $detail('meta[name="PubDate"]').attr('content') || '';
-                        const pubDate = parseDate(pubDateStr, 'YYYY-MM-DD HH:mm');
+                        const pubDate = timezone(parseDate(pubDateStr, 'YYYY-MM-DD HH:mm'), 8);
 
                         const description = renderToString(
                             <div>
@@ -156,7 +157,7 @@ export const route: Route = {
             title: `${museumName} - 临时展览`,
             link: apiUrl,
             language: 'zh-CN',
-            item: items as DataItem[],
+            item: items,
         };
     },
 };

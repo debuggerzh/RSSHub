@@ -2,7 +2,7 @@ import type { CheerioAPI } from 'cheerio';
 import { load } from 'cheerio';
 import type { Context } from 'hono';
 
-import type { Data, DataItem, Route } from '@/types';
+import type { Data, DataItem, Language, Route } from '@/types';
 import { ViewType } from '@/types';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
@@ -17,7 +17,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
 
     const targetResponse = await ofetch(targetUrl);
     const $: CheerioAPI = load(targetResponse);
-    const language = $('html').attr('lang') ?? 'zh';
+    const language = ($('html').attr('lang') ?? 'zh') as Language;
 
     const response = await ofetch(apiUrl, {
         query: {
@@ -44,7 +44,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
         const description: string | undefined = firstPostData?.type && firstPostData.id ? includedMap.get(`${firstPostData.type}-${firstPostData.id}`)?.attributes?.contentHtml : undefined;
         const pubDate: number | string = attributes.createdAt;
         const linkUrl: string | undefined = item.id ? `d/${item.id}` : undefined;
-        const categories: string[] = [...new Set(relationships?.tags?.data?.map((tag) => `${tag.type}-${tag.id}`)?.map((key) => includedMap.get(key)?.attributes?.name))].filter(Boolean);
+        const categories: string[] = [...new Set<string>(relationships?.tags?.data?.map((tag) => `${tag.type}-${tag.id}`)?.map((key) => includedMap.get(key)?.attributes?.name))].filter(Boolean);
 
         const userData = relationships?.user?.data;
         const userAttributes = userData && userData.type && userData.id ? includedMap.get(`${userData.type}-${userData.id}`)?.attributes : undefined;

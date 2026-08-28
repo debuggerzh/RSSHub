@@ -3,7 +3,7 @@ import type { SearchParams } from 'narou';
 import { NarouNovelFetch, SearchBuilderR18 } from 'narou';
 
 import InvalidParameterError from '@/errors/types/invalid-parameter';
-import type { Data, DataItem, Route } from '@/types';
+import type { Data, Route } from '@/types';
 
 import { renderDescription } from './templates/description';
 import { NovelType, novelTypeToJapanese, periodToJapanese, periodToOrder, RankingPeriod, SyosetuSub, syosetuSubToJapanese, syosetuSubToNocgenre } from './types/ranking-r18';
@@ -55,7 +55,7 @@ const getParameters = () => {
 };
 
 const getBest5RadarItems = () =>
-    Object.entries(SyosetuSub).flatMap(([, domain]) =>
+    Object.values(SyosetuSub).flatMap((domain) =>
         Object.values(RankingPeriod).map((period) => ({
             title: `${syosetuSubToJapanese[domain]} ${periodToJapanese[period]}ランキング BEST5`,
             source: [`${domain === SyosetuSub.MOONLIGHT_BL ? SyosetuSub.MOONLIGHT : domain}.syosetu.com/rank/${domain === SyosetuSub.MOONLIGHT_BL ? 'bltop' : 'top'}`],
@@ -120,22 +120,17 @@ For example: \`daily_total\`, \`weekly_r\`, \`monthly_er\`
     ],
 };
 
-function parseRankingType(type: string): { period: RankingPeriod; novelType: NovelType } {
-    const [periodStr, novelTypeStr] = type.split('_');
+function parseRankingType(type: string) {
+    const [periodStr, novelTypeStr] = type.split('_', 2);
 
-    const period = periodStr as RankingPeriod;
-    const novelType = novelTypeStr as NovelType;
+    const period = Object.values(RankingPeriod).find((value) => value === periodStr);
+    const novelType = Object.values(NovelType).find((value) => value === novelTypeStr);
 
-    const isValid = [Object.values(RankingPeriod).includes(period), Object.values(NovelType).includes(novelType)].every(Boolean);
-
-    if (!isValid) {
+    if (!period || !novelType) {
         throw new InvalidParameterError(`Invalid ranking type: ${type}`);
     }
 
-    return {
-        period: periodStr as RankingPeriod,
-        novelType: novelTypeStr as NovelType,
-    };
+    return { period, novelType };
 }
 
 function getRankingTitle(type: string, limit: number): string {
@@ -176,13 +171,13 @@ async function handler(ctx: Context): Promise<Data> {
         link: `https://novel18.syosetu.com/${String(novel.ncode).toLowerCase()}`,
         description: renderDescription({ novel }),
         author: novel.writer,
-        category: novel.keyword.split(/[\s/\uFF0F]/).filter(Boolean),
+        category: novel.keyword.split(/[\s/\u{FF0F}]/u).filter(Boolean),
     }));
 
     return {
         title: `小説家になろう (${sub}) - ${getRankingTitle(type, limit)}`,
         link: rankingUrl,
-        item: items as DataItem[],
+        item: items,
         language: 'ja',
     };
 }

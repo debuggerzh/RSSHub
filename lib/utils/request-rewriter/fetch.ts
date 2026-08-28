@@ -1,7 +1,7 @@
 import type { HeaderGeneratorOptions } from 'header-generator';
 import { useRegisterRequest } from 'node-network-devtools';
 import { RateLimiterMemory, RateLimiterQueue } from 'rate-limiter-flexible';
-import type { RequestInfo, RequestInit } from 'undici';
+import type { RequestInfo, RequestInit, Response } from 'undici';
 import undici, { Request } from 'undici';
 
 import { config } from '@/config';
@@ -19,10 +19,10 @@ const limiterQueue = new RateLimiterQueue(limiter, {
     maxQueueSize: 4800,
 });
 
-export const useCustomHeader = (headers: Headers) => {
+export const useCustomHeader = (headers: Iterable<[string, string]>) => {
     process.env.NODE_ENV === 'dev' &&
         useRegisterRequest((req) => {
-            for (const [key, value] of headers.entries()) {
+            for (const [key, value] of headers) {
                 req.requestHeaders[key] = value;
             }
             return req;

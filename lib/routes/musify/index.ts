@@ -20,7 +20,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
     const items: DataItem[] = $('div.playlist__item')
         .slice(0, limit)
         .toArray()
-        .map((el): Element => {
+        .map((el) => {
             const $el: Cheerio<Element> = $(el);
 
             const artist: string | undefined = $el.attr('data-artist');
@@ -31,10 +31,11 @@ export const handler = async (ctx: Context): Promise<Data> => {
             const authorEls: Element[] = $el.find('div.playlist__heading a').toArray();
             const authors: DataItem['author'] = authorEls.map((authorEl) => {
                 const $authorEl: Cheerio<Element> = $(authorEl);
+                const authorHref: string | undefined = $authorEl.attr('href');
 
                 return {
                     name: $authorEl.text(),
-                    url: $authorEl.attr('href') ? new URL($authorEl.attr('href') as string, baseUrl).href : undefined,
+                    url: authorHref ? new URL(authorHref, baseUrl).href : undefined,
                     avatar: undefined,
                 };
             });

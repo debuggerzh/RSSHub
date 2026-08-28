@@ -1,6 +1,6 @@
 import { load } from 'cheerio';
 
-import type { Route } from '@/types';
+import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
@@ -21,25 +21,25 @@ export const handler = async (ctx) => {
     let items = $('div.news_box ul li')
         .slice(0, limit)
         .toArray()
-        .map((item) => {
-            item = $(item);
+        .map((item): DataItem => {
+            const $item = $(item);
 
-            const title = item.find('h2').text();
+            const title = $item.find('h2').text();
             const description = renderDescription({
-                intro: item.find('div.deheng_newscontent p').text(),
+                intro: $item.find('div.deheng_newscontent p').text(),
             });
 
             return {
                 title,
                 description,
-                pubDate: parseDate(item.find('span').text(), 'YYYY/M/D'),
-                link: item.find('a').first().prop('href'),
+                pubDate: parseDate($item.find('span').text(), 'YYYY/M/D'),
+                link: $item.find('a').prop('href'),
             };
         });
 
     items = await Promise.all(
         items.map((item) =>
-            cache.tryGet(item.link, async () => {
+            cache.tryGet(item.link!, async () => {
                 const { data: detailResponse } = await got(item.link);
 
                 const $$ = load(detailResponse);
@@ -47,7 +47,7 @@ export const handler = async (ctx) => {
                 const description =
                     item.description +
                     renderDescription({
-                        description: $$('div.news_content').html(),
+                        description: $$('div.news_content').html() ?? undefined,
                     });
                 const image = $$('div.news_content img').prop('src');
 
@@ -84,7 +84,7 @@ export const route: Route = {
     path: '/:language?/:category?',
     name: '德恒探索',
     url: 'dehenglaw.com',
-    maintainers: ['nczitzk'],
+    maintainers: ['snipersteve', 'nczitzk'],
     handler,
     example: '/dehenglaw/CN/paper',
     parameters: { language: '语言，默认为中文，即 CN，可在对应分类页 URL 中找到，可选 CN 和 EN', category: '分类，默认为专业文章，即 paper，可在对应分类页 URL 中找到' },

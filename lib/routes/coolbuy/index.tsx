@@ -3,7 +3,7 @@ import { load } from 'cheerio';
 import type { Context } from 'hono';
 import { renderToString } from 'hono/jsx/dom/server';
 
-import type { Data, DataItem, Route } from '@/types';
+import type { Data, DataItem, Language, Route } from '@/types';
 import { ViewType } from '@/types';
 import ofetch from '@/utils/ofetch';
 
@@ -25,7 +25,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
 
     const targetResponse = await ofetch(baseUrl);
     const $: CheerioAPI = load(targetResponse);
-    const language = $('html').attr('lang') ?? 'zh';
+    const language = ($('html').attr('lang') ?? 'zh') as Language;
 
     const items: DataItem[] = response.objects.slice(0, limit).map((item): DataItem => {
         const title: string = item.title;
@@ -113,7 +113,7 @@ export const route: Route = {
     path: '/',
     name: '产品',
     url: 'coolbuy.com',
-    maintainers: ['nczitzk'],
+    maintainers: ['xyqfer', 'nczitzk'],
     handler,
     example: '/coolbuy',
     parameters: undefined,

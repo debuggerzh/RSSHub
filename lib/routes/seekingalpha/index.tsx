@@ -121,6 +121,6 @@ async function handler(ctx) {
         image: 'https://seekingalpha.com/samw/static/images/favicon.svg',
         item: items,
         allowEmpty: true,
-        language: 'en-US',
+        language: 'en-us' as const,
     };
 }

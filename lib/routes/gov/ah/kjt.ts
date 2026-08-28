@@ -1,6 +1,6 @@
 import { load } from 'cheerio';
 
-import type { Route } from '@/types';
+import type { DataItem, Language, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
@@ -17,21 +17,21 @@ export const handler = async (ctx) => {
 
     const $ = load(response);
 
-    const language = $('html').prop('lang');
+    const language = $('html').prop('lang') as Language;
 
     let items = $('ul.doc_list li')
         .slice(0, limit)
         .toArray()
-        .map((item) => {
-            item = $(item);
+        .map((item): DataItem => {
+            const $item = $(item);
 
-            const a = item.find('a');
+            const a = $item.find('a');
 
             const title = a.prop('title') ?? a.text();
 
             return {
                 title,
-                pubDate: parseDate(item.find('span.date').text()),
+                pubDate: parseDate($item.find('span.date').text()),
                 link: a.prop('href'),
                 language,
             };
@@ -39,7 +39,7 @@ export const handler = async (ctx) => {
 
     items = await Promise.all(
         items.map((item) =>
-            cache.tryGet(item.link, async () => {
+            cache.tryGet(item.link!, async () => {
                 const { data: detailResponse } = await got(item.link);
 
                 const $$ = load(detailResponse);
@@ -48,7 +48,7 @@ export const handler = async (ctx) => {
 
                 item.title = $$('meta[name="ArticleTitle"]').prop('content');
                 item.description = description;
-                item.pubDate = timezone(parseDate($$('meta[name="PubDate"]').prop('content')), +8);
+                item.pubDate = timezone(parseDate($$('meta[name="PubDate"]').prop('content')), 8);
                 item.category = [
                     ...new Set([
                         $$('meta[name="ColumnName"]').prop('content'),
@@ -63,7 +63,7 @@ export const handler = async (ctx) => {
                     html: description,
                     text: $$('div.wzcon').text(),
                 };
-                item.updated = timezone(parseDate($$('meta[name="HtmlGenerateTime"]').prop('content')), +8);
+                item.updated = timezone(parseDate($$('meta[name="HtmlGenerateTime"]').prop('content')), 8);
                 item.language = language;
 
                 return item;
