@@ -1,8 +1,7 @@
 import { load } from 'cheerio';
-import pMap from 'p-map';
 
 import type { ListingExtra } from '@/routes/temposmart/utils';
-import { clean, normalizeFloor, parseArea, parseJpy, parseMonths, parseWalkMin, parseWard, parseYmd, sumKnown, summarize, tsuboUnit } from '@/routes/temposmart/utils';
+import { clean, normalizeFloor, parseArea, parseCondition, parseJpy, parseMonths, parseWalkMin, parseWard, parseYmd, sumKnown, summarize, tsuboUnit } from '@/routes/temposmart/utils';
 import type { Data, DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
 import logger from '@/utils/logger';
@@ -10,7 +9,6 @@ import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
-const DETAIL_CONCURRENCY = 2;
 const PAGE_SIZE = 30;
 
 /** `pa` codes of the site; East Japan is served by tenant-shop.com, 愛知 and westward by tenant-shop.jp (data is not mirrored). */
@@ -76,14 +74,14 @@ const parseList = (html: string, host: string): ListCard[] => {
         .toArray()
         .map((el): ListCard | null => {
             const $el = $(el);
-            const a = $el.find('div.estatename a').first();
+            const a = $el.find('div.estatename a');
             const href = a.attr('href');
             const title = clean(a.text());
             const id = href?.match(/\/detail\/e-(\d+)/)?.[1];
             if (!href || !title || !id) {
                 return null;
             }
-            const iconRow = (icon: string): string | null => clean($el.find(`div.add img[src$="/${icon}.png"]`).first().parent().text());
+            const iconRow = (icon: string): string | null => clean($el.find(`div.add img[src$="/${icon}.png"]`).parent().text());
             const raw: ListingExtra['raw'] = {
                 type: clean($el.find('div.esttype').text()),
                 rent: clean($el.find('div.price').text()),
@@ -110,7 +108,7 @@ const parseList = (html: string, host: string): ListCard[] => {
             const deposits = [raw.guarantee, raw.security];
             const depositMonths = deposits.every((d) => d === null) ? null : sumKnown(parseMonths(raw.guarantee), parseMonths(raw.security));
             const depositYen = deposits.filter((d): d is string => d !== null && /[万円]/.test(d));
-            const image = $el.find('div.photo img').first().attr('src');
+            const image = $el.find('div.photo img').attr('src');
 
             return {
                 title,
@@ -169,7 +167,9 @@ const parseDetail = (html: string): DetailFields => {
 
 const mergeDetail = (base: ListingExtra, d: DetailFields): ListingExtra => ({
     ...base,
-    condition: d.facilities.includes('居抜き') ? 'inuki' : base.condition,
+    // The 居抜き facility tag is set on only some listings; for the rest the PR blurb and 備考 are
+    // where the site says 居抜き or スケルトン.
+    condition: d.facilities.includes('居抜き') ? 'inuki' : parseCondition(base.raw.comment, d.remarks),
     listed_at: parseYmd(d.registered_at),
     tags: [...base.tags, ...d.facilities],
     raw: { ...base.raw, status: d.status, registered_at: d.registered_at, updated_at: d.updated_at, remarks: d.remarks },
@@ -201,9 +201,8 @@ export const handler = async (ctx): Promise<Data> => {
     const listUrl = `${prefecture.host}/chintai_biz/pa-${prefecture.code}/${type ? `${type.code}-1/` : ''}shin-1/`;
 
     const cards = parseList(await ofetch(listUrl), prefecture.host).slice(0, limit);
-    const items = await pMap(
-        cards,
-        (card) =>
+    const items = await Promise.all(
+        cards.map((card) =>
             cache.tryGet(card.link, async (): Promise<DataItem> => {
                 const extra = await enrich(card);
                 return {
@@ -215,8 +214,8 @@ export const handler = async (ctx): Promise<Data> => {
                     image: card.image,
                     _extra: extra,
                 };
-            }) as Promise<DataItem>,
-        { concurrency: DETAIL_CONCURRENCY }
+            })
+        )
     );
 
     return {

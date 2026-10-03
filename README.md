@@ -22,9 +22,9 @@
 RSSHub pairs especially well with <a href="https://folo.is/">Folo</a>, an AI RSS reader for feed discovery and modern reading workflows. The project is also open source on <a href="https://github.com/RSSNext/Folo">GitHub</a>.
 </td>
 <td align="center" valign="top" width="50%">
-<a href="https://stardesk.onelink.me/p0R7/1v2u6fld"><img src="https://github.com/user-attachments/assets/f23cb580-ab92-46cb-8b5b-277fc8933775" alt="StarDesk" width="419"></a>
+<a href="https://www.rapidproxy.io/?ref=rsshub"><img src="https://github.com/user-attachments/assets/23b68f68-959c-4176-aa6c-ff3b2e4ebfdf" alt="RapidProxy" width="419"></a>
 <br>
-RSSHub keeps me informed, and <a href="https://stardesk.onelink.me/p0R7/1v2u6fld">StarDesk</a> lets me fix routes or feeds remotely, even run terminal commands from my phone. It’s fast, convenient, and free.
+<a href="https://www.rapidproxy.io/?ref=rsshub">RapidProxy</a> offers reliable residential proxies for scraping and global data access, with 90M+ IPs across 200+ countries. Traffic never expires, starting at just $0.55/GB. <a href="https://www.rapidproxy.io/?ref=rsshub">try free now</a>
 </td>
 </tr>
 </table>
@@ -53,6 +53,10 @@ We welcome all pull requests. Suggestions and feedback are also welcomed [here](
 Refer to [Quick Start](https://docs.rsshub.app/joinus/)
 
 ## Deployment
+
+Deploy RSSHub with a single click on Hostinger – pre-configured and ready to run
+
+[![Deploy on Hostinger](https://assets.hostinger.com/vps/deploy.svg)](https://www.hostg.xyz/aff_c?offer_id=48&aff_id=244128&url_id=6824)
 
 Refer to [Deployment](https://docs.rsshub.app/deploy/)
 
