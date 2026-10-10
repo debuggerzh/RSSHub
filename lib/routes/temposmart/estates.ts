@@ -1,9 +1,7 @@
 import { load } from 'cheerio';
-import pMap from 'p-map';
 
 import type { Data, DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
-import logger from '@/utils/logger';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
@@ -12,7 +10,6 @@ import type { ListingExtra } from './utils';
 import { bracketNotes, clean, normalizeFloor, parseArea, parseCondition, parseHeavyFood, parseJpy, parseMonths, parseMonthsSum, parseWalkMin, parseWard, parseYmd, sumKnown, summarize, tsuboUnit } from './utils';
 
 const HOST = 'https://www.temposmart.jp';
-const DETAIL_CONCURRENCY = 2;
 const DEFAULT_LIMIT = 30;
 const PAGE_SIZE = 50;
 
@@ -32,6 +29,13 @@ interface ListCard {
     link: string;
     extra: ListingExtra;
 }
+
+/** The list page's h1 reads '新宿区の居抜き物件…' / '東京都の居抜き物件…', so the area name is whatever precedes 「の居抜き物件」. */
+const areaLabel = (html: string, fallback: string): string => {
+    const h1 = clean(load(html)('h1').text());
+    const name = h1?.split('の居抜き物件', 1)[0];
+    return name !== undefined && name !== h1 ? name : fallback;
+};
 
 interface DetailFields {
     listed_at: string | null;
@@ -63,7 +67,7 @@ const parseList = (html: string): ListCard[] => {
         .toArray()
         .map((el) => {
             const $el = $(el);
-            const a = $el.find('.estateItem__estateTitle a').first();
+            const a = $el.find('.estateItem__estateTitle a');
             const href = a.attr('href');
             const title = clean(a.text());
             const id = clean($el.find('.estateItem__estateId--value').text());
@@ -77,7 +81,7 @@ const parseList = (html: string): ListCard[] => {
                 station: clean($el.find('.stationInfo__name').text()),
                 walk: clean($el.find('.stationInfo__near--value').text()),
                 line: clean($el.find('.stationInfo__route').text()),
-                address: clean($el.find('.estateItem__estateAddress--link').first().text()),
+                address: clean($el.find('.estateItem__estateAddress--link').text()),
                 floor: clean($el.find('.estateItem__estateFloor').text()),
                 deposit: clean($el.find('.estateItem__estateDeposit').text()),
                 area: clean($el.find('.estateItem__estateArea').text()),
@@ -158,7 +162,7 @@ const parseDetail = (html: string): DetailFields => {
         contract_kind: cell('契約種別'),
         contract_term: cell('契約期間'),
         purpose: cell('現況'),
-        available_purpose: clean($('.availablePurpose__text').first().text()),
+        available_purpose: clean($('.availablePurpose__text').text()),
         note: clean($('.estateTable__note--content').text()),
     };
 };
@@ -197,14 +201,9 @@ const mergeDetail = (base: ListingExtra, d: DetailFields): ListingExtra => {
     };
 };
 
-/** A failed detail page (e.g. delisted 404) keeps the list fields instead of breaking the feed. */
 const enrich = async (card: ListCard): Promise<ListingExtra> => {
-    try {
-        return mergeDetail(card.extra, parseDetail(await ofetch(card.link)));
-    } catch (error) {
-        logger.warn(`temposmart: detail fetch failed for ${card.link}: ${String(error)}`);
-        return { ...card.extra, raw: { ...card.extra.raw, detail_error: String(error) } };
-    }
+    const html = await ofetch(card.link);
+    return mergeDetail(card.extra, parseDetail(html));
 };
 
 export const handler = async (ctx): Promise<Data> => {
@@ -214,13 +213,25 @@ export const handler = async (ctx): Promise<Data> => {
         throw new Error(`Unknown prefecture "${pref}", expected one of ${PREFECTURES.map((p) => p.slug).join(', ')}`);
     }
     const limit = Math.min(ctx.req.query('limit') ? Number(ctx.req.query('limit')) : DEFAULT_LIMIT, PAGE_SIZE);
-    const listUrl = `${HOST}/estates/pref/${prefecture.code}?sort=new`;
 
-    const cards = parseList(await ofetch(listUrl)).slice(0, limit);
+    // 市区町村 codes are the prefecture's two digits plus three more (新宿区 = 13104). A code from another
+    // prefecture would silently return that prefecture's listings, so the pair is checked rather than trusted.
+    const district: string | undefined = ctx.req.param('district');
+    if (district !== undefined) {
+        if (!/^\d{5}$/.test(district)) {
+            throw new Error(`Invalid district "${district}", expected a 5-digit JIS X 0402 市区町村 code such as 13104`);
+        }
+        if (!district.startsWith(prefecture.code)) {
+            throw new Error(`District "${district}" does not belong to ${prefecture.label} (${prefecture.code})`);
+        }
+    }
+    const listUrl = district === undefined ? `${HOST}/estates/pref/${prefecture.code}?sort=new` : `${HOST}/estates/pref/${prefecture.code}/district/${district}?sort=new`;
 
-    const items = await pMap(
-        cards,
-        (card) =>
+    const html: string = await ofetch(listUrl);
+    const cards = parseList(html).slice(0, limit);
+
+    const items = await Promise.all(
+        cards.map((card) =>
             cache.tryGet(card.link, async (): Promise<DataItem> => {
                 const extra = await enrich(card);
                 return {
@@ -231,12 +242,12 @@ export const handler = async (ctx): Promise<Data> => {
                     description: summarize(extra),
                     _extra: extra,
                 };
-            }) as Promise<DataItem>,
-        { concurrency: DETAIL_CONCURRENCY }
+            })
+        )
     );
 
     return {
-        title: `テンポスマート 新着物件 (${prefecture.label})`,
+        title: `テンポスマート 新着物件 (${areaLabel(html, prefecture.label)})`,
         link: listUrl,
         language: 'ja',
         item: items,
@@ -244,7 +255,7 @@ export const handler = async (ctx): Promise<Data> => {
 };
 
 export const route: Route = {
-    path: '/estates/:pref?',
+    path: '/estates/:pref?/:district?',
     name: '新着物件',
     url: 'www.temposmart.jp',
     maintainers: ['pseudoyu'],
@@ -256,8 +267,13 @@ export const route: Route = {
             default: 'tokyo',
             options: PREFECTURES.map((p) => ({ value: p.slug, label: `${p.label} (${p.code})` })),
         },
+        district: {
+            description: 'Optional 市区町村, as a 5-digit JIS X 0402 code (新宿区 `13104`, 港区 `13103`, 横浜市中区 `14104`). Must belong to `pref`; omit for the whole prefecture.',
+        },
     },
-    description: `New listings on テンポスマート for one prefecture, sorted by 新着順 (first page, 50 listings). Each item's \`_extra\` carries the structured listing fields (賃料，坪，坪単価，階，最寄駅，保証金，礼金，造作譲渡料，現況，業種制限，登録日，…) parsed from the list and detail pages; unknown values are \`null\`.
+    description: `New listings on テンポスマート for one prefecture — or one 市区町村 when \`district\` is given — sorted by 新着順 (first page, 50 listings). Each item's \`_extra\` carries the structured listing fields (賃料，坪，坪単価，階，最寄駅，保証金，礼金，造作譲渡料，現況，業種制限，登録日，…) parsed from the list and detail pages; unknown values are \`null\`.
+
+\`district\` is a 5-digit JIS X 0402 市区町村 code whose first two digits are the prefecture — \`/temposmart/estates/tokyo/13104\` is 新宿区. A code from another prefecture is rejected rather than silently returning that prefecture's listings.
 
 | Query   | Description                                                                  | Default |
 | ------- | ---------------------------------------------------------------------------- | ------- |

@@ -44,9 +44,12 @@ export function withSearchParams(src: string, params: Record<string, string>) {
     return url.href;
 }
 
-export function getMessageMediaUrl(requestUrl: string, username: string, messageId: number) {
+export function getMessageMediaUrl(requestUrl: string, username: string, messageId: number, forwardedPrefix?: string) {
     const request = new URL(requestUrl);
-    const url = new URL(`/telegram/media/${username}/${messageId}`, request.origin);
+    const channelPathIndex = request.pathname.lastIndexOf('/telegram/channel/');
+    const prefix = forwardedPrefix ?? (channelPathIndex === -1 ? '' : request.pathname.slice(0, channelPathIndex));
+    const url = new URL(request.origin);
+    url.pathname = `${prefix.replace(/\/+$/, '')}/telegram/media/${username}/${messageId}`;
     for (const key of ['key', 'code']) {
         const value = request.searchParams.get(key);
         if (value) {
@@ -176,35 +179,36 @@ export default async function handler(ctx: Context) {
             }
             // messages that have no text are shown as if they're one post
             // because in TG only 1 attachment per message is possible
-            const src = getMessageMediaUrl(ctx.req.url, username!, message.id);
+            const src = getMessageMediaUrl(ctx.req.url, username!, message.id, ctx.req.header('x-forwarded-prefix'));
             attachments.push(getMediaLink(src, media));
         }
         if (message.replyMarkup instanceof Api.ReplyInlineMarkup) {
             for (const buttonRow of message.replyMarkup.rows) {
                 for (const button of buttonRow.buttons) {
-                    if (button instanceof Api.KeyboardButtonUrl) {
-                        attachments.push(`<div><a href="${button.url}" target="_blank">${button.text}</a></div>`);
+                    if (button.type instanceof Api.InlineButtonTypeUrl) {
+                        attachments.push(`<div><a href="${button.type.url}" target="_blank">${button.text}</a></div>`);
                     }
                 }
             }
         }
-        if (text !== '' || ++i === messages.length - 1) {
-            let description = attachments.join('<br/>\n');
-            attachments = []; // emitting these, buffer other ones
-
-            if (text) {
-                description += `<p>${HTMLParser.unparse(message.message, message.entities).replaceAll('\n', '<br/>')}</p>`;
-            }
-
-            const title = message.text ? message.text.slice(0, 80) + (message.text.length > 80 ? '...' : '') : new Date(message.date * 1000).toUTCString();
-            item.push({
-                title,
-                description,
-                pubDate: new Date(message.date * 1000).toUTCString(),
-                link: `https://t.me/s/${username}/${message.id}`,
-                author: getDisplayName(message.sender ?? entity),
-            });
+        if (text === '' && ++i !== messages.length - 1) {
+            continue;
         }
+        let description = attachments.join('<br/>\n');
+        attachments = []; // emitting these, buffer other ones
+
+        if (text) {
+            description += `<p>${HTMLParser.unparse(message.message, message.entities).replaceAll('\n', '<br/>')}</p>`;
+        }
+
+        const title = message.text ? message.text.slice(0, 80) + (message.text.length > 80 ? '...' : '') : new Date(message.date * 1000).toUTCString();
+        item.push({
+            title,
+            description,
+            pubDate: new Date(message.date * 1000).toUTCString(),
+            link: `https://t.me/s/${username}/${message.id}`,
+            author: getDisplayName(message.sender ?? entity),
+        });
     }
 
     return {

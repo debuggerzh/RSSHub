@@ -31,6 +31,25 @@ export interface ListingExtra {
     raw: Record<string, string | null>;
 }
 
+/**
+ * One row of a 賃料相場 (rent benchmark) page — 円 per 坪 per month, unknown = `null`.
+ * Sites that publish 万円 or per-㎡ figures are converted here and keep the original text in `raw`.
+ */
+export interface RentBenchmarkExtra {
+    source: string; // site id, e.g. 'inshokuten'
+    area_kind: 'station' | 'ward';
+    area_name: string; // 新宿 / 千代田区 (station names without 駅)
+    pref: string; // 東京都 / 千葉県 …
+    rent_per_tsubo_jpy: number | null; // the site's headline 坪単価 when it does not say which statistic it is (e.g. abc-tenpo's 賃料相場); null when the site labels its figures
+    rent_per_tsubo_median_jpy: number | null; // only when the site explicitly labels a 中央値
+    rent_per_tsubo_avg_jpy: number | null; // only when the site explicitly labels a 平均
+    rent_per_tsubo_min_jpy: number | null;
+    rent_per_tsubo_max_jpy: number | null;
+    sample_count: number | null;
+    period: string | null; // '2026-08' or the page's stated period, e.g. '直近1年間'
+    raw: Record<string, string>;
+}
+
 const TSUBO_M2 = 3.30579;
 
 /** Collapse whitespace from cheerio `.text()`; empty → null. */
@@ -53,11 +72,8 @@ export const parseJpy = (text: string | null): number | null => {
     if (/無償|なし|無し/.test(s)) {
         return 0;
     }
-    if (isUnknown(s)) {
-        return null;
-    }
     // Without 円 / 万 only a bare number is accepted ('3ヶ月' is not an amount).
-    if (!/[円万億]/.test(s) && !/^\d+(?:\.\d+)?$/.test(s)) {
+    if (isUnknown(s) || (!/[円万億]/.test(s) && !/^\d+(?:\.\d+)?$/.test(s))) {
         return null;
     }
     const oku = s.match(/^(\d+(?:\.\d+)?)億(?:(\d+(?:\.\d+)?)万)?/);
@@ -75,7 +91,7 @@ export const parseJpy = (text: string | null): number | null => {
 const round2 = (n: number): number => Math.round(n * 100) / 100;
 
 /** '21.42坪（70.84㎡）' / '70㎡' → { tsubo, area_m2 }, the missing side converted at 3.30579. */
-export const parseArea = (text: string | null): { tsubo: number | null; area_m2: number | null } => {
+export const parseArea = (text: string | null) => {
     if (text === null) {
         return { tsubo: null, area_m2: null };
     }
